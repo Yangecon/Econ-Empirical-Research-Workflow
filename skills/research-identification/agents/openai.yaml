@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Identification"
+  short_description: "Freeze empirical design and assumptions"
+  default_prompt: "Use $research-identification to freeze the estimand, identification strategy, assumptions, and robustness plan for this project."

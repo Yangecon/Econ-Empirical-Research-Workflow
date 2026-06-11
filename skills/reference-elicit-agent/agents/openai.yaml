@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reference Elicit Agent"
+  short_description: "Run literature and reference workflows"
+  default_prompt: "Use $reference-elicit-agent to run the Elicit-based literature workflow, refresh BibTeX outputs, and prepare a writing-ready reference library."

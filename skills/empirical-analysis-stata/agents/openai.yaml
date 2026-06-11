@@ -1,0 +1,4 @@
+interface:
+  display_name: "Empirical Analysis Stata"
+  short_description: "Run applied econ Stata workflows"
+  default_prompt: "Use $empirical-analysis-stata to run the full Default applied econ Stata pipeline for this project, from cleaning through publication-ready tables and figures."

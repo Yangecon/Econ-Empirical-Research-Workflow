@@ -1,0 +1,53 @@
+project_id: <project_slug>
+project_title: <Project Title>
+active_stage: idea
+active_rq_id: null
+
+paths:
+  idea: idea
+  references: references
+  notes: notes
+  data: data
+  code: code
+  output: output
+  draft: draft
+  work: work
+  paper: paper
+
+settings:
+  elicit_api_key_env: ELICIT_API_KEY
+  overleaf_token_env: <OVERLEAF_TOKEN_ENV_NAME>
+  overleaf_username: git
+  overleaf_remote_url: ""
+  draft_workspace: draft
+  default_browser: ""
+  zotero_enabled: false
+  target_journal: ""
+  journal_overlay: ""
+
+data_policy:
+  raw_read_only: true
+  restricted_data_allowed_in_replication_package: false
+  final_samples_live_under_data_root: true
+
+code_policy:
+  build_subfolder: code/build
+  build_languages:
+    - stata
+  estimation_at_code_root: true
+
+output_policy:
+  raw_output_folder: output/raw
+  paper_ready_figures: output/figures
+  paper_ready_tables: output/tables
+
+draft_policy:
+  main_tex: draft/main.tex
+  image_assets: draft/images
+  figure_tex_wrappers: draft/figures
+  table_tex_snippets: draft/tables
+
+submission_policy:
+  submission_folder: paper
+  tex_folder: paper/tex
+  replication_package: paper/replication_package

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "QuestionIntake",
+  "type": "object",
+  "required": [
+    "project_id",
+    "rq_id",
+    "rq_text_human",
+    "rq_text_normalized",
+    "unit_of_analysis",
+    "treatment_or_shock",
+    "outcome_primary",
+    "identification_candidates",
+    "data_candidates"
+  ],
+  "properties": {
+    "project_id": {
+      "type": "string"
+    },
+    "rq_id": {
+      "type": "string"
+    },
+    "rq_text_human": {
+      "type": "string"
+    },
+    "rq_text_normalized": {
+      "type": "string"
+    },
+    "unit_of_analysis": {
+      "type": "string"
+    },
+    "treatment_or_shock": {
+      "type": "string"
+    },
+    "outcome_primary": {
+      "type": "string"
+    },
+    "identification_candidates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "data_candidates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

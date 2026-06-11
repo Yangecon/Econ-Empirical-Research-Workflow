@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Workflow"
+  short_description: "Route the next empirical research step"
+  default_prompt: "Use $research-workflow to inspect this project and tell me which empirical research skill should handle it next."

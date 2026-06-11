@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Empirics"
+  short_description: "Run empirical production workflow"
+  default_prompt: "Use $research-empirics to build the sample, run the empirical pipeline, refresh output artifacts, and update the run log."

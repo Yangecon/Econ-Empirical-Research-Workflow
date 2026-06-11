@@ -1,0 +1,4 @@
+interface:
+  display_name: "Draft Overleaf Sync"
+  short_description: "Refresh draft assets from output"
+  default_prompt: "Use $output-draft-overleaf-sync to refresh the draft from cleaned output and check whether the project is ready for Overleaf sync."

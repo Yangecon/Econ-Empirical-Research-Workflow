@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Writing"
+  short_description: "Write empirical paper sections"
+  default_prompt: "Use $research-writing to draft or revise this empirical economics paper section and keep the draft folder aligned with the latest results."

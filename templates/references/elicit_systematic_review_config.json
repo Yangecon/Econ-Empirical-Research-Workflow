@@ -1,0 +1,59 @@
+{
+  "researchQuestion": "One sentence research question.",
+  "protocolDetails": "Define the conceptual scope, inclusion criteria, outcomes, mechanisms, and identification/data features that matter.",
+  "searches": [
+    {
+      "query": "One search query.",
+      "corpus": "elicit",
+      "maxResults": 1000
+    }
+  ],
+  "abstractScreening": {
+    "generate": true,
+    "criteria": [
+      {
+        "name": "topic_relevance",
+        "instructions": "Include papers directly related to the research question."
+      },
+      {
+        "name": "outcome_relevance",
+        "instructions": "Include papers that study the focal outcome or a close proxy."
+      }
+    ]
+  },
+  "fulltextScreening": {
+    "reuseAbstractCriteria": true,
+    "generate": true
+  },
+  "extraction": {
+    "generate": true,
+    "questions": [
+      {
+        "name": "publication_status_and_outlet",
+        "instructions": "State publication status and outlet."
+      },
+      {
+        "name": "methodology",
+        "instructions": "Summarize empirical design, identification strategy, model, or theory setup."
+      },
+      {
+        "name": "treatment_or_shock",
+        "instructions": "Summarize the treatment, shock, exposure, or explanatory variable."
+      },
+      {
+        "name": "outcome_context",
+        "instructions": "Summarize the outcome and how it is measured."
+      },
+      {
+        "name": "main_finding",
+        "instructions": "Summarize the main finding."
+      },
+      {
+        "name": "mechanisms_and_moderators",
+        "instructions": "Summarize mechanisms, channels, heterogeneity, or moderators."
+      }
+    ]
+  },
+  "generateReport": true,
+  "isPublic": false
+}

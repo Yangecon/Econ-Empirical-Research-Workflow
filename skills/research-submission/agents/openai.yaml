@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research Submission"
+  short_description: "Prepare submission and replication package"
+  default_prompt: "Use $research-submission to freeze the submission draft, assemble the replication package, and prepare the final paper folder."
