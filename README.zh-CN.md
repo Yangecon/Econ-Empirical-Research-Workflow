@@ -218,17 +218,6 @@ python scripts/validate_project.py --project-root /path/to/Project-A
 
 如果想快速看仓库内容，可以看 [docs/repo-contents.md](./docs/repo-contents.md)。
 
-## 上传 GitHub 前检查
-
-上传到 GitHub 之前，建议确认：
-
-1. 每个 skill 文件夹都有合法的 `SKILL.md`
-2. skill 名称和文件夹名称一致
-3. `scripts/scaffold_project.py` 里引用的模板路径都还存在
-4. README 已经写清别人如何把这些 skills 安装进 Codex
-5. 仓库里没有 credentials、Overleaf remote 或 restricted data
-6. Stata 模板仍然符合你想保留的 Default applied econ 工作流
-
 ## License
 
 见 [LICENSE](./LICENSE)。

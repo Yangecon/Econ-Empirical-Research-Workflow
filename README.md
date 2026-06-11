@@ -214,17 +214,6 @@ python scripts/validate_project.py --project-root /path/to/Project-A
 
 For a compact inventory of the repository, see [docs/repo-contents.md](./docs/repo-contents.md).
 
-## Publishing Checklist
-
-Before uploading this repository to GitHub, confirm:
-
-1. Every skill folder contains a valid `SKILL.md`
-2. Skill names and folder names match
-3. Template paths referenced by `scripts/scaffold_project.py` still exist
-4. The README explains how another user should install the skills into Codex
-5. No credentials, Overleaf remotes, or restricted data are included
-6. The Stata templates still match the intended Default applied econ workflow
-
 ## License
 
 See [LICENSE](./LICENSE).
