@@ -1,6 +1,27 @@
-__pycache__/
-*.pyc
-.env
+# OS / editor
 .DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.env
+
+# Stata
+*.smcl
 *.log
 *.tmp
+*.gph
+
+# Large empirical artifacts
+data/raw/*
+data/build/*
+data/*.dta
+output/raw/*
+paper/replication_package/data/*
+!data/raw/.gitkeep
+!data/build/.gitkeep
+!output/raw/.gitkeep

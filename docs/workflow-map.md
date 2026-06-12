@@ -1,40 +1,66 @@
 # Workflow Map
 
+## Main stage sequence
+
 ```text
-idea
-  -> topic gate
-      -> references + notes
-          -> identification gate
-              -> data + code
-                  -> output
-                      -> draft
-                          -> Overleaf / paper
+Idea
+  -> Topic Gate
+      -> Identification Gate
+          -> Empirical Analysis
+              -> Output
+                  -> Draft
+                      -> Submission
 ```
 
-## Idea
+## Persistent resource layers
 
-Evaluate research questions and produce `idea/topic_decision.md`.
+```text
+references/
+notes/
+work/
+```
 
-## References
+These are not workflow stages. They support multiple stages.
 
-Maintain human, AI, and merged reference lanes under `references/`.
+## Router state
 
-## Identification
+The router should read `project.yaml`, especially:
 
-Freeze empirical design with flat files under `notes/`.
+```yaml
+workflow_state:
+  active_stage: idea
+  active_idea_id: null
+  active_rq_id: null
+  topic_gate_status: null
+  identification_gate_status: null
+  output_status: null
+  draft_status: null
+  submission_status: null
+  last_empirical_run_id: null
+  current_reproduction_target: null
+```
 
-## Empirics
+## Hard gates
 
-Build the sample, run the Stata pipeline, and export cleaned results.
+| From | To | Required state |
+|---|---|---|
+| Idea | Identification Gate | `topic_gate_status: go` |
+| Identification Gate | Empirical Analysis | `identification_gate_status: freeze` |
+| Empirical Analysis | Output | `last_empirical_run_id` recorded and outputs refreshed |
+| Output | Draft | `output_status: ready` |
+| Draft | Submission | `draft_status: ready` |
 
-## Writing
+## Idea-stage loop
 
-Use `draft/main.tex`, `draft/images/`, `draft/figures/`, and `draft/tables/`.
+```text
+Human seed + data policy
+  -> Idea Generator Agent
+      -> candidate ideas
+          -> Literature + Judge Agent
+              -> scorecard + decision + failure reasons
+                  -> next round or stop
+```
 
-## Output to Draft
+Maximum search rounds: 10.
 
-Refresh downstream draft assets from cleaned `output/` and verify Overleaf readiness before sync.
-
-## Paper
-
-Prepare submission TeX and replication package under `paper/`.
+Elicit is evidence collection, not final judgment.

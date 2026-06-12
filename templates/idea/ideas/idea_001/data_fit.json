@@ -1,0 +1,17 @@
+{
+  "idea_id": "idea_001",
+  "uses_existing_data": true,
+  "requires_new_data": false,
+  "new_data_allowed": false,
+  "public_data_available": null,
+  "data_fit_status": "unknown",
+  "checks": {
+    "public_availability": null,
+    "data_fit": null,
+    "unit_match": null,
+    "coverage_match": null,
+    "key_variables_available": null,
+    "access_risk": null
+  },
+  "notes": ""
+}

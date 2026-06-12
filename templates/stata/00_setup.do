@@ -56,3 +56,6 @@ set seed 20260101
 
 di as text "Project root: $PROJECT_ROOT"
 di as text "Started: `c(current_date)' `c(current_time)'"
+
+local required_packages ""
+do "$CODE/_write_version_log.do" "00_setup.do" "`required_packages'"

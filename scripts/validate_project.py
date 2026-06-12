@@ -5,7 +5,13 @@ from pathlib import Path
 
 
 REQUIRED_DIRS = [
-    "idea",
+    "idea/intake",
+    "idea/registry",
+    "idea/agents/idea_generator/prompts",
+    "idea/agents/idea_generator/outputs",
+    "idea/agents/literature_judge/prompts",
+    "idea/agents/literature_judge/outputs",
+    "idea/ideas/idea_001/elicit",
     "references",
     "notes",
     "data/raw",
@@ -25,6 +31,19 @@ REQUIRED_DIRS = [
 REQUIRED_FILES = [
     "README.md",
     "project.yaml",
+    "idea/intake/human_seed.md",
+    "idea/intake/human_seed.json",
+    "idea/registry/idea_registry.csv",
+    "idea/registry/loop_log.csv",
+    "idea/agents/idea_generator/state.json",
+    "idea/agents/literature_judge/state.json",
+    "idea/ideas/idea_001/question_intake.json",
+    "idea/ideas/idea_001/data_fit.json",
+    "idea/ideas/idea_001/contribution_scorecard.json",
+    "idea/ideas/idea_001/topic_decision.md",
+    "code/_write_version_log.do",
+    "code/00_setup.do",
+    "code/build/00_build_sample.do",
     "draft/main.tex",
 ]
 
@@ -43,7 +62,27 @@ README_REQUIRED_STRINGS = [
     "Overleaf remote URL",
     "Overleaf token source",
     "Required pre-flight before agent work",
+    "workflow_state",
 ]
+
+PROJECT_YAML_REQUIRED_STRINGS = [
+    "workflow_state:",
+    "active_stage:",
+    "active_idea_id:",
+    "active_rq_id:",
+    "topic_gate_status:",
+    "identification_gate_status:",
+    "last_empirical_run_id:",
+    "current_reproduction_target:",
+    "idea_loop:",
+    "max_idea_search_rounds: 10",
+]
+
+
+def read_text_if_exists(path: Path) -> str:
+    if path.exists():
+        return path.read_text(encoding="utf-8")
+    return ""
 
 
 def validate_project(project_root: Path) -> list[str]:
@@ -75,12 +114,38 @@ def validate_project(project_root: Path) -> list[str]:
             names = ", ".join(sorted(child_dirs))
             errors.append(f"`notes/` should be flat by default. Found subdirectories: {names}")
 
-    readme_path = project_root / "README.md"
-    if readme_path.exists():
-        readme_text = readme_path.read_text(encoding="utf-8")
-        for required_string in README_REQUIRED_STRINGS:
-            if required_string not in readme_text:
-                errors.append(f"README.md should mention: {required_string}")
+    readme_text = read_text_if_exists(project_root / "README.md")
+    for required_string in README_REQUIRED_STRINGS:
+        if required_string not in readme_text:
+            errors.append(f"README.md should mention: {required_string}")
+
+    yaml_text = read_text_if_exists(project_root / "project.yaml")
+    for required_string in PROJECT_YAML_REQUIRED_STRINGS:
+        if required_string not in yaml_text:
+            errors.append(f"project.yaml should include: {required_string}")
+
+    registry_path = project_root / "idea/registry/idea_registry.csv"
+    if registry_path.exists():
+        header = registry_path.read_text(encoding="utf-8").splitlines()
+        if header:
+            required_columns = [
+                "idea_id",
+                "round",
+                "source",
+                "normalized_question",
+                "uses_existing_data",
+                "requires_new_data",
+                "new_data_allowed",
+                "public_data_available",
+                "data_fit_status",
+                "total_score",
+                "decision",
+                "failure_reasons",
+                "next_action",
+            ]
+            for column_name in required_columns:
+                if column_name not in header[0].split(","):
+                    errors.append(f"idea_registry.csv missing column: {column_name}")
 
     return errors
 

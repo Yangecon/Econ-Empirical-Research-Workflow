@@ -6,6 +6,9 @@ Robustness gauntlet template.
 
 do "code/00_setup.do"
 
+local required_packages "reghdfe eststo esttab boottest ritest"
+do "$CODE/_write_version_log.do" "02_robustness.do" "`required_packages'"
+
 use "$DATA/final_sample.dta", clear
 
 local y_var       outcome

@@ -6,6 +6,9 @@ Build the cleaned analysis sample from raw inputs.
 
 do "code/00_setup.do"
 
+local required_packages ""
+do "$CODE/_write_version_log.do" "code/build/00_build_sample.do" "`required_packages'"
+
 * Replace these placeholders with the actual raw input files for the project.
 * Keep raw data read-only and write derived files to data/build/ or data/.
 

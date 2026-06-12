@@ -1,16 +1,10 @@
 # Econ Empirical Research Workflow
 
-[English Version](./README.md)
+一个面向实证经济学项目的 Codex-ready skill bundle。它把选题、文献证据、识别设计、Stata 实证执行、结果整理、论文写作和投稿打包成可复用的工作流。
 
-这是一个面向 Codex 的经验经济学研究 skill bundle 仓库。
+## 核心定位
 
-这个仓库把一整套 Default applied econ 工作流打包好了：从选题筛选、识别策略冻结、Stata 实证执行、draft 组装，到 submission package 整理。它面向 AER、QJE、AEJ 风格的经验研究项目，内置了可复用的 skills、项目脚手架、Stata 模板、写作模板和结构校验脚本。
-
-## 这个仓库是什么
-
-这是一个公开的 skill bundle 仓库，不是你所有研究项目的总目录。
-
-推荐目录结构：
+这个 repo 不是所有项目的 home directory，而是一个可安装、可复制的 workflow/skill bundle。真实项目建议和本 repo 平行放置：
 
 ```text
 Project-A/
@@ -18,206 +12,120 @@ Project-B/
 econ-empirical-research-workflow/
 ```
 
-真实项目建议放在仓库外部，再把这里的 skills 安装到 Codex 中使用。
+## 主流程
 
-## 仓库范围
-
-这个仓库是有意收敛过的：
-
-1. 只聚焦 Default applied econ
-2. 把 Stata 作为默认实证执行栈
-3. 把 `output/ -> draft/ -> Overleaf` 作为默认下游写作流水线
-
-它不打算覆盖：
-
-- epidemiology workflow
-- ML-causal workflow
-- Python-first empirical workflow
-
-## 标准工作流
+主流程只保留真正的阶段和 hard gates：
 
 ```text
-idea
-  -> topic gate
-      -> references + notes
-          -> identification gate
-              -> data + code
-                  -> output
-                      -> draft
-                          -> Overleaf / paper
+Idea
+  -> Topic Gate
+      -> Identification Gate
+          -> Empirical Analysis
+              -> Output
+                  -> Draft
+                      -> Submission
 ```
 
-两个硬门槛：
+`references/` 和 `notes/` 是持续资源层，贯穿多个阶段，但不是主流程中间的独立步骤。
 
-1. Topic gate: `go`、`refine`、`park`、`drop`
-2. Identification gate: `freeze`、`redesign`、`park`
+## 显式 workflow state
 
-一旦设计被冻结，默认实证流水线是：
+每个项目的 `project.yaml` 仍保留兼容旧版的 `active_stage` / `active_rq_id`，但 router 应以明确的 `workflow_state` 为准：
+
+```yaml
+workflow_state:
+  active_stage: idea
+  active_idea_id: null
+  active_rq_id: null
+  topic_gate_status: null          # go / refine / park / drop
+  identification_gate_status: null # freeze / redesign / park
+  output_status: null              # not_started / running / ready / stale
+  draft_status: null               # not_started / drafting / ready / stale
+  submission_status: null          # not_started / packaging / ready
+  last_empirical_run_id: null
+  current_reproduction_target: null
+```
+
+router 按这个状态判断是否允许进入下一阶段：
+
+1. topic 没有 `go`，不进入 identification；
+2. identification 没有 `freeze`，不进入 empirical analysis；
+3. output 没有 `ready`，不进入 draft；
+4. draft 没有 `ready`，不进入 submission。
+
+## Idea 阶段：bounded two-agent loop
+
+idea 阶段拆成两个 agent：
 
 ```text
-import / cleaning
--> variable construction
--> Table 1
--> diagnostic tests
--> baseline modeling
--> robustness gauntlet
--> mechanism + heterogeneity
--> publication-ready tables / figures
+Idea Generator Agent
+  负责提出新 idea、改写 idea、根据失败原因继续发散
+
+Literature + Judge Agent
+  负责查文献、整理 evidence、打分、判断 go/refine/park/drop
 ```
 
-## Skill 列表
+循环最多 10 轮，并通过文件交接，不靠自由聊天状态：
 
 ```text
-skills/
-  research-workflow/
-  research-topic-selection/
-  research-identification/
-  research-empirics/
-  empirical-analysis-stata/
-  research-writing/
-  output-draft-overleaf-sync/
-  research-submission/
-  reference-elicit-agent/
+Idea Generator -> candidate ideas / idea queue
+Literature + Judge -> scorecard + topic_decision + failure_reasons
+Idea Generator -> 读取 failure_reasons 后继续下一轮
 ```
 
-各个 skill 的作用：
+停止条件：
 
-- `research-workflow`：读取项目状态、阶段和缺失产物，决定下一步该调用哪个 skill
-- `research-topic-selection`：评估研究问题、创新性、可行性和贡献度
-- `research-identification`：冻结 estimand、设计、假设、数据需求和 robustness plan
-- `research-empirics`：执行通用实证生产流程并刷新 output 产物
-- `empirical-analysis-stata`：仓库里的核心 Stata 主 skill，并带有分步骤深度 references
-- `research-writing`：负责经验论文英文写作和 draft 目录逻辑
-- `output-draft-overleaf-sync`：把清洗后的 output 刷到 draft，并检查 Overleaf handoff 是否就绪
-- `research-submission`：准备 submission-ready 的 `paper/` 文件夹和 replication package
-- `reference-elicit-agent`：管理 `references/` 下的 Elicit 文献工作流
+1. 找到至少一个 `go`；
+2. 达到 10 轮；
+3. 连续几轮最高分无改善；
+4. human 手动停止；
+5. 所有候选都因为数据不可得被 `park`/`drop`。
 
-## 核心 Stata Skill
+Elicit 只负责 evidence collection，不是最终判断。
 
-`empirical-analysis-stata` 是这个仓库最核心的执行型 skill。
+## human seed + data policy
 
-它参考了一个更强、更泛化的 Stata empirical-analysis skill，但在这里被有意收窄为：
+项目初始化时需要填写：
 
 ```text
-只保留 Default applied econ
+idea/intake/human_seed.md
+idea/intake/human_seed.json
 ```
 
-它包含：
+核心字段包括：
 
-- 一套 8-step applied-econ Stata workflow
-- 适合 Codex 触发的 trigger-rich skill metadata
-- 按步骤拆开的深度参考文档：cleaning、transformation、descriptives、diagnostics、modeling、robustness、further analysis、tables/plots
+```json
+{
+  "initial_research_question": "",
+  "existing_data": [],
+  "data_search_policy": {
+    "allow_new_data_search": false,
+    "allow_public_data_only": true,
+    "allow_restricted_data": false,
+    "must_use_existing_data": true
+  }
+}
+```
 
-主要估计器家族：
+如果 `allow_new_data_search = false`，Idea Generator 只能基于已有数据发散。如果允许找新数据，必须检查 public availability、data fit、unit match、coverage match、key variables availability 和 access risk。
 
-- `reghdfe`
-- `ivreg2` 和 `ivreghdfe`
-- `csdid`、`eventstudyinteract`、`did_imputation`、`sdid`
-- `rdrobust`
-- `synth` 和 `synth_runner`
-- `teffects`、`psmatch2`、`ebalance`
+## Stata version log
 
-主要 robustness 工具：
-
-- `bacondecomp`
-- `honestdid`
-- `boottest`
-- `ritest`
-- `rwolf`
-- `psacalc`
-
-## 项目目录结构
-
-脚手架生成的标准项目结构如下：
+不做全局 Stata 环境快照。每个 `.do` 文件根据自己的依赖包调用：
 
 ```text
-<Project>/
-  README.md
-  project.yaml
-  idea/
-  references/
-  notes/
-  data/
-    raw/
-    build/
-    final_sample.dta
-  code/
-    build/
-    00_setup.do
-    01_estimation.do
-    02_robustness.do
-    03_figures.do
-    04_tables.do
-    99_master.do
-  output/
-    raw/
-    figures/
-    tables/
-  draft/
-    main.tex
-    images/
-    figures/
-    tables/
-  work/
-  paper/
-    tex/
-    replication_package/
+code/_write_version_log.do
 ```
 
-## 如何安装到 Codex
-
-当每个 skill 文件夹被放进用户的 skill 目录后，Codex 就可以发现这些 skills。
-
-典型安装方式：
-
-1. clone 或下载这个仓库
-2. 把 `skills/` 下面需要的 skill 文件夹复制或 symlink 到 `~/.codex/skills/` 或 `$CODEX_HOME/skills/`
-3. 保持 skill 文件夹名字不变
-4. 在一个单独的经验研究项目中调用这些已安装的 skills
-
-为了在 Codex 中获得更好的 UI 体验，这个仓库已经为每个 bundled skill 补上了 `agents/openai.yaml`。
-
-## Skill 是如何触发的
-
-这个仓库中的每个 skill 都包含：
-
-- 合法的 `SKILL.md`
-- 在 `description` 中明确写清 “什么时候该用”
-- skill 正文里的 trigger phrases
-
-这已经足够用于基础 skill discovery。
-
-如果你想要更完整的 Codex skill 列表、chips 或更好的 UI 展示体验，这个仓库已经把这层 `agents/openai.yaml` 元数据包含进来了。
-
-## 模板和脚本
-
-仓库包含以下模板组：
+并把脚本级 version/package check 输出到：
 
 ```text
-templates/project/
-templates/stata/
-templates/writing/
-templates/submission/
-templates/references/
-templates/custom/
+output/raw/stata_version_log.csv
 ```
 
-生成一个新项目：
+## 使用
 
 ```bash
 python scripts/scaffold_project.py --dest /path/to/Project-A --slug project-a --title "Project A"
-```
-
-校验项目结构：
-
-```bash
 python scripts/validate_project.py --project-root /path/to/Project-A
 ```
-
-## 仓库内容清单
-
-如果想快速看仓库内容，可以看 [docs/repo-contents.md](./docs/repo-contents.md)。
-
-## License
-
-见 [LICENSE](./LICENSE)。

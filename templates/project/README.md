@@ -1,16 +1,36 @@
 # <Project Title>
 
-This repository is the cleaned working copy of the project. It should be runnable through relative paths and should record all project-specific settings needed before agents edit results, run the Stata pipeline, refresh draft files, touch Overleaf, work on references, or prepare replication materials.
+This folder is the cleaned working copy of the project. It should be runnable through relative paths and should record all project-specific settings needed before agents edit results, run the Stata pipeline, refresh draft files, touch Overleaf, work on references, or prepare replication materials.
 
-## Current status
+## Current workflow state
+
+The source of truth is `project.yaml`, especially:
+
+```yaml
+workflow_state:
+  active_stage: idea
+  active_idea_id: null
+  active_rq_id: null
+  topic_gate_status: null
+  identification_gate_status: null
+  output_status: null
+  draft_status: null
+  submission_status: null
+  last_empirical_run_id: null
+  current_reproduction_target: null
+```
+
+Current status:
 
 - Active stage:
+- Active idea ID:
 - Active research question ID:
 - Topic gate status:
 - Identification gate status:
+- Output status:
+- Draft status:
+- Submission status:
 - Last empirical run:
-- Current draft target:
-- Current submission target:
 - Current reproduction target:
 
 ## What this version reproduces
@@ -27,21 +47,82 @@ Examples:
 Main scripts aligned to this target:
 
 - `code/build/00_build_sample.do`
-- `code/build/...`
 - `code/01_estimation.do`
 - `code/02_robustness.do`
 - `code/03_figures.do`
 - `code/04_tables.do`
 - `code/99_master.do`
 
+## Main workflow
+
+```text
+Idea
+  -> Topic Gate
+      -> Identification Gate
+          -> Empirical Analysis
+              -> Output
+                  -> Draft
+                      -> Submission
+```
+
+`references/` and `notes/` are persistent resource layers, not main workflow stages.
+
+## Idea stage
+
+The idea stage is a bounded two-agent loop.
+
+Folder map:
+
+```text
+idea/
+  intake/
+    human_seed.md
+    human_seed.json
+  registry/
+    idea_registry.csv
+    loop_log.csv
+  agents/
+    idea_generator/
+      prompts/
+      outputs/
+      state.json
+    literature_judge/
+      prompts/
+      outputs/
+      state.json
+  ideas/
+    idea_001/
+      question_intake.json
+      data_fit.json
+      idea_brief.md
+      elicit/
+      prior_literature.md
+      gap_map.csv
+      contribution_scorecard.json
+      topic_decision.md
+```
+
+The Idea Generator Agent proposes candidate ideas. The Literature + Judge Agent collects evidence, scores the topic, records failure reasons, and writes a gate decision. Elicit is evidence collection, not final judgment.
+
+## Human seed and data policy
+
+Before generating ideas, complete:
+
+```text
+idea/intake/human_seed.md
+idea/intake/human_seed.json
+```
+
+If `allow_new_data_search` is false, candidate ideas must use existing data. If it is true, new-data ideas must pass checks for public availability, data fit, unit match, coverage match, key variables, and access risk.
+
 ## Folder map
 
-- `idea/`: research-question evaluation and Elicit topic-stage evidence
-- `references/`: human, AI, and merged literature/reference lanes
+- `idea/`: bounded topic-search loop and topic-gate artifacts
+- `references/`: persistent human, AI, and merged literature/reference lanes
 - `notes/`: flat project notes, identification memo, PAP, robustness plan, decision log, run log
-- `data/`: raw data, build data, and final analysis samples
+- `data/`: raw data, build data, codebook, and final analysis samples
 - `code/`: Stata build scripts plus estimation, robustness, figure, and table scripts
-- `output/`: raw outputs plus cleaned figures/tables
+- `output/`: raw outputs plus cleaned paper-ready figures and tables
 - `draft/`: `main.tex`, images, figure TeX wrappers, table TeX snippets
 - `work/`: exploratory side branches
 - `paper/`: submission TeX copy and replication package
@@ -61,22 +142,20 @@ code/04_tables.do
 code/99_master.do
 ```
 
-Main final sample:
+Each `.do` file should append to:
 
 ```text
-data/<final_sample>.dta
+output/raw/stata_version_log.csv
 ```
-
-Scripts should still resolve the project root when launched from `code/`.
 
 ## Project settings
 
 ### Elicit
 
 - Elicit API key environment variable: `ELICIT_API_KEY`
-- Topic-stage Elicit folder: `idea/`
+- Topic-stage Elicit folder: `idea/ideas/<idea_id>/elicit/`
 - Reference-stage Elicit folder: `references/reference_by_ai/`
-- Default Elicit role: literature discovery, screening, extraction, and topic/reference evaluation
+- Default Elicit role: literature discovery, screening, extraction, and evidence collection
 
 ### Zotero
 
@@ -116,23 +195,14 @@ The Overleaf remote URL determines the destination project. The token only authe
 
 Before changing files, the agent should confirm from this README and `project.yaml`:
 
-1. Active stage and task target.
-2. Whether Elicit, Zotero, Overleaf, or a journal overlay is involved.
-3. Whether required environment variables are named and available.
-4. Whether raw or restricted data are involved.
-5. Whether the task should touch `work/` only or main `code/`, `output/`, and `draft/`.
-6. Whether Overleaf remote URL and token source are recorded before any git sync.
-7. Whether current outputs are newer than draft snippets before refreshing the draft.
-
-## Agent workflow
-
-- For topic evaluation, work in `idea/` and write `idea/topic_decision.md`.
-- For identification, write flat files under `notes/`, especially `notes/identification.md` and `notes/identification_status.json`.
-- For empirical work, use `code/build/` for sample construction and root `code/` scripts for estimation and outputs.
-- For exploratory branches, use `work/<exploration_slug>/`.
-- For draft updates, treat `output/` as upstream and `draft/` as downstream.
-- For Overleaf sync, read this README first and verify remote URL and token source.
-- For submission, use `paper/tex/` and `paper/replication_package/`.
+1. Current `workflow_state`.
+2. Whether the task is blocked by topic, identification, output, draft, or submission gate.
+3. Whether Elicit, Zotero, Overleaf, or a journal overlay is involved.
+4. Whether required environment variables are named and available.
+5. Whether raw or restricted data are involved.
+6. Whether the task should touch `work/` only or main `code/`, `output/`, and `draft/`.
+7. Whether Overleaf remote URL and token source are recorded before any git sync.
+8. Whether current outputs are newer than draft snippets before refreshing the draft.
 
 ## Notes
 

@@ -6,7 +6,13 @@ from pathlib import Path
 
 
 PROJECT_DIRS = [
-    "idea",
+    "idea/intake",
+    "idea/registry",
+    "idea/agents/idea_generator/prompts",
+    "idea/agents/idea_generator/outputs",
+    "idea/agents/literature_judge/prompts",
+    "idea/agents/literature_judge/outputs",
+    "idea/ideas/idea_001/elicit",
     "references/reference_by_human/pdfs",
     "references/reference_by_ai/raw",
     "references/reference_by_ai/systematic_review",
@@ -51,6 +57,13 @@ def create_empty_file(path: Path) -> None:
         path.write_text("", encoding="utf-8")
 
 
+def copy_and_replace(path: Path, replacements: dict[str, str]) -> None:
+    text = path.read_text(encoding="utf-8")
+    for old_text, new_text in replacements.items():
+        text = text.replace(old_text, new_text)
+    path.write_text(text, encoding="utf-8")
+
+
 def scaffold_project(dest: Path, slug: str, title: str, repo_root: Path) -> None:
     if dest.exists() and any(dest.iterdir()):
         raise RuntimeError(f"Destination exists and is not empty: {dest}")
@@ -60,31 +73,48 @@ def scaffold_project(dest: Path, slug: str, title: str, repo_root: Path) -> None
     for relative_dir in PROJECT_DIRS:
         (dest / relative_dir).mkdir(parents=True, exist_ok=True)
 
+    replacements = {
+        "<project_slug>": slug,
+        "<Project Title>": title,
+    }
+
     copy_template(repo_root, "templates/project/README.md", dest / "README.md")
     copy_template(repo_root, "templates/project/project.yaml", dest / "project.yaml")
+    copy_and_replace(dest / "README.md", replacements)
+    copy_and_replace(dest / "project.yaml", replacements)
 
-    readme_text = (dest / "README.md").read_text(encoding="utf-8")
-    readme_text = readme_text.replace("<Project Title>", title)
-    (dest / "README.md").write_text(readme_text, encoding="utf-8")
+    # Idea intake and registry
+    copy_template(repo_root, "templates/idea/intake/human_seed.md", dest / "idea/intake/human_seed.md")
+    copy_template(repo_root, "templates/idea/intake/human_seed.json", dest / "idea/intake/human_seed.json")
+    copy_template(repo_root, "templates/idea/registry/idea_registry.csv", dest / "idea/registry/idea_registry.csv")
+    copy_template(repo_root, "templates/idea/registry/loop_log.csv", dest / "idea/registry/loop_log.csv")
 
-    yaml_text = (dest / "project.yaml").read_text(encoding="utf-8")
-    yaml_text = yaml_text.replace("<project_slug>", slug)
-    yaml_text = yaml_text.replace("<Project Title>", title)
-    (dest / "project.yaml").write_text(yaml_text, encoding="utf-8")
+    # Idea agents
+    copy_template(repo_root, "templates/idea/agents/idea_generator/state.json", dest / "idea/agents/idea_generator/state.json")
+    copy_template(repo_root, "templates/idea/agents/idea_generator/prompts/system.md", dest / "idea/agents/idea_generator/prompts/system.md")
+    copy_template(repo_root, "templates/idea/agents/idea_generator/outputs/README.md", dest / "idea/agents/idea_generator/outputs/README.md")
+    copy_template(repo_root, "templates/idea/agents/literature_judge/state.json", dest / "idea/agents/literature_judge/state.json")
+    copy_template(repo_root, "templates/idea/agents/literature_judge/prompts/system.md", dest / "idea/agents/literature_judge/prompts/system.md")
+    copy_template(repo_root, "templates/idea/agents/literature_judge/outputs/README.md", dest / "idea/agents/literature_judge/outputs/README.md")
 
-    create_empty_file(dest / "idea/question_intake.json")
-    create_empty_file(dest / "idea/anchor_references.md")
-    copy_template(repo_root, "templates/references/elicit_systematic_review_config.json", dest / "idea/elicit_systematic_review_config.json")
-    create_empty_file(dest / "idea/elicit_search.csv")
-    create_empty_file(dest / "idea/elicit_screen.csv")
-    create_empty_file(dest / "idea/elicit_fulltext.csv")
-    create_empty_file(dest / "idea/elicit_extract.csv")
-    create_empty_file(dest / "idea/prior_literature.md")
-    create_empty_file(dest / "idea/gap_map.csv")
-    create_empty_file(dest / "idea/contribution_scorecard.json")
-    create_empty_file(dest / "idea/alternative_questions.json")
-    create_empty_file(dest / "idea/topic_decision.md")
+    # First idea shell
+    idea_template_root = "templates/idea/ideas/idea_001"
+    idea_dest_root = dest / "idea/ideas/idea_001"
+    copy_template(repo_root, f"{idea_template_root}/question_intake.json", idea_dest_root / "question_intake.json")
+    copy_template(repo_root, f"{idea_template_root}/data_fit.json", idea_dest_root / "data_fit.json")
+    copy_template(repo_root, f"{idea_template_root}/idea_brief.md", idea_dest_root / "idea_brief.md")
+    copy_template(repo_root, f"{idea_template_root}/elicit/README.md", idea_dest_root / "elicit/README.md")
+    copy_template(repo_root, f"{idea_template_root}/prior_literature.md", idea_dest_root / "prior_literature.md")
+    copy_template(repo_root, f"{idea_template_root}/gap_map.csv", idea_dest_root / "gap_map.csv")
+    copy_template(repo_root, f"{idea_template_root}/contribution_scorecard.json", idea_dest_root / "contribution_scorecard.json")
+    copy_template(repo_root, f"{idea_template_root}/topic_decision.md", idea_dest_root / "topic_decision.md")
 
+    for path in [
+        idea_dest_root / "question_intake.json",
+    ]:
+        copy_and_replace(path, replacements)
+
+    # Notes and identification
     create_empty_file(dest / "notes/idea_notes.md")
     create_empty_file(dest / "notes/project_notes.md")
     create_empty_file(dest / "notes/meeting_notes.md")
@@ -95,10 +125,14 @@ def scaffold_project(dest: Path, slug: str, title: str, repo_root: Path) -> None
     create_empty_file(dest / "notes/data_requirements.yaml")
     create_empty_file(dest / "notes/robustness_plan.csv")
     create_empty_file(dest / "notes/pap.md")
-    write_text(dest / "notes/identification_status.json", "{\n  \"status\": \"redesign\"\n}\n")
+    write_text(
+        dest / "notes/identification_status.json",
+        "{\n  \"status\": \"redesign\",\n  \"active_idea_id\": null,\n  \"active_rq_id\": null,\n  \"human_approved\": false\n}\n",
+    )
     create_empty_file(dest / "notes/run_log.md")
     copy_template(repo_root, "templates/writing/journal_target_profile.md", dest / "notes/journal_target_profile.md")
 
+    # References
     copy_template(repo_root, "templates/references/README.md", dest / "references/README.md")
     create_empty_file(dest / "references/reference_by_human/ref.bib")
     create_empty_file(dest / "references/reference_by_human/notes.md")
@@ -111,7 +145,9 @@ def scaffold_project(dest: Path, slug: str, title: str, repo_root: Path) -> None
     create_empty_file(dest / "references/reference_merged/approved_papers.jsonl")
     create_empty_file(dest / "references/reference_merged/literature_review.md")
 
+    # Stata
     copy_template(repo_root, "templates/stata/00_build_sample.do", dest / "code/build/00_build_sample.do")
+    copy_template(repo_root, "templates/stata/_write_version_log.do", dest / "code/_write_version_log.do")
     copy_template(repo_root, "templates/stata/00_setup.do", dest / "code/00_setup.do")
     copy_template(repo_root, "templates/stata/01_estimation.do", dest / "code/01_estimation.do")
     copy_template(repo_root, "templates/stata/02_robustness.do", dest / "code/02_robustness.do")

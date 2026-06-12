@@ -1,10 +1,37 @@
 project_id: <project_slug>
 project_title: <Project Title>
+
+# Backward-compatible mirror fields. Router should prefer workflow_state below.
 active_stage: idea
 active_rq_id: null
 
+workflow_state:
+  active_stage: idea
+  active_idea_id: null
+  active_rq_id: null
+  topic_gate_status: null          # go / refine / park / drop
+  identification_gate_status: null # freeze / redesign / park
+  output_status: null              # not_started / running / ready / stale
+  draft_status: null               # not_started / drafting / ready / stale
+  submission_status: null          # not_started / packaging / ready
+  last_empirical_run_id: null
+  current_reproduction_target: null
+
+idea_loop:
+  max_idea_search_rounds: 10
+  stop_if_any_go: true
+  no_improvement_rounds_limit: 3
+  human_manual_stop: false
+  stop_if_all_candidates_data_blocked: true
+
 paths:
   idea: idea
+  idea_intake: idea/intake
+  idea_registry: idea/registry
+  idea_agents: idea/agents
+  idea_generator: idea/agents/idea_generator
+  literature_judge: idea/agents/literature_judge
+  idea_records: idea/ideas
   references: references
   notes: notes
   data: data
@@ -29,12 +56,15 @@ data_policy:
   raw_read_only: true
   restricted_data_allowed_in_replication_package: false
   final_samples_live_under_data_root: true
+  default_data_search_policy_file: idea/intake/human_seed.json
 
 code_policy:
   build_subfolder: code/build
   build_languages:
     - stata
   estimation_at_code_root: true
+  stata_version_log: output/raw/stata_version_log.csv
+  per_do_file_version_logging: true
 
 output_policy:
   raw_output_folder: output/raw

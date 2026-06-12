@@ -1,0 +1,13 @@
+{
+  "initial_research_question": "",
+  "existing_data": [],
+  "data_constraints": [],
+  "data_search_policy": {
+    "allow_new_data_search": false,
+    "allow_public_data_only": true,
+    "allow_restricted_data": false,
+    "must_use_existing_data": true
+  },
+  "human_anchor_references": [],
+  "notes": ""
+}

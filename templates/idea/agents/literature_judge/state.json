@@ -1,0 +1,8 @@
+{
+  "agent_name": "literature_judge",
+  "current_round": 0,
+  "last_evaluated_idea_id": null,
+  "last_decision": null,
+  "last_failure_reasons": [],
+  "status": "idle"
+}

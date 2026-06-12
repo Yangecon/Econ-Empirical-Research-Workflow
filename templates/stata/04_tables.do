@@ -6,6 +6,9 @@ Table 1 plus publication-ready table bundle.
 
 do "code/00_setup.do"
 
+local required_packages "estpost esttab reghdfe balancetable eststo"
+do "$CODE/_write_version_log.do" "04_tables.do" "`required_packages'"
+
 use "$DATA/final_sample.dta", clear
 
 local y_var       outcome

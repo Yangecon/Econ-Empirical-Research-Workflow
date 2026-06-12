@@ -1,0 +1,9 @@
+{
+  "agent_name": "idea_generator",
+  "current_round": 0,
+  "max_rounds": 10,
+  "last_seen_failure_reasons": [],
+  "best_score_seen": null,
+  "no_improvement_rounds": 0,
+  "status": "idle"
+}

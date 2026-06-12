@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WorkflowState",
+  "type": "object",
+  "required": [
+    "active_stage",
+    "topic_gate_status",
+    "identification_gate_status"
+  ],
+  "properties": {
+    "active_stage": {
+      "enum": [
+        "idea",
+        "topic_gate",
+        "identification_gate",
+        "empirical_analysis",
+        "output",
+        "draft",
+        "submission"
+      ]
+    },
+    "active_idea_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "active_rq_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "topic_gate_status": {
+      "enum": [
+        "go",
+        "refine",
+        "park",
+        "drop",
+        null
+      ]
+    },
+    "identification_gate_status": {
+      "enum": [
+        "freeze",
+        "redesign",
+        "park",
+        null
+      ]
+    },
+    "output_status": {
+      "enum": [
+        "not_started",
+        "running",
+        "ready",
+        "stale",
+        null
+      ]
+    },
+    "draft_status": {
+      "enum": [
+        "not_started",
+        "drafting",
+        "ready",
+        "stale",
+        null
+      ]
+    },
+    "submission_status": {
+      "enum": [
+        "not_started",
+        "packaging",
+        "ready",
+        null
+      ]
+    },
+    "last_empirical_run_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "current_reproduction_target": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

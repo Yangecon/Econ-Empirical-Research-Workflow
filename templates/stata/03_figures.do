@@ -6,6 +6,9 @@ Publication-ready figure templates for the main empirical results.
 
 do "code/00_setup.do"
 
+local required_packages "reghdfe eststo esttab coefplot binscatter"
+do "$CODE/_write_version_log.do" "03_figures.do" "`required_packages'"
+
 use "$DATA/final_sample.dta", clear
 
 local y_var       outcome

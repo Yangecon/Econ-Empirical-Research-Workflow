@@ -6,6 +6,9 @@ Baseline modeling and core diagnostic template.
 
 do "code/00_setup.do"
 
+local required_packages "reghdfe eststo esttab"
+do "$CODE/_write_version_log.do" "01_estimation.do" "`required_packages'"
+
 use "$DATA/final_sample.dta", clear
 
 local y_var       outcome

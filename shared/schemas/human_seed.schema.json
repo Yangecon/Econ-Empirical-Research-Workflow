@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HumanSeed",
+  "type": "object",
+  "required": [
+    "initial_research_question",
+    "existing_data",
+    "data_search_policy"
+  ],
+  "properties": {
+    "initial_research_question": {
+      "type": "string"
+    },
+    "existing_data": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "data_constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "data_search_policy": {
+      "type": "object",
+      "required": [
+        "allow_new_data_search",
+        "allow_public_data_only",
+        "allow_restricted_data",
+        "must_use_existing_data"
+      ],
+      "properties": {
+        "allow_new_data_search": {
+          "type": "boolean"
+        },
+        "allow_public_data_only": {
+          "type": "boolean"
+        },
+        "allow_restricted_data": {
+          "type": "boolean"
+        },
+        "must_use_existing_data": {
+          "type": "boolean"
+        }
+      }
+    },
+    "human_anchor_references": {
+      "type": "array"
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

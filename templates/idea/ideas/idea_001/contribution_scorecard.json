@@ -1,0 +1,30 @@
+{
+  "idea_id": "idea_001",
+  "rq_id": "rq_001",
+  "total_score": null,
+  "decision": null,
+  "scores": {
+    "question_clarity": null,
+    "literature_gap_and_novelty": null,
+    "identification_plausibility": null,
+    "data_feasibility": null,
+    "importance_and_audience": null,
+    "execution_cost": null
+  },
+  "failure_reasons": [],
+  "failure_reason_enum": [
+    "weak_identification",
+    "weak_data_path",
+    "unclear_data_access",
+    "low_novelty",
+    "closest_literature_too_close",
+    "too_expensive",
+    "audience_too_narrow",
+    "unclear_mechanism",
+    "measurement_problem",
+    "scope_too_broad",
+    "new_data_not_allowed",
+    "public_data_not_available"
+  ],
+  "next_action": null
+}

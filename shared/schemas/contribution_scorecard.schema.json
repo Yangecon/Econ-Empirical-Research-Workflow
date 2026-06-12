@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ContributionScorecard",
+  "type": "object",
+  "required": [
+    "idea_id",
+    "rq_id",
+    "total_score",
+    "decision",
+    "scores",
+    "failure_reasons"
+  ],
+  "properties": {
+    "idea_id": {
+      "type": "string"
+    },
+    "rq_id": {
+      "type": "string"
+    },
+    "total_score": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 100
+    },
+    "decision": {
+      "enum": [
+        "go",
+        "refine",
+        "park",
+        "drop",
+        null
+      ]
+    },
+    "scores": {
+      "type": "object",
+      "properties": {
+        "question_clarity": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 10
+        },
+        "literature_gap_and_novelty": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 20
+        },
+        "identification_plausibility": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 25
+        },
+        "data_feasibility": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 20
+        },
+        "importance_and_audience": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 15
+        },
+        "execution_cost": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 10
+        }
+      }
+    },
+    "failure_reasons": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "weak_identification",
+          "weak_data_path",
+          "unclear_data_access",
+          "low_novelty",
+          "closest_literature_too_close",
+          "too_expensive",
+          "audience_too_narrow",
+          "unclear_mechanism",
+          "measurement_problem",
+          "scope_too_broad",
+          "new_data_not_allowed",
+          "public_data_not_available"
+        ]
+      }
+    },
+    "next_action": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}
