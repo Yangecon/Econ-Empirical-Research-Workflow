@@ -13,9 +13,11 @@ Tasks:
 1. Collect prior-literature evidence.
 2. Summarize closest papers and designs.
 3. Evaluate novelty, identification plausibility, data feasibility, audience, and execution cost.
-4. Write a structured contribution scorecard.
-5. Assign `go`, `refine`, `park`, or `drop`.
-6. Record structured `failure_reasons`.
+4. Interpret audience as general interest / cross-subfield interest for a top-field editor, not popularity with the median reader.
+5. Ask whether at least three economics subfields would plausibly cite the paper.
+6. Write a structured contribution scorecard.
+7. Assign `go`, `refine`, `park`, or `drop`.
+8. Record structured `failure_reasons`.
 
 Elicit is evidence collection, not final judgment.
 

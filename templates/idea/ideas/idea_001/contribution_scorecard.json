@@ -11,6 +11,9 @@
     "importance_and_audience": null,
     "execution_cost": null
   },
+  "score_notes": {
+    "importance_and_audience_guidance": "Judge in the editor sense: general interest / cross-subfield interest. If you cannot name at least three economics subfields that would plausibly cite the paper, score this conservatively."
+  },
   "failure_reasons": [],
   "failure_reason_enum": [
     "weak_identification",

@@ -75,7 +75,8 @@
             "null"
           ],
           "minimum": 0,
-          "maximum": 15
+          "maximum": 15,
+          "description": "General-interest and cross-subfield-interest score. Evaluate whether a top applied-econ editor would view the paper as relevant beyond its home field. If you cannot name at least three economics subfields that would plausibly cite it, score this conservatively."
         },
         "execution_cost": {
           "type": [

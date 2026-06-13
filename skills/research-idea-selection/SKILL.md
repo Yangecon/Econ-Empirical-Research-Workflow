@@ -3,13 +3,13 @@ name: research-idea-selection
 description: Manage the idea-stage bounded two-agent loop for empirical economics research. Use when the user asks to evaluate or generate research ideas, run idea selection, process human seed data, check novelty, use Elicit for topic-stage evidence, score contribution, decide go/refine/park/drop, record failure reasons, or update idea registries. Triggers: idea selection, idea generator, literature judge, human seed, data policy, contribution score, failure reasons, novelty check, feasible question, Elicit topic scan, go refine park drop.
 ---
 
-# Research Topic Selection
+# Research Idea Selection
 
 ## Purpose
 
 Use this skill in the `idea/` stage.
 
-The goal is to turn human seed input and candidate research questions into a structured topic gate decision:
+The goal is to turn human seed input and candidate research questions into a structured idea gate decision:
 
 ```text
 go / refine / park / drop
@@ -179,8 +179,16 @@ Total: 100.
 - literature gap and novelty: 20
 - identification plausibility: 25
 - data feasibility: 20
-- importance and audience: 15
+- importance and audience (general interest / cross-subfield interest): 15
 - execution cost: 10
+
+Interpret `importance and audience` in the editor sense.
+
+- This is not about whether the median person finds the topic interesting.
+- This is about whether a general-interest applied-econ editor would view the paper as relevant beyond its home field.
+- Cross-subfield interest is the key test.
+- A labor paper should plausibly matter to public, macro, IO, development, political economy, urban, or other adjacent economists.
+- If you cannot name at least three economics subfields that would plausibly cite the paper, treat it as too narrow for the top general-interest bar and closer to an AEJ-field paper.
 
 Decision rule:
 
