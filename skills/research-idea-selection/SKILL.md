@@ -1,6 +1,6 @@
 ---
-name: research-topic-selection
-description: Manage the idea-stage bounded two-agent loop for empirical economics research. Use when the user asks to evaluate or generate research ideas, run topic selection, process human seed data, check novelty, use Elicit for topic-stage evidence, score contribution, decide go/refine/park/drop, record failure reasons, or update idea registries. Triggers: topic selection, idea generator, literature judge, human seed, data policy, contribution score, failure reasons, novelty check, feasible question, Elicit topic scan, go refine park drop.
+name: research-idea-selection
+description: Manage the idea-stage bounded two-agent loop for empirical economics research. Use when the user asks to evaluate or generate research ideas, run idea selection, process human seed data, check novelty, use Elicit for topic-stage evidence, score contribution, decide go/refine/park/drop, record failure reasons, or update idea registries. Triggers: idea selection, idea generator, literature judge, human seed, data policy, contribution score, failure reasons, novelty check, feasible question, Elicit topic scan, go refine park drop.
 ---
 
 # Research Topic Selection
