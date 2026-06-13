@@ -171,6 +171,7 @@ The scaffolded project structure is:
 
 ```text
 skills/
+  econ-empirical-research-workflow/
   research-workflow/
   research-topic-selection/
   research-identification/
@@ -184,6 +185,7 @@ skills/
 
 What each skill does:
 
+- `econ-empirical-research-workflow`: umbrella entrypoint that routes one project through the whole repository workflow from idea to submission.
 - `research-workflow`: routes a project by reading `project.yaml`, `workflow_state`, and required artifacts.
 - `research-topic-selection`: manages the bounded two-agent idea loop.
 - `research-identification`: freezes the estimand, design, assumptions, data requirements, and robustness plan.

@@ -21,6 +21,8 @@ docs/repo-contents.md
 ## Skills
 
 ```text
+skills/econ-empirical-research-workflow/SKILL.md
+skills/econ-empirical-research-workflow/agents/openai.yaml
 skills/research-workflow/SKILL.md
 skills/research-workflow/agents/openai.yaml
 skills/research-topic-selection/SKILL.md

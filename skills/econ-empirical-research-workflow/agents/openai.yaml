@@ -1,0 +1,4 @@
+interface:
+  display_name: "Econ Research Workflow"
+  short_description: "Run the full applied econ workflow"
+  default_prompt: "Use $econ-empirical-research-workflow to inspect this project and route it through the full Default applied economics workflow from idea to submission."

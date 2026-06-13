@@ -129,3 +129,30 @@ output/raw/stata_version_log.csv
 python scripts/scaffold_project.py --dest /path/to/Project-A --slug project-a --title "Project A"
 python scripts/validate_project.py --project-root /path/to/Project-A
 ```
+
+## Skill List
+
+```text
+skills/
+  econ-empirical-research-workflow/
+  research-workflow/
+  research-topic-selection/
+  research-identification/
+  research-empirics/
+  empirical-analysis-stata/
+  research-writing/
+  output-draft-overleaf-sync/
+  research-submission/
+  reference-elicit-agent/
+```
+
+- `econ-empirical-research-workflow`：整个仓库的统一入口 skill，负责把一个项目从 idea 路由到 submission。
+- `research-workflow`：读取 `project.yaml` 和 `workflow_state`，判断当前阶段与下一步动作。
+- `research-topic-selection`：负责 bounded two-agent idea loop。
+- `research-identification`：冻结 estimand、识别设计、核心假设、数据要求与 robustness plan。
+- `research-empirics`：负责通用 empirical production workflow。
+- `empirical-analysis-stata`：Stata-first 的 applied econ 实证执行 skill。
+- `research-writing`：负责经验论文写作、改写与 draft folder 组织。
+- `output-draft-overleaf-sync`：把 output 刷新到 draft，并检查 Overleaf handoff readiness。
+- `research-submission`：准备 submission-ready `paper/` folder 和 replication package。
+- `reference-elicit-agent`：管理 `references/` 下以 Elicit 为中心的持续文献工作流。
