@@ -78,7 +78,7 @@ esttab m1 m2 m3 m4 m5 m6 using "$OUTPUT/raw/table2_main_results.csv", replace cs
     mtitles("M1" "M2" "M3" "M4" "M5" "M6") ///
     title("Main Results") ///
     stats(mean_y n_clusters N r2, fmt(3 0 0 3) ///
-        labels("`mean_label'" "Number of Clusters" "Final Observations" "R-squared")) ///
+        labels("`mean_label'" "Number of Clusters" "Observations" "R-squared")) ///
     addnotes("Update this note with the actual outcome, sample, estimator, fixed effects, weights, and clustering level.", ///
         "*** p<0.01, ** p<0.05, * p<0.10.")
 
