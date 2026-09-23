@@ -40,7 +40,7 @@ Describe the source-of-truth target for this version.
 Examples:
 
 - `notes/result_summary_YYYYMMDD.xlsx`
-- `output/tables/table_main_results.tex`
+- `output/tables/results_tables.xlsx` (one table per sheet)
 - `draft/main.tex`
 - `paper/tex/main.tex`
 
