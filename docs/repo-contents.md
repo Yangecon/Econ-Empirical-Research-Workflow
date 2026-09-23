@@ -25,8 +25,8 @@ skills/econ-empirical-research-workflow/SKILL.md
 skills/econ-empirical-research-workflow/agents/openai.yaml
 skills/research-workflow/SKILL.md
 skills/research-workflow/agents/openai.yaml
-skills/research-idea-selection/SKILL.md
-skills/research-idea-selection/agents/openai.yaml
+skills/research-topic-selection/SKILL.md
+skills/research-topic-selection/agents/openai.yaml
 skills/research-identification/SKILL.md
 skills/research-identification/agents/openai.yaml
 skills/research-empirics/SKILL.md
@@ -34,6 +34,7 @@ skills/research-empirics/agents/openai.yaml
 skills/empirical-analysis-stata/SKILL.md
 skills/empirical-analysis-stata/agents/openai.yaml
 skills/empirical-analysis-stata/references/
+skills/empirical-analysis-stata/references/09-table-examples.md
 skills/research-writing/SKILL.md
 skills/research-writing/agents/openai.yaml
 skills/output-draft-overleaf-sync/SKILL.md
