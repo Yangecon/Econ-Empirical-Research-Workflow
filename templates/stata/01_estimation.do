@@ -64,8 +64,8 @@ foreach model in m1 m2 m3 m4 m5 m6 {
     estimates store `model', replace
 }
 
-esttab m1 m2 m3 m4 m5 m6 using "$TABLES/table2_main_results.tex", replace ///
-    booktabs se star(* 0.10 ** 0.05 *** 0.01) ///
+esttab m1 m2 m3 m4 m5 m6 using "$OUTPUT/raw/table2_main_results.csv", replace csv ///
+    se star(* 0.10 ** 0.05 *** 0.01) ///
     label compress ///
     mtitles("M1" "M2" "M3" "M4" "M5" "M6") ///
     title("Main Results") ///
@@ -74,8 +74,8 @@ esttab m1 m2 m3 m4 m5 m6 using "$TABLES/table2_main_results.tex", replace ///
     addnotes("Update this note with the actual outcome, sample, estimator, fixed effects, and weights.", ///
         "Standard errors clustered by `cluster_var'. *** p<0.01, ** p<0.05, * p<0.10.")
 
-* Follow skills/empirical-analysis-stata/references/08-tables-plots.md:
-* export the same complete table to CSV, XLSX, and genuine DOC before delivery.
+* This CSV stages the complete table. Add it as one sheet in the single
+* results_tables.xlsx workbook with its full note before marking output ready.
 
 log close
 
