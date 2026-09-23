@@ -170,7 +170,7 @@ Keep Step 7 downstream of a stable baseline result. Do not lead with heterogenei
 
 ## Step 8 publication-ready bundle
 
-Read `references/08-tables-plots.md` before exporting regression tables. Its contract defines the complete table layout, model-specific statistics, notes, and default matching CSV/XLSX/DOC/TeX exports. Preserve the stored estimates and do not replace a regression table with a coefficient-only summary.
+Read `references/08-tables-plots.md` before exporting descriptive or regression tables. Default to one XLSX results workbook with one complete table per sheet, including model-specific statistics and notes. Export CSV, Word, or TeX on request. Preserve the stored estimates and do not replace a regression table with a coefficient-only summary.
 
 For tables, prefer:
 
@@ -244,4 +244,3 @@ When finishing a task under this skill, report:
 - which `.do` files or reference files were added or revised
 - which tables or figures are now expected in `output/`
 - which package assumptions still need human confirmation
-
