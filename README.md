@@ -140,7 +140,7 @@ The scaffolded project structure is:
 skills/
   econ-empirical-research-workflow/
   research-workflow/
-  research-idea-selection/
+  research-topic-selection/
   research-identification/
   research-empirics/
   empirical-analysis-stata/
@@ -154,14 +154,17 @@ What each skill does:
 
 - `econ-empirical-research-workflow`: umbrella entrypoint that routes one project through the whole repository workflow from idea to submission.
 - `research-workflow`: routes a project by reading `project.yaml`, `workflow_state`, and required artifacts.
-- `research-idea-selection`: manages the bounded two-agent idea loop.
+- `research-topic-selection`: manages the bounded two-agent idea loop.
 - `research-identification`: freezes the estimand, design, assumptions, data requirements, and robustness plan.
 - `research-empirics`: runs the generic empirical production workflow and refreshes output artifacts.
 - `empirical-analysis-stata`: the Stata-first applied-econ execution skill.
+
 - `research-writing`: drafts and revises empirical paper prose and manages draft-folder logic.
 - `output-draft-overleaf-sync`: refreshes downstream draft assets and checks Overleaf handoff readiness.
 - `research-submission`: prepares a submission-ready `paper/` folder and replication package.
 - `reference-elicit-agent`: manages the persistent Elicit-centered literature workflow under `references/`.
+
+For a full empirical run, summary statistics and regression tables default to one `output/tables/results_tables.xlsx` workbook, with one complete table and its notes per sheet. CSV, Word, and TeX are exported when requested or needed for a downstream draft.
 
 ## Repo Contents
 
