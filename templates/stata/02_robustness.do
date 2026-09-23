@@ -35,12 +35,30 @@ quietly eststo r1: reghdfe `y_var' `x_var', absorb(`id_var' `time_var') vce(clus
 quietly eststo r2: reghdfe `y_var' `x_var' if !missing(`y_var', `x_var'), absorb(`id_var' `time_var') vce(robust)
 quietly eststo r3: reghdfe `y_var' `x_var', absorb(`id_var' `time_var') vce(cluster `id_var')
 
-esttab r1 r2 r3 using "$TABLES/table5_robustness.tex", replace ///
-    booktabs se star(* 0.10 ** 0.05 *** 0.01) ///
+foreach model in r1 r2 r3 {
+    estimates restore `model'
+    quietly summarize `y_var' if e(sample), meanonly
+    estadd scalar mean_y = r(mean)
+    if "`model'" == "r2" {
+        estadd scalar n_clusters = .
+    }
+    else {
+        estadd scalar n_clusters = e(N_clust)
+    }
+    estimates store `model', replace
+}
+
+esttab r1 r2 r3 using "$OUTPUT/raw/table5_robustness.csv", replace csv ///
+    se star(* 0.10 ** 0.05 *** 0.01) ///
     label compress ///
     mtitles("Baseline" "Robust SE" "Alt Cluster") ///
     title("Robustness Checks") ///
-    addnotes("Extend with design-specific commands such as boottest, ritest, bacondecomp, honestdid, rwolf, or psacalc.")
+    stats(N mean_y n_clusters r2, fmt(0 3 0 3) ///
+        labels("Observations" "Mean of Y" "Num. of clusters" "R-squared")) ///
+    addnotes("Column 2 uses unclustered robust standard errors; its cluster count is not applicable.", ///
+        "Replace this note with the actual sample, estimator, fixed effects, weights, and inference details.")
+
+* Stage this table as a separate sheet in results_tables.xlsx when applicable.
 
 capture which boottest
 if _rc == 0 {
