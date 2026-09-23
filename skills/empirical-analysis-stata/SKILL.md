@@ -1,6 +1,6 @@
 ---
 name: empirical-analysis-stata
-description: Classical end-to-end empirical analysis workflow in the traditional Stata ecosystem for Default applied econ papers only. Use when Codex needs a reproducible `.do`-file pipeline for AER, QJE, or AEJ-style work, or when the user names a Stata step such as `reghdfe`, `ivreg2`, `csdid`, `rdrobust`, `synth`, `teffects`, `esttab`, `coefplot`, `boottest`, `ritest`, `bacondecomp`, `honestdid`, `rwolf`, `winsor2`, `balancetable`, or `binscatter`. Triggers: Stata empirical analysis, full Stata pipeline, reproducible do-file, reghdfe two-way FE, ivreg2 weak IV, csdid event study, rdrobust, synth, teffects matching, esttab LaTeX table, coefplot, robustness battery, applied micro Stata.
+description: "Classical end-to-end empirical analysis workflow in the traditional Stata ecosystem for Default applied econ papers only. Use when Codex needs a reproducible `.do`-file pipeline for AER, QJE, or AEJ-style work, or when the user names a Stata step such as `reghdfe`, `ivreg2`, `csdid`, `rdrobust`, `synth`, `teffects`, `esttab`, `coefplot`, `boottest`, `ritest`, `bacondecomp`, `honestdid`, `rwolf`, `winsor2`, `balancetable`, or `binscatter`. Triggers: Stata empirical analysis, full Stata pipeline, reproducible do-file, reghdfe two-way FE, ivreg2 weak IV, csdid event study, rdrobust, synth, teffects matching, esttab LaTeX table, coefplot, robustness battery, applied micro Stata."
 ---
 
 # Empirical Analysis Stata
@@ -170,6 +170,8 @@ Keep Step 7 downstream of a stable baseline result. Do not lead with heterogenei
 
 ## Step 8 publication-ready bundle
 
+Read `references/08-tables-plots.md` before exporting regression tables. Its contract defines the complete table layout, model-specific statistics, notes, and default matching CSV/XLSX/DOC/TeX exports. Preserve the stored estimates and do not replace a regression table with a coefficient-only summary.
+
 For tables, prefer:
 
 - `esttab`
@@ -242,3 +244,4 @@ When finishing a task under this skill, report:
 - which `.do` files or reference files were added or revised
 - which tables or figures are now expected in `output/`
 - which package assumptions still need human confirmation
+
