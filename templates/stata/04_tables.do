@@ -6,7 +6,7 @@ Table 1 plus publication-ready table bundle.
 
 do "code/00_setup.do"
 
-local required_packages "estpost esttab reghdfe balancetable eststo"
+local required_packages "estpost esttab reghdfe eststo"
 do "$CODE/_write_version_log.do" "04_tables.do" "`required_packages'"
 
 use "$DATA/final_sample.dta", clear
@@ -29,18 +29,10 @@ if _rc != 0 {
     exit 199
 }
 
-capture which balancetable
-local has_balancetable = (_rc == 0)
-
-if `has_balancetable' {
-    balancetable `y_var' `x_var' using "$TABLES/table1_balance.tex", replace
-}
-else {
-    estpost tabstat `y_var' `x_var', statistics(n mean sd p50 min max)
-    esttab . using "$TABLES/table1_summary.tex", replace ///
-        cells("count mean sd p50 min max") nonumber nomtitle ///
-        title("Summary Statistics")
-}
+estpost tabstat `y_var' `x_var', statistics(n mean sd p25 p50 p75 min max)
+esttab . using "$OUTPUT/raw/table1_summary.csv", replace csv ///
+    cells("count mean sd min p25 p50 p75 max") nonumber nomtitle ///
+    title("Summary Statistics")
 
 eststo clear
 quietly eststo m1: reg `y_var' `x_var', vce(cluster `cluster_var')
@@ -59,8 +51,8 @@ foreach model in m1 m2 m3 m4 m5 m6 {
     estimates store `model', replace
 }
 
-esttab m1 m2 m3 m4 m5 m6 using "$TABLES/table2_main_results.tex", replace ///
-    booktabs se star(* 0.10 ** 0.05 *** 0.01) ///
+esttab m1 m2 m3 m4 m5 m6 using "$OUTPUT/raw/table2_main_results.csv", replace csv ///
+    se star(* 0.10 ** 0.05 *** 0.01) ///
     label compress ///
     mtitles("M1" "M2" "M3" "M4" "M5" "M6") ///
     title("Main Results") ///
@@ -69,8 +61,9 @@ esttab m1 m2 m3 m4 m5 m6 using "$TABLES/table2_main_results.tex", replace ///
     addnotes("Update this note with the actual outcome, sample, estimator, fixed effects, weights, and clustering level.", ///
         "*** p<0.01, ** p<0.05, * p<0.10.")
 
-* Follow skills/empirical-analysis-stata/references/08-tables-plots.md:
-* export the same complete table to CSV, XLSX, and genuine DOC before delivery.
+* These CSVs are staging files. Assemble one results_tables.xlsx workbook
+* with a summary-statistics sheet and one complete main-table sheet, including
+* the sample, estimator, inference, and significance notes before delivery.
 
 log close
 
