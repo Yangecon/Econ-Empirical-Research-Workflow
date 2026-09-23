@@ -140,7 +140,7 @@ scaffold 后的项目结构如下：
 skills/
   econ-empirical-research-workflow/
   research-workflow/
-  research-idea-selection/
+  research-topic-selection/
   research-identification/
   research-empirics/
   empirical-analysis-stata/
@@ -154,14 +154,17 @@ skills/
 
 - `econ-empirical-research-workflow`：整个仓库的统一入口 skill，负责把项目从 idea 路由到 submission。
 - `research-workflow`：读取 `project.yaml`、`workflow_state` 和关键产物，判断当前阶段与下一步。
-- `research-idea-selection`：管理 bounded two-agent idea loop。
+- `research-topic-selection`：管理 bounded two-agent idea loop。
 - `research-identification`：冻结 estimand、识别设计、核心假设、数据要求与 robustness plan。
 - `research-empirics`：运行通用 empirical production workflow，并刷新 output artifacts。
 - `empirical-analysis-stata`：Stata-first 的 applied econ 实证执行 skill。
+
 - `research-writing`：负责论文正文写作、改写与 draft folder 逻辑。
 - `output-draft-overleaf-sync`：刷新下游 draft assets，并检查 Overleaf handoff readiness。
 - `research-submission`：准备 submission-ready `paper/` folder 和 replication package。
 - `reference-elicit-agent`：管理 `references/` 下以 Elicit 为中心的持续文献工作流。
+
+完整实证运行默认将描述性统计与回归表汇总到一个 `output/tables/results_tables.xlsx` 工作簿，每个 sheet 放一张完整表和对应表注；CSV、Word 和 TeX 在提出要求或下游写作需要时再导出。
 
 ## Repo Contents
 
