@@ -1,6 +1,6 @@
 ---
 name: econ-empirical-research-workflow
-description: End-to-end workflow router for Default applied economics research in Codex. Use when the user wants to run the whole empirical research workflow as one umbrella skill, asks for the next stage from idea to submission, wants one entrypoint for idea selection, identification, Stata execution, writing, draft sync, and submission packaging, or wants Codex to decide which specialized skill should handle the task. Triggers: full empirical workflow, end-to-end applied econ workflow, whole research pipeline, umbrella workflow skill, one skill for idea to submission, route this empirical project.
+description: "End-to-end workflow router for Default applied economics research in Codex. Use when the user wants to run the whole empirical research workflow as one umbrella skill, asks for the next stage from idea to submission, wants one entrypoint for idea selection, identification, Stata execution, writing, draft sync, and submission packaging, or wants Codex to decide which specialized skill should handle the task. Triggers: full empirical workflow, end-to-end applied econ workflow, whole research pipeline, umbrella workflow skill, one skill for idea to submission, route this empirical project."
 ---
 
 # Econ Empirical Research Workflow
@@ -56,6 +56,8 @@ Route to:
 - `research-submission` for submission packaging and replication bundle work
 - `reference-elicit-agent` for persistent literature and BibTeX workflows
 
+For regression-table output, route to `empirical-analysis-stata` and apply its `references/08-tables-plots.md` table contract. Default to complete, matching CSV, XLSX, DOC, and TeX tables; a coefficient-only extract is insufficient.
+
 ## Hard gate logic
 
 1. If `workflow_state.topic_gate_status != go`, stay in the idea stage and route to `research-idea-selection`.
@@ -76,3 +78,4 @@ When invoked, report:
 - missing artifacts
 - next specialized skill
 - why that skill is the best next step
+
