@@ -75,7 +75,7 @@ esttab r1 r2 r3 using "$OUTPUT/raw/table5_robustness.csv", replace csv ///
     mtitles("Baseline" "Robust SE" "Alt Cluster") ///
     title("Robustness Checks") ///
     stats(mean_y n_clusters N r2, fmt(3 0 0 3) ///
-        labels("`mean_label'" "Number of Clusters" "Final Observations" "R-squared")) ///
+        labels("`mean_label'" "Number of Clusters" "Observations" "R-squared")) ///
     addnotes("Column 2 uses unclustered robust standard errors; its cluster count is not applicable.", ///
         "Replace this note with the actual sample, estimator, fixed effects, weights, and inference details.")
 
