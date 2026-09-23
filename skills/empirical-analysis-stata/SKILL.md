@@ -1,6 +1,6 @@
 ---
 name: empirical-analysis-stata
-description: "Classical end-to-end empirical analysis workflow in the traditional Stata ecosystem for Default applied econ papers only. Use when Codex needs a reproducible `.do`-file pipeline for AER, QJE, or AEJ-style work, or when the user names a Stata step such as `reghdfe`, `ivreg2`, `csdid`, `rdrobust`, `synth`, `teffects`, `esttab`, `coefplot`, `boottest`, `ritest`, `bacondecomp`, `honestdid`, `rwolf`, `winsor2`, `balancetable`, or `binscatter`. Triggers: Stata empirical analysis, full Stata pipeline, reproducible do-file, reghdfe two-way FE, ivreg2 weak IV, csdid event study, rdrobust, synth, teffects matching, esttab LaTeX table, coefplot, robustness battery, applied micro Stata."
+description: "Classical Stata workflow for Default applied economics papers, including reproducible .do files, estimation, and publication-ready summary-statistics and regression tables. Use for requests such as Stata 回归表格输出, Stata 回归结果表, 回归表导出, Stata summary statistics table, regression table export, esttab/estout table formatting, or named Stata steps including reghdfe, ivreg2, csdid, rdrobust, synth, teffects, coefplot, boottest, ritest, bacondecomp, honestdid, rwolf, winsor2, and binscatter. Route table requests to references/08-tables-plots.md and its concrete examples; default to one XLSX workbook with one table per sheet."
 ---
 
 # Empirical Analysis Stata
@@ -15,7 +15,7 @@ No epidemiology branch
 No ML-causal branch
 ```
 
-Use it when the user wants the full Stata pipeline, or when they ask for one named Stata step inside that pipeline.
+Use it when the user wants the full Stata pipeline, one named Stata step, or Stata descriptive/regression table output.
 
 ## Trigger phrases
 
@@ -30,6 +30,9 @@ Use it when the user wants the full Stata pipeline, or when they ask for one nam
 - synth
 - teffects matching
 - esttab LaTeX table
+- stata回归表格输出 / Stata 回归表格输出 / 回归结果表导出
+- Stata summary statistics table / 描述性统计表输出
+- regression table export / esttab or estout table formatting
 - coefplot
 - boottest
 - ritest
@@ -170,7 +173,7 @@ Keep Step 7 downstream of a stable baseline result. Do not lead with heterogenei
 
 ## Step 8 publication-ready bundle
 
-Read `references/08-tables-plots.md` before exporting descriptive or regression tables. Default to one XLSX results workbook with one complete table per sheet, including model-specific statistics and notes. Export CSV, Word, or TeX on request. Preserve the stored estimates and do not replace a regression table with a coefficient-only summary.
+Read `references/08-tables-plots.md` and its `references/09-table-examples.md` example before exporting descriptive or regression tables. Default to one XLSX results workbook with one complete three-line table and concrete notes per sheet. For PPML, distinguish initial and final observations; for OLS and similar regressions, report one `Observations` row. Export CSV, Word, or TeX on request. Preserve the stored estimates and do not replace a regression table with a coefficient-only summary.
 
 For tables, prefer:
 
