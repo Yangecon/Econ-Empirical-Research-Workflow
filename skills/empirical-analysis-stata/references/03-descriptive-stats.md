@@ -15,8 +15,10 @@ Goal: produce a clean descriptive picture of the sample before modeling.
 1. Show sample size and key variable coverage.
 2. Report means, standard deviations, and meaningful percentiles.
 3. For treatment designs, compare treated and control groups.
-4. Save a publication-ready Table 1 artifact.
+4. Put a complete, labeled Table 1 on its own sheet in the consolidated `output/tables/results_tables.xlsx`.
 5. Keep Table 1 separate from causal claims.
+
+Use the summary-statistics layout and notes contract in `references/08-tables-plots.md`; `references/09-table-examples.md` shows an illustrative sheet.
 
 ## Canonical commands
 
@@ -29,12 +31,11 @@ tabstat outcome treatment age edu tenure, ///
 
 estpost tabstat outcome treatment age edu tenure, ///
     statistics(n mean sd p50 min max)
-esttab . using "output/tables/table1_summary.tex", replace ///
+esttab . using "output/raw/table1_summary.csv", replace csv ///
     cells("count mean sd p50 min max") nonumber nomtitle
-
-balancetable outcome treatment age edu tenure ///
-    using "output/tables/table1_balance.tex", replace
 ```
+
+The CSV is a staging file. The default deliverable is the single XLSX results workbook. If the design needs treated-versus-control balance, use `balancetable` or an equivalent method and add that balance table as its own sheet; include group definitions and the difference/inference method.
 
 ## Hard rules
 
@@ -44,6 +45,6 @@ balancetable outcome treatment age edu tenure ///
 
 ## Common outputs
 
-- `table1_summary.tex`
-- `table1_balance.tex`
+- `results_tables.xlsx` with one `Table 1 Summary` sheet and, if relevant, a separate balance sheet
+- reproducible staging data under `output/raw/`
 - quick sample diagnostics for the draft
