@@ -55,11 +55,27 @@ quietly eststo m4: reghdfe `y_var' `x_var', absorb(`id_var') vce(cluster `cluste
 quietly eststo m5: reghdfe `y_var' `x_var', absorb(`id_var' `time_var') vce(cluster `cluster_var')
 quietly eststo m6: reghdfe `y_var' `x_var', absorb(`id_var' `time_var') vce(cluster `cluster_var')
 
+* Attach statistics from each model's own estimation sample before export.
+foreach model in m1 m2 m3 m4 m5 m6 {
+    estimates restore `model'
+    quietly summarize `y_var' if e(sample), meanonly
+    estadd scalar mean_y = r(mean)
+    estadd scalar n_clusters = e(N_clust)
+    estimates store `model', replace
+}
+
 esttab m1 m2 m3 m4 m5 m6 using "$TABLES/table2_main_results.tex", replace ///
     booktabs se star(* 0.10 ** 0.05 *** 0.01) ///
     label compress ///
     mtitles("M1" "M2" "M3" "M4" "M5" "M6") ///
     title("Main Results") ///
-    addnotes("Replace placeholder controls with project-specific controls and fixed effects.", "Standard errors clustered by `cluster_var'.")
+    stats(N mean_y n_clusters r2, fmt(0 3 0 3) ///
+        labels("Observations" "Mean of Y" "Num. of clusters" "R-squared")) ///
+    addnotes("Update this note with the actual outcome, sample, estimator, fixed effects, and weights.", ///
+        "Standard errors clustered by `cluster_var'. *** p<0.01, ** p<0.05, * p<0.10.")
+
+* Follow skills/empirical-analysis-stata/references/08-tables-plots.md:
+* export the same complete table to CSV, XLSX, and genuine DOC before delivery.
 
 log close
+
