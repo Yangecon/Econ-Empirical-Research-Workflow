@@ -42,8 +42,8 @@ In XLSX, place a top horizontal rule above the column headings, a middle rule be
 | Pre-treatment mean of Y | 0.396 | 0.396 | 0.152 | 0.156 |
 | Number of Clusters | 57,124 | 57,124 | 57,124 | 57,024 |
 | Final Observations | 824,261 | 824,261 | 1,142,354 | 1,123,152 |
-| Pseudo R-squared | 0.041 | 0.043 | 0.056 | 0.059 |
 | Initial Observations | 1,357,860 | 1,357,860 | 1,357,860 | 1,357,860 |
+| Pseudo R-squared | 0.041 | 0.043 | 0.056 | 0.059 |
 | Author × Years of Holding FE | Yes | Yes | Yes | Yes |
 | Year FE | Yes | No | No | No |
 | Field-Year FE | No | Yes | Yes | No |
@@ -51,8 +51,10 @@ In XLSX, place a top horizontal rule above the column headings, a middle rule be
 | County-Year FE | No | No | No | Yes |
 | Cluster level | Author | Author | Author | Author |
 
-**Note:** This table presents Poisson pseudo-maximum likelihood (PPML) estimates of the effect of housing shocks on authors' annual publication counts. The dependent variable, `Papers_Total`, is the number of papers an author published in a given year. `Exposure` is ZIP-code-level cumulative growth in the FHFA House Price Index from 2007 to 2008, matched to the author's residence ZIP code at home purchase. `I_Post` equals one after 2008, so the displayed coefficient is on their interaction. The sample contains author-year observations from 2000 to 2019. The pre-treatment mean is calculated within each column's estimation sample using observations through 2008. `Initial Observations` counts eligible author-year rows before model-specific missing-value and singleton exclusions; `Final Observations` is the fitted sample. Pseudo R-squared denotes the estimator-reported fit measure. Standard errors are clustered at the author level and reported in parentheses. No weights are applied. `***`, `**`, and `*` denote significance at the 1%, 5%, and 10% levels, respectively.
+**Note:** This table presents Poisson pseudo-maximum likelihood (PPML) estimates of the effect of housing shocks on authors' annual publication counts. The dependent variable, `Papers_Total`, is the number of papers an author published in a given year. `Exposure` is ZIP-code-level cumulative growth in the FHFA House Price Index from 2007 to 2008, matched to the author's residence ZIP code at home purchase. `I_Post` equals one after 2008, so the displayed coefficient is on their interaction. The sample contains author-year observations from 2000 to 2019. The pre-treatment mean is calculated within each column's estimation sample using observations through 2008. `Initial Observations` counts the observations submitted to each PPML fit after declared sample restrictions and required-variable checks; `Final Observations` counts observations retained after estimator-specific exclusions, including separated or singleton observations when applicable. Pseudo R-squared denotes the estimator-reported fit measure. Standard errors are clustered at the author level and reported in parentheses. No weights are applied. `***`, `**`, and `*` denote significance at the 1%, 5%, and 10% levels, respectively.
 
 This example follows the screenshot's column and row structure; the numbers, including pseudo R-squared, are illustrative and do not establish that the screenshot's PPML output reported this fit measure. In an actual PPML table, verify and name the estimator's fit measure or omit the row when none is appropriate. In XLSX, place the top rule above `(1)`–`(4)`, the middle rule below the dependent-variable header, and the bottom rule below `Cluster level`; place the note beneath it.
+
+For an OLS version, replace the two PPML observation rows with a single `Observations` row holding each model's fitted `N`, followed by `R-squared`. Do not label an OLS sample count `Initial Observations` or `Final Observations` unless a specific analysis separately requires a sample-flow table.
 
 For an actual workbook, put the title above the table and notes beneath it as ordinary visible cells. Keep full-precision model results in reproducible source outputs; display precision in the workbook should not change stored estimates. If the paper table suppresses controls, retain the requested complete regression table as a separate sheet or output, and label the difference.
