@@ -1,6 +1,6 @@
 ---
 name: econ-empirical-research-workflow
-description: "End-to-end workflow router for Default applied economics research in Codex. Use when the user wants to run the whole empirical research workflow as one umbrella skill, asks for the next stage from idea to submission, wants one entrypoint for idea selection, identification, Stata execution, writing, draft sync, and submission packaging, or wants Codex to decide which specialized skill should handle the task. Triggers: full empirical workflow, end-to-end applied econ workflow, whole research pipeline, umbrella workflow skill, one skill for idea to submission, route this empirical project."
+description: "End-to-end workflow router for Default applied economics research in Codex. Use when the user wants to run the whole empirical research workflow as one umbrella skill, asks for the next stage from idea to submission, wants one entrypoint for topic selection, identification, Stata execution, writing, draft sync, and submission packaging, or wants Codex to decide which specialized skill should handle the task. Triggers: full empirical workflow, end-to-end applied econ workflow, whole research pipeline, umbrella workflow skill, one skill for idea to submission, route this empirical project."
 ---
 
 # Econ Empirical Research Workflow
@@ -47,7 +47,7 @@ Prefer `workflow_state` in `project.yaml` as the source of truth.
 
 Route to:
 
-- `research-idea-selection` for idea generation, idea scoring, topic gate decisions, and the bounded two-agent loop
+- `research-topic-selection` for idea generation, topic scoring, topic gate decisions, and the bounded two-agent loop
 - `research-identification` for estimand definition, identification design, assumptions, data requirements, and robustness planning
 - `research-empirics` for generic empirical production workflow
 - `empirical-analysis-stata` for the full Stata-first applied econ execution stack
@@ -56,11 +56,11 @@ Route to:
 - `research-submission` for submission packaging and replication bundle work
 - `reference-elicit-agent` for persistent literature and BibTeX workflows
 
-For regression-table output, route to `empirical-analysis-stata` and apply its `references/08-tables-plots.md` table contract. Default to complete, matching CSV, XLSX, DOC, and TeX tables; a coefficient-only extract is insufficient.
+For descriptive and regression tables, route to `empirical-analysis-stata` and apply its `references/08-tables-plots.md` contract. Default to one consolidated XLSX workbook with one table per sheet. Export CSV, Word, or TeX only when requested.
 
 ## Hard gate logic
 
-1. If `workflow_state.topic_gate_status != go`, stay in the idea stage and route to `research-idea-selection`.
+1. If `workflow_state.topic_gate_status != go`, stay in the idea stage and route to `research-topic-selection`.
 2. If `workflow_state.identification_gate_status != freeze`, route to `research-identification`.
 3. If the user wants a full Stata run or design-specific Stata estimator workflow, route to `empirical-analysis-stata`.
 4. If output is missing or stale, route to `research-empirics` or `empirical-analysis-stata`.
@@ -78,4 +78,3 @@ When invoked, report:
 - missing artifacts
 - next specialized skill
 - why that skill is the best next step
-
