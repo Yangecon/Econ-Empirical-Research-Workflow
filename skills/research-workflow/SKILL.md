@@ -1,6 +1,6 @@
 ---
 name: research-workflow
-description: Route an empirical economics project to the correct skill by inspecting project.yaml, workflow_state, current gates, paths, settings, and missing artifacts. Use when the user asks what to do next, which stage the project is in, whether a gate blocks progress, whether output/draft/submission is ready, or which specialized skill should handle the next task. Triggers: workflow router, next step, project stage, workflow state, missing artifacts, gate status, route this project, what should I do next, empirical workflow.
+description: "Route an empirical economics project to the correct skill by inspecting project.yaml, workflow_state, current gates, paths, settings, and missing artifacts. Use when the user asks what to do next, which stage the project is in, whether a gate blocks progress, whether output/draft/submission is ready, or which specialized skill should handle the next task. Triggers: workflow router, next step, project stage, workflow state, missing artifacts, gate status, route this project, what should I do next, empirical workflow."
 ---
 
 # Research Workflow
@@ -58,7 +58,7 @@ Check:
 
 ## Hard routing logic
 
-1. If `workflow_state.topic_gate_status != go`, route to `research-idea-selection` and do not enter identification.
+1. If `workflow_state.topic_gate_status != go`, route to `research-topic-selection` and do not enter identification.
 2. If `workflow_state.identification_gate_status != freeze`, route to `research-identification` and do not enter empirical analysis.
 3. If the design is frozen but no empirical run exists, route to `research-empirics` or `empirical-analysis-stata`.
 4. If outputs are missing or stale, route to `research-empirics` or `empirical-analysis-stata`.
