@@ -1,6 +1,6 @@
 ---
 name: research-empirics
-description: Execute the frozen empirical design through data construction, estimation, robustness, output export, and run logging. Use for generic empirical execution across the project pipeline when the user asks to build the sample, run code, refresh output tables and figures, or record a new empirical run. Pair with `empirical-analysis-stata` when the task needs a Stata-first applied econ workflow. Triggers: run the empirics, build final sample, refresh output, run estimation, cleaned tables, cleaned figures, update run log.
+description: "Execute the frozen empirical design through data construction, estimation, robustness, output export, and run logging. Use for generic empirical execution across the project pipeline when the user asks to build the sample, run code, refresh output tables and figures, or record a new empirical run. Pair with `empirical-analysis-stata` when the task needs a Stata-first applied econ workflow. Triggers: run the empirics, build final sample, refresh output, run estimation, cleaned tables, cleaned figures, update run log."
 ---
 
 # Research Empirics
@@ -74,6 +74,8 @@ Do not prescribe the internal structure of `output/raw/`.
 
 If the project uses the default Stata applied econ stack, prefer the 8-step pipeline in `empirical-analysis-stata` for the substantive analysis logic.
 
+For regression-table deliverables, apply `empirical-analysis-stata/references/08-tables-plots.md`: by default export complete matching CSV, XLSX, DOC, and TeX tables with `Mean of Y`, applicable cluster counts, and full notes.
+
 ## Work folder rule
 
 Exploratory analyses go under:
@@ -91,3 +93,4 @@ work/<exploration_slug>/output/
 ```
 
 Do not merge work-folder outputs into the main `output/` unless a human explicitly promotes them.
+
