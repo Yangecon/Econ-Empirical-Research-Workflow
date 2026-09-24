@@ -43,6 +43,9 @@ skills/research-submission/SKILL.md
 skills/research-submission/agents/openai.yaml
 skills/reference-elicit-agent/SKILL.md
 skills/reference-elicit-agent/agents/openai.yaml
+skills/codex-skills/README.md
+skills/codex-skills/codex-usage/SKILL.md
+skills/codex-skills/codex-usage/scripts/read_usage.py
 ```
 
 ## Templates
