@@ -148,11 +148,6 @@ skills/
   output-draft-overleaf-sync/
   research-submission/
   reference-elicit-agent/
-  codex-skills/
-    README.md
-    codex-usage/
-      SKILL.md
-      scripts/read_usage.py
 ```
 
 What each skill does:
@@ -168,7 +163,6 @@ What each skill does:
 - `output-draft-overleaf-sync`: refreshes downstream draft assets and checks Overleaf handoff readiness.
 - `research-submission`: prepares a submission-ready `paper/` folder and replication package.
 - `reference-elicit-agent`: manages the persistent Elicit-centered literature workflow under `references/`.
-- `codex-skills/codex-usage`: a small Codex utility skill that reads the latest local rate-limit snapshot and reports quota/reset metadata without emitting chat content or credentials.
 
 For a full empirical run, summary statistics and regression tables default to one `output/tables/results_tables.xlsx` workbook, with one complete table and its notes per sheet. CSV, Word, and TeX are exported when requested or needed for a downstream draft.
 
