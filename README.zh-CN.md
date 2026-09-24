@@ -148,6 +148,11 @@ skills/
   output-draft-overleaf-sync/
   research-submission/
   reference-elicit-agent/
+  codex-skills/
+    README.md
+    codex-usage/
+      SKILL.md
+      scripts/read_usage.py
 ```
 
 各个 skill 的作用：
@@ -163,6 +168,7 @@ skills/
 - `output-draft-overleaf-sync`：刷新下游 draft assets，并检查 Overleaf handoff readiness。
 - `research-submission`：准备 submission-ready `paper/` folder 和 replication package。
 - `reference-elicit-agent`：管理 `references/` 下以 Elicit 为中心的持续文献工作流。
+- `codex-skills/codex-usage`：Codex 小工具 skill，用于读取最近一次本地 rate-limit 快照，并报告额度/重置时间信息；不会输出聊天内容或凭据。
 
 完整实证运行默认将描述性统计与回归表汇总到一个 `output/tables/results_tables.xlsx` 工作簿，每个 sheet 放一张完整表和对应表注；CSV、Word 和 TeX 在提出要求或下游写作需要时再导出。
 
