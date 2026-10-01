@@ -11,4 +11,4 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install -r requirements-figures.txt
-      - run: python scripts/validate_figures.py --smoke --output-dir "$RUNNER_TEMP/figure_validation"
+      - run: python scripts/validate_figures.py --check-tracked --smoke --output-dir "$RUNNER_TEMP/figure_validation"

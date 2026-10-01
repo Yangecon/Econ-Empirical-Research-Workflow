@@ -8,3 +8,7 @@ __pycache__/
 .DS_Store
 Thumbs.db
 outputs/
+# This accepted recipe ships an input fixture under outputs/.
+!scripts/C07_distribution_horizon_ridgeline/outputs/
+scripts/C07_distribution_horizon_ridgeline/outputs/*
+!scripts/C07_distribution_horizon_ridgeline/outputs/synthetic_input.csv

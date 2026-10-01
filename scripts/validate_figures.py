@@ -20,6 +20,7 @@ GALLERY = ROOT/'gallery/empirical-econ-figures'
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--smoke',action='store_true')
+    parser.add_argument('--check-tracked',action='store_true',help='Require all bundled skill and gallery files to be present in the Git index.')
     parser.add_argument('--output-dir',type=Path,default=ROOT/'work/figure_validation')
     args=parser.parse_args()
     out=args.output_dir.resolve();out.mkdir(parents=True,exist_ok=True)
@@ -64,10 +65,17 @@ def main():
         assert len(re.findall(r'^\| [A-E]\d{2} \|',body,re.M))==50
         assert not re.search(r'!\[[^\]]*\]\(',body)
     checked=0
+    tracked=None
+    if args.check_tracked:
+        proc=subprocess.run(['git','ls-files','-z'],cwd=ROOT,capture_output=True,check=True)
+        tracked=set(proc.stdout.decode('utf-8').split('\0'))
+        required=[SKILL/'SHA256SUMS.txt',*pngs,*GALLERY.glob('*.md')]
+        for p in required:assert p.relative_to(ROOT).as_posix() in tracked,('untracked bundle file',str(p))
     for line in (SKILL/'SHA256SUMS.txt').read_text(encoding='utf-8').splitlines():
         digest,name=line.split('  ',1);p=SKILL/name
         assert p.resolve().is_relative_to(SKILL.resolve())
         assert p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest()==digest,name
+        if tracked is not None:assert p.relative_to(ROOT).as_posix() in tracked,('untracked skill resource',name)
         checked+=1
     runs=[]
     if args.smoke:
@@ -90,7 +98,7 @@ def main():
         run('shared_line',base/'plot.py',['--input',base/'custom_demo.csv','--config',base/'custom_config.json','--output',dest,'--lang','en'],[dest])
         base=folder('A03');dest=out/'staggered'
         run('saved_stata_estimates',base/'plot_python.py',['--input',base/'audited_estimates.csv','--output-stem',dest],[dest.with_suffix('.png')])
-    result={'status':'PASS','accepted_variants':50,'drawing_targets':40,'gallery_pngs':97,'checked_local_links':links,'manifest_records':checked,'python_runs':runs,'fresh_stata_run':False}
+    result={'status':'PASS','accepted_variants':50,'drawing_targets':40,'gallery_pngs':97,'checked_local_links':links,'manifest_records':checked,'tracked_bundle_checked':args.check_tracked,'python_runs':runs,'fresh_stata_run':False}
     (out/'validation.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(result))
 

@@ -5,6 +5,7 @@
   "gallery_pngs": 97,
   "checked_local_links": 1342,
   "manifest_records": 504,
+  "tracked_bundle_checked": true,
   "python_runs": [
     {
       "case": "actual_panel",
