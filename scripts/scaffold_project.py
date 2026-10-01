@@ -130,6 +130,7 @@ def scaffold_project(dest: Path, slug: str, title: str, repo_root: Path) -> None
         "{\n  \"status\": \"redesign\",\n  \"active_idea_id\": null,\n  \"active_rq_id\": null,\n  \"human_approved\": false\n}\n",
     )
     create_empty_file(dest / "notes/run_log.md")
+    write_text(dest / "notes/figure_log.csv", "figure_id,template_id,input_path,estimator,estimand,sample,weights,reference_period,confidence_level,interval_method,clustering,code_path,output_path,run_status\n")
     copy_template(repo_root, "templates/writing/journal_target_profile.md", dest / "notes/journal_target_profile.md")
 
     # References

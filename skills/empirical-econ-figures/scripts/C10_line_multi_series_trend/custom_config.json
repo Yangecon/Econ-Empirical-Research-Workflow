@@ -1,0 +1,11 @@
+{
+  "series": [
+    {"id": "coastal", "label_en": "Coastal", "label_zh": "沿海", "color": "#1764A0", "linestyle": "-"},
+    {"id": "inland", "label_en": "Inland", "label_zh": "内陆", "color": "#D55E00", "linestyle": "--"},
+    {"id": "services", "label_en": "Services", "label_zh": "服务业", "color": "#009E73", "linestyle": ":"}
+  ],
+  "axes": {
+    "en": {"x_annual": "Year", "x_monthly": "Month", "y_raw_annual": "Illustrative units", "y_raw_monthly": "Illustrative units", "y_index": "Index (base = 100)", "title": "Illustrative regional trends"},
+    "zh": {"x_annual": "年份", "x_monthly": "月份", "y_raw_annual": "示例单位", "y_raw_monthly": "示例单位", "y_index": "指数（基期 = 100）", "title": "示例区域趋势"}
+  }
+}

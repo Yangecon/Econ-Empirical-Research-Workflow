@@ -1,0 +1,13 @@
+{
+  "package": "rdplot from rdrobust",
+  "version": "11.1.0 (22may2026)",
+  "authors": "Calonico, Cattaneo, Farrell, Tititunik",
+  "official_repository": "https://github.com/rdpackages/rdrobust",
+  "official_example": "https://github.com/rdpackages/rdrobust/blob/main/stata/rdplot_illustration.do",
+  "retrieved": "2026-09-28",
+  "executed_source_path": "STATA_PLUS/r/rdplot.ado",
+  "executed_source_sha256": "8ab97fc5ce73716831e6cbdbcf1f784329ed9daffae3a0c4ee075fc25abd188d",
+  "install_scope": "Pre-existing Stata PLUS; no global installation performed in this task",
+  "runtime": "Stata 19; four executed variants",
+  "dependency_recipe": "Install official rdrobust suite into project-local ado directory and append that directory to adopath before run_demo.do"
+}

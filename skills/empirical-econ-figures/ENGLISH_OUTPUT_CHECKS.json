@@ -1,0 +1,188 @@
+{
+  "scope": "50 accepted registry entries and their portable Python/Stata entrypoints",
+  "changed_file_count": 13,
+  "default_plot_runs_passed": 4,
+  "isolated_demo_generator_runs_passed": 7,
+  "stata_runner_execution": "blocked_by_Stata_MCP_security_guard",
+  "files": [
+    {
+      "path": "work/implementations/paired_binary_transition_stacks/plot.py",
+      "change": "Added optional --lang with English default; render only selected language",
+      "verification": {
+        "default_run": "passed",
+        "figures": [
+          "paired_binary_transition_stacks_en.pdf",
+          "paired_binary_transition_stacks_en.png"
+        ],
+        "only_english_figures": true,
+        "numeric_reference_files_byte_identical": true,
+        "numeric_files_compared": 2
+      }
+    },
+    {
+      "path": "work/implementations/reference_perception_dumbbell/plot.py",
+      "change": "Added optional --lang with English default; render only selected language",
+      "verification": {
+        "default_run": "passed",
+        "figures": [
+          "reference_perception_dumbbell_en.pdf",
+          "reference_perception_dumbbell_en.png"
+        ],
+        "only_english_figures": true,
+        "numeric_reference_files_byte_identical": true,
+        "numeric_files_compared": 2
+      }
+    },
+    {
+      "path": "work/implementations/bilateral_flow_sankey/plot.py",
+      "change": "Added optional --lang with English default; render only selected language",
+      "verification": {
+        "default_run": "passed",
+        "figures": [
+          "bilateral_flow_sankey_en.pdf",
+          "bilateral_flow_sankey_en.png"
+        ],
+        "only_english_figures": true,
+        "numeric_reference_files_byte_identical": true,
+        "numeric_files_compared": 3
+      }
+    },
+    {
+      "path": "work/implementations/randomization_decision_tree/plot.py",
+      "change": "Added optional --lang with English default; render only selected language",
+      "verification": {
+        "default_run": "passed",
+        "figures": [
+          "randomization_decision_tree_en.pdf",
+          "randomization_decision_tree_en.png"
+        ],
+        "only_english_figures": true,
+        "numeric_reference_files_byte_identical": true,
+        "numeric_files_compared": 2
+      }
+    },
+    {
+      "path": "work/implementations/bunching_distribution_with_counterfactual/generate_demo.py",
+      "change": "Default generated Stata demo runner language is en; --lang zh remains available",
+      "verification": {
+        "isolated_default_run": "passed",
+        "run_scripts": [
+          "run_en.do",
+          "run_en_title.do",
+          "run_qa_negative_count.do",
+          "run_qa_unequal_bins.do"
+        ],
+        "only_english_language_scripts": true,
+        "demo_csv_byte_identical_to_original": true
+      }
+    },
+    {
+      "path": "work/implementations/prior_posterior_interval_comparison/generate_demo.py",
+      "change": "Default generated Stata demo runner language is en; --lang zh remains available",
+      "verification": {
+        "isolated_default_run": "passed",
+        "run_scripts": [
+          "run_en.do",
+          "run_en_title.do",
+          "run_qa_bad_interval.do",
+          "run_qa_missing_pair.do",
+          "run_qa_reordered_columns.do"
+        ],
+        "only_english_language_scripts": true,
+        "demo_csv_byte_identical_to_original": true
+      }
+    },
+    {
+      "path": "work/implementations/policy_counterfactual_contours/generate_demo.py",
+      "change": "Default generated Stata demo runner language is en; --lang zh remains available",
+      "verification": {
+        "isolated_default_run": "passed",
+        "run_scripts": [
+          "run_en.do",
+          "run_en_title.do",
+          "run_qa_bad_baseline.do",
+          "run_qa_horizontal.do",
+          "run_qa_missing_cell.do"
+        ],
+        "only_english_language_scripts": true,
+        "demo_csv_byte_identical_to_original": true
+      }
+    },
+    {
+      "path": "work/implementations/set_identified_impulse_response_bounds/generate_demo.py",
+      "change": "Default generated Stata demo runner language is en; --lang zh remains available",
+      "verification": {
+        "isolated_default_run": "passed",
+        "run_scripts": [
+          "run_en.do",
+          "run_en_title.do",
+          "run_qa_outside_bounds.do",
+          "run_qa_unsorted.do"
+        ],
+        "only_english_language_scripts": true,
+        "demo_csv_byte_identical_to_original": true
+      }
+    },
+    {
+      "path": "work/implementations/time_encoded_phase_path/generate_demo.py",
+      "change": "Default generated Stata demo runner language is en; --lang zh remains available",
+      "verification": {
+        "isolated_default_run": "passed",
+        "run_scripts": [
+          "run_en.do",
+          "run_en_title.do",
+          "run_qa_repeated_phase.do",
+          "run_qa_unsorted.do"
+        ],
+        "only_english_language_scripts": true,
+        "demo_csv_byte_identical_to_original": true
+      }
+    },
+    {
+      "path": "work/implementations/joint_frequency_bubble_panels/generate_demo.py",
+      "change": "Default generated Stata demo runner language is en; --lang zh remains available",
+      "verification": {
+        "isolated_default_run": "passed",
+        "run_scripts": [
+          "run_en.do",
+          "run_en_title.do",
+          "run_qa_missing_count.do"
+        ],
+        "only_english_language_scripts": true,
+        "demo_csv_byte_identical_to_original": true
+      }
+    },
+    {
+      "path": "work/implementations/probability_belief_calibration/generate_demo.py",
+      "change": "Default generated Stata demo runner language is en; --lang zh remains available",
+      "verification": {
+        "isolated_default_run": "passed",
+        "run_scripts": [
+          "run_en.do",
+          "run_en_title.do",
+          "run_qa_bad_probability.do"
+        ],
+        "only_english_language_scripts": true,
+        "demo_csv_byte_identical_to_original": true
+      }
+    },
+    {
+      "path": "work/implementations/grouped_coefficient_forest/command_variants/coefplot/run_demo.do",
+      "change": "Default runner language is en; optional final lang argument selects zh",
+      "verification": {
+        "static_default_and_command_check": "passed",
+        "default_run": "not_executed",
+        "reason": "Stata MCP security guard rejected the wrapper do call; no available local Stata executable found"
+      }
+    },
+    {
+      "path": "work/implementations/regression_discontinuity_binned_outcomes/command_variants/rdplot/run_demo.do",
+      "change": "Default runner language is en; optional final lang argument selects zh",
+      "verification": {
+        "static_default_and_command_check": "passed",
+        "default_run": "not_executed",
+        "reason": "Stata MCP security guard rejected the wrapper do call; no available local Stata executable found"
+      }
+    }
+  ]
+}

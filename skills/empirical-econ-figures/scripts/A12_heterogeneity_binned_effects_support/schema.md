@@ -1,0 +1,9 @@
+# Two aligned input tables
+
+[English](schema.md) · [中文](schema.zh-CN.md)
+
+`effect_demo.csv` illustrates the **upper plot** table. Required UTF-8 columns: `panel` (ID), `panel_order` (configured integer order), `x` (finite numeric point location), `estimate`, `ci_low`, `ci_high`. There is one row per effect point; `panel` + `x` is unique and `ci_low <= estimate <= ci_high`. Bounds must fit the panel-specific configuration in both scripts. These are supplied interval endpoints. The template does not calculate a model, Wilson intervals, cluster-robust standard errors, or significance.
+
+`support_demo.csv` illustrates the **lower histogram** table. Required columns: `panel`, `panel_order`, `x_left`, `x_right`, `count`. Each bin is `[x_left,x_right)` (the final bin may include its right edge upstream), with `x_left < x_right`, nonoverlapping bins, a common width within panel, and a nonnegative integer unconditional observation count. Both programs plot those counts as supplied. They do not infer counts from the upper estimates or claim that each count is the estimation sample size. The panel IDs/orders must match the configured effect panels. Input column order is irrelevant.
+
+For each panel the top and bottom axes share the **same x variable and range**, but have separate y axes: the upper y axis is the estimate or rate, and the lower y axis is count. Panels may have different effect units and x ranges. Edit the `CONFIG` block in `plot.py` and `plot.do` for another study. Input CI confidence level, estimator, and support-denominator definition must be specified by upstream analysis. In the source figure, panels (a,c) use mean migration rates with Wilson score 95% intervals, while (b,d) use model coefficients with two-way-clustered 95% intervals after conditioning on fixed effects; the code preserves neither estimator automatically.

@@ -1,0 +1,9 @@
+# Input contract
+
+[English](schema.md) · [中文](schema.zh-CN.md)
+
+Uses exactly the [grouped coefficient forest CSV contract](../../schema.md). Required: `variant`, `panel`, `panel_order`, `term`, `term_order`, bilingual term labels, `group`, `group_order`, `estimate`, and `ci_low`/`ci_high`. If both endpoints are missing, the script applies the same `estimate ± 1.96×se` fallback as the manual Stata implementation. One missing endpoint fails. CI endpoints must bracket the estimate. Each configured group must have every term in a panel; duplicate panel–term–group keys fail. `term` must also be a valid Stata matrix column/coefficient name for this package variant.
+
+The command constructs one 3×N matrix per group and panel, with rows `(estimate, ci_low, ci_high)` and input-ordered term IDs as column names. Author-documented `coefplot matrix(B), ci((2 3))` reads estimates from the first row and exact CI endpoints from the second and third; it **does not recompute CIs** from a variance matrix. `order()` and `coeflabels()` keep the explicit input term order and bilingual labels. Package output is a plotting alternative, not a re-estimation of paper coefficients.
+
+`plot_coefplot.do` arguments are `input.csv output.png lang variant orientation showtitle [package-dir]`. Input and output paths are required. `lang`: `en`/`zh`; `variant`: `robustness`/`subgroup`; `orientation`: `horizontal`/`vertical`; `showtitle`: `0` by default or `1`. Multi-panel robustness retains panel subtitles; single-panel subgroup has no subtitle. Axes and legend remain when needed; no overall title or bottom notes appear by default. Output PNG and matching PDF are written to the output path. The source examples support up to four configured panels and two groups; edit the configuration block for a new study. In robustness panels, the term `preferred` is isolated as a red second matrix series at offset zero.

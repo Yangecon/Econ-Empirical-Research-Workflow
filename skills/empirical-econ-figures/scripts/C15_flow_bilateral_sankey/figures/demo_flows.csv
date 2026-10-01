@@ -1,0 +1,31 @@
+source,destination,amount_usd_billion
+British Virgin Islands,Brazil,1
+British Virgin Islands,China,9
+British Virgin Islands,India,0
+British Virgin Islands,Russia,1
+British Virgin Islands,South Africa,0
+Cayman Islands,Brazil,13
+Cayman Islands,China,17
+Cayman Islands,India,0
+Cayman Islands,Russia,0
+Cayman Islands,South Africa,0
+Ireland,Brazil,0
+Ireland,China,1
+Ireland,India,0
+Ireland,Russia,6
+Ireland,South Africa,0
+Luxembourg,Brazil,4
+Luxembourg,China,1
+Luxembourg,India,0
+Luxembourg,Russia,5
+Luxembourg,South Africa,0
+Netherlands,Brazil,17
+Netherlands,China,0
+Netherlands,India,1
+Netherlands,Russia,1
+Netherlands,South Africa,4
+Other tax havens,Brazil,0
+Other tax havens,China,5
+Other tax havens,India,3
+Other tax havens,Russia,0
+Other tax havens,South Africa,1

@@ -1,0 +1,61 @@
+scenario,unit_id,marginal_cost,dispatched_mwh
+Spatial constraints and curtailment,unit_00,0.0,3000.0
+Spatial constraints and curtailment,unit_01,0.0,3000.0
+Spatial constraints and curtailment,unit_02,0.0,3000.0
+Spatial constraints and curtailment,unit_03,0.0,3000.0
+Spatial constraints and curtailment,unit_04,0.0,3000.0
+Spatial constraints and curtailment,unit_05,0.0,3000.0
+Spatial constraints and curtailment,unit_06,0.0,3000.0
+Spatial constraints and curtailment,unit_07,0.0,3000.0
+Spatial constraints and curtailment,unit_08,0.0,3000.0
+Spatial constraints and curtailment,unit_09,0.0,3000.0
+Spatial constraints and curtailment,unit_10,18.0,3000.0
+Spatial constraints and curtailment,unit_11,18.0,3000.0
+Spatial constraints and curtailment,unit_12,18.0,3000.0
+Spatial constraints and curtailment,unit_13,18.0,3000.0
+Spatial constraints and curtailment,unit_14,18.0,3000.0
+Spatial constraints and curtailment,unit_15,19.0,3000.0
+Spatial constraints and curtailment,unit_16,21.4,3000.0
+Spatial constraints and curtailment,unit_17,23.8,3000.0
+Spatial constraints and curtailment,unit_18,26.2,3000.0
+Spatial constraints and curtailment,unit_19,28.6,3000.0
+Spatial constraints and curtailment,unit_20,31.0,3000.0
+Spatial constraints and curtailment,unit_21,33.4,3000.0
+Spatial constraints and curtailment,unit_22,35.8,3000.0
+Spatial constraints and curtailment,unit_23,38.2,3000.0
+Spatial constraints and curtailment,unit_24,40.6,3000.0
+Spatial constraints and curtailment,unit_25,43.0,3000.0
+Spatial constraints and curtailment,unit_26,45.4,3000.0
+Spatial constraints and curtailment,unit_27,47.8,3000.0
+Spatial constraints and curtailment,unit_28,50.2,3000.0
+Spatial constraints and curtailment,unit_29,52.6,3000.0
+Unconstrained,unit_00,0.0,3000.0
+Unconstrained,unit_01,0.0,3000.0
+Unconstrained,unit_02,0.0,3000.0
+Unconstrained,unit_03,0.0,3000.0
+Unconstrained,unit_04,0.0,3000.0
+Unconstrained,unit_05,0.0,3000.0
+Unconstrained,unit_06,0.0,3000.0
+Unconstrained,unit_07,0.0,3000.0
+Unconstrained,unit_08,0.0,3000.0
+Unconstrained,unit_09,0.0,3000.0
+Unconstrained,unit_10,0.0,3000.0
+Unconstrained,unit_11,18.0,3000.0
+Unconstrained,unit_12,18.0,3000.0
+Unconstrained,unit_13,18.0,3000.0
+Unconstrained,unit_14,18.0,3000.0
+Unconstrained,unit_15,19.0,3000.0
+Unconstrained,unit_16,20.25,3000.0
+Unconstrained,unit_17,21.5,3000.0
+Unconstrained,unit_18,22.75,3000.0
+Unconstrained,unit_19,24.0,3000.0
+Unconstrained,unit_20,25.25,3000.0
+Unconstrained,unit_21,26.5,3000.0
+Unconstrained,unit_22,27.75,3000.0
+Unconstrained,unit_23,29.0,3000.0
+Unconstrained,unit_24,30.25,3000.0
+Unconstrained,unit_25,31.5,3000.0
+Unconstrained,unit_26,32.75,3000.0
+Unconstrained,unit_27,34.0,3000.0
+Unconstrained,unit_28,35.25,3000.0
+Unconstrained,unit_29,36.5,3000.0

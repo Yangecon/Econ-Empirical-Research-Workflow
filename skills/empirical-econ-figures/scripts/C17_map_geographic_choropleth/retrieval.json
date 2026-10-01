@@ -1,0 +1,8 @@
+{
+  "metadata_url": "https://www.geoboundaries.org/api/current/gbOpen/CMR/ADM1/",
+  "download_url": "https://media.githubusercontent.com/media/wmgeolab/geoBoundaries/9469f09/releaseData/gbOpen/CMR/ADM1/geoBoundaries-CMR-ADM1.geojson",
+  "retrieved": "2026-09-28",
+  "sha256": "f7ba11324e63e482078b6cb6130ad17109c3013b12c07fce0654a3cd1d7786e6",
+  "features": 10,
+  "status": "downloaded_verified_geojson"
+}

@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "source_variants": 50,
+  "grouped_targets": 40,
+  "checked_local_links": 1012,
+  "verified_pngs": 0,
+  "python_files_parsed": 91,
+  "executable_file_records_byte_identical": 174,
+  "input_file_records_byte_identical": 72,
+  "host_paths_found": 0,
+  "errors": [],
+  "release_smoke_runs": [
+    {
+      "case": "skill_custom_trend",
+      "exit_code": 0,
+      "generated_outputs": 2
+    },
+    {
+      "case": "skill_a01_panel",
+      "exit_code": 0,
+      "generated_outputs": 2,
+      "contrast_matches_static_did": true,
+      "observations": 980
+    }
+  ],
+  "stata_reexecuted_for_packaging": false,
+  "runtime_policy": "Executable and numerical input bytes equal accepted source; no fresh Stata environment claim.",
+  "dependency_file_hashes": {
+    "requirements.txt": "956b4407e4d841865135b7e07aeb2781582deabc5d01722cfd672931b1c3382d",
+    "requirements_lock.txt": "2b638e8e8e9e2f906cab58e9329076c605b24a8c0282bdfc563ebaa4e4a517aa"
+  }
+}

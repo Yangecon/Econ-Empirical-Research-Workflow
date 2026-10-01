@@ -1,0 +1,9 @@
+# Supplied-null-draw input and tail rule
+
+[English](schema.md) · [中文](schema.zh-CN.md)
+
+UTF-8 CSV with one row per supplied null draw. Required columns: `panel` (stable ID), `panel_order` (consecutive integer 1–4), `panel_label_en`, `panel_label_zh`, `draw_id` (unique within panel), finite numeric `null_stat`, and finite numeric `observed_stat` (constant within each panel). Panel ID, order, labels, and observed statistic must be consistent; input column order is irrelevant. The example statistic is a share, so its default plot range is 0–1. For another statistic, set plot bounds and bin width in both commands. The bin width must divide the plotted range exactly. Each histogram bar height is its count divided by the number of supplied draws in that panel.
+
+`--tail right` counts `null_stat >= observed_stat`; `left` counts `<=`. A two-sided test requires an explicit null center `c` and counts `abs(null_stat-c) >= abs(observed_stat-c)`. The Stata arguments use `right`, `left`, or `two-sided` and a `nullcenter` in the fifth position. Ties count as extreme. For `B` supplied null draws and `E` extremes, both programs report the finite-permutation Monte Carlo correction `(E+1)/(B+1)` in the output-stem `_results.csv`. The supplied draws are treated as excluding the observed assignment. No normal approximation is used.
+
+These programs **plot and count existing draws**. They do not construct the assignment mechanism, generate valid permutations, verify exchangeability, or prove that this tail/center answers a study's hypothesis. Upstream research must justify the randomization design, statistic, conditioning set, and tail selection. The original figure used separate randomization tests for treatment and control markets; the synthetic example uses generic settings and makes no source-data or numerical replication claim.

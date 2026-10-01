@@ -1,0 +1,7 @@
+# Input contract
+
+[English](schema.md) · [中文](schema.zh-CN.md)
+
+UTF-8 CSV with `panel,sr,sd,value`, one row per two-dimensional quintile cell. Configured panel IDs are `te` (firm employment growth effect, log-change units) and `jobs` (new jobs per €100,000 subsidy). `sr` is the objective-rules quintile and `sd` the political-discretion quintile, both integers 1–5. **All 25 coordinates per panel are required.** Every panel needs at least one observed estimate; duplicate or omitted cells, unknown panels, out-of-range quintiles, nonnumeric nonblank values, and values outside each panel's configured color range are rejected. A blank `value` means **missing**, represented as gray rather than zero. A numeric zero is an observed value, eligible only where the panel's declared scale includes zero.
+
+Current color ranges, editable in both scripts, are `te: [0.05,0.20]` log-change and `jobs: [0,1.25]` new jobs per €100,000. Both use the same ten RGB colors and equally spaced scale boundaries **within each panel**. Bin `k` includes its lower endpoint and excludes its upper endpoint, except the last bin also includes the configured maximum. Python shows a ten-step colorbar; Stata shows the same ten-step keyed scale with three-decimal bin limits. Both independently map the saved point estimates; neither computes treatment effects, cost effectiveness, uncertainty intervals, or significance. The source's Panel A is a six-year employment log-change. Its 90% bootstrap intervals are in a separate table, not encoded in this heatmap.

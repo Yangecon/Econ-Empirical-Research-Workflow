@@ -1,0 +1,114 @@
+{
+  "retrieval_date": "2026-09-29",
+  "stata_version": "19",
+  "honestdid_local_version": "1.3.0 25Jan2024 (SSC release copied from preexisting Stata PLUS)",
+  "honestdid_current_upstream_at_review": "1.3.4 27Feb2025",
+  "coefplot_local_version": "1.8.8 22aug2025",
+  "official_honestdid_installation_and_windows_plugin_guide": "https://github.com/mcaceresb/stata-honestdid#package-installation",
+  "official_honestdid_package_manifest": "https://github.com/mcaceresb/stata-honestdid/blob/main/honestdid.pkg",
+  "coefplot_license_url": "https://github.com/benjann/coefplot/blob/master/LICENSE",
+  "note": "Only Windows HonestDiD plugins were copied because this execution was on Windows. Stata executable is not bundled. No global ado files were changed.",
+  "files": [
+    {
+      "file": "packages/c/coefplot.ado",
+      "sha256": "8490ef38ffbfc72f6bf96e569b8085e6616c2785f0cfc903424fea4055694973",
+      "bytes": 131148,
+      "copied_from_preexisting_installation": "STATA_PLUS/c/coefplot.ado",
+      "upstream_repository": "https://github.com/benjann/coefplot",
+      "header": [
+        "*! version 1.8.8  22aug2025  Ben Jann",
+        "",
+        "program coefplot"
+      ],
+      "license": "MIT"
+    },
+    {
+      "file": "packages/c/coefplot.sthlp",
+      "sha256": "3952f9c36ce30fb71db5a057fbcf37a8a1d07bca53ef041dffb2ad5dd4e1da85",
+      "bytes": 75701,
+      "copied_from_preexisting_installation": "STATA_PLUS/c/coefplot.sthlp",
+      "upstream_repository": "https://github.com/benjann/coefplot",
+      "header": [
+        "{smcl}",
+        "{* *! version 1.5.3  28may2025  Ben Jann}{...}",
+        "{vieweralsosee \"[G-2] graph\" \"help graph\"}{...}"
+      ],
+      "license": "MIT"
+    },
+    {
+      "file": "packages/c/LICENSE",
+      "sha256": "a1d281d076a69830224c7e8a78277004d39991deedb1462478800a003a52b728",
+      "bytes": 1065,
+      "copied_from_preexisting_installation": "original-build-record/LICENSE",
+      "upstream_repository": "https://github.com/benjann/coefplot",
+      "header": null,
+      "license": "MIT"
+    },
+    {
+      "file": "packages/h/honestdid.ado",
+      "sha256": "4eecc77d861db76740412a12d5a570c412fd87417b1d581a5b6543e54b653b8e",
+      "bytes": 20469,
+      "copied_from_preexisting_installation": "STATA_PLUS/h/honestdid.ado",
+      "upstream_repository": "https://github.com/mcaceresb/stata-honestdid",
+      "header": [
+        "*! version 1.3.0 25Jan2024 Mauricio Caceres Bravo, mauricio.caceres.bravo@gmail.com",
+        "*! HonestDiD R to Stata translation",
+        ""
+      ],
+      "license": "not declared in inspected upstream repository"
+    },
+    {
+      "file": "packages/h/honestdid.sthlp",
+      "sha256": "71a141e72def41d73e41e4dc242cf5cafb91189753efcccf27f242bdd62a2b6c",
+      "bytes": 11829,
+      "copied_from_preexisting_installation": "STATA_PLUS/h/honestdid.sthlp",
+      "upstream_repository": "https://github.com/mcaceresb/stata-honestdid",
+      "header": [
+        "{smcl}",
+        "{* *! version 1.3.0 25Jan2024}{...}",
+        "{viewerdialog honestdid \"dialog honestdid\"}{...}"
+      ],
+      "license": "not declared in inspected upstream repository"
+    },
+    {
+      "file": "packages/h/honestecos_windows.plugin",
+      "sha256": "e2b1a078d4dad8714af7d7446d8d116449672a88dbdaa27269601f5a987bd9ac",
+      "bytes": 317694,
+      "copied_from_preexisting_installation": "STATA_PLUS/h/honestecos_windows.plugin",
+      "upstream_repository": "https://github.com/mcaceresb/stata-honestdid",
+      "header": null,
+      "license": "not declared in inspected upstream repository"
+    },
+    {
+      "file": "packages/h/honestosqp_windows.plugin",
+      "sha256": "3abb44da9bed60884f76b10f244cbd2b734bd2465c1bd435a6b1d103f2bfcbf6",
+      "bytes": 340435,
+      "copied_from_preexisting_installation": "STATA_PLUS/h/honestosqp_windows.plugin",
+      "upstream_repository": "https://github.com/mcaceresb/stata-honestdid",
+      "header": null,
+      "license": "not declared in inspected upstream repository"
+    },
+    {
+      "file": "packages/h/honestwork.ado",
+      "sha256": "058a28ee475fa3a1ea47ab7db19fa8e31bec12fbc9e22c4e8d8775aa4e95f2b3",
+      "bytes": 1734,
+      "copied_from_preexisting_installation": "STATA_PLUS/h/honestwork.ado",
+      "upstream_repository": "https://github.com/mcaceresb/stata-honestdid",
+      "header": [
+        "capture program drop honestwork",
+        "program honestwork",
+        "    if \"${HONEST_CALLER}\" != \"honestdid\" {"
+      ],
+      "license": "not declared in inspected upstream repository"
+    },
+    {
+      "file": "packages/l/lhonestdid.mlib",
+      "sha256": "49d719ef3c2a417d242cc6a4dc57f2abe1cb64c700c1c6fcf5555bda97400b73",
+      "bytes": 502432,
+      "copied_from_preexisting_installation": "STATA_PLUS/l/lhonestdid.mlib",
+      "upstream_repository": "https://github.com/mcaceresb/stata-honestdid",
+      "header": null,
+      "license": "not declared in inspected upstream repository"
+    }
+  ]
+}

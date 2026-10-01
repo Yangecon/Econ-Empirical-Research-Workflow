@@ -6,6 +6,16 @@ Publication-ready figure templates for the main empirical results.
 
 do "code/00_setup.do"
 
+* Choose a catalogued recipe for a full figure family; see docs/figure-integration.md.
+* This starter keeps existing estimates and enables titles only when requested.
+local INCLUDE_TITLES 0
+local coef_title ""
+local bins_title ""
+if `INCLUDE_TITLES' {
+    local coef_title `"title("Main Treatment Effect")"'
+    local bins_title `"title("Binned Relationship Between Treatment and Outcome")"'
+}
+
 local required_packages "reghdfe eststo esttab coefplot binscatter"
 do "$CODE/_write_version_log.do" "03_figures.do" "`required_packages'"
 
@@ -42,7 +52,8 @@ if `has_coefplot' {
     coefplot fig_main, ///
         keep(`x_var') ///
         xline(0, lpattern(dash)) ///
-        title("Main Treatment Effect") ///
+        `coef_title' ///
+        note("") caption("") ///
         ytitle("Coefficient") ///
         graphregion(color(white))
     graph export "$FIGURES/figure_main_coefplot.pdf", replace
@@ -51,7 +62,8 @@ if `has_coefplot' {
 
 if `has_binscatter' {
     binscatter `y_var' `x_var', ///
-        title("Binned Relationship Between Treatment and Outcome") ///
+        `bins_title' ///
+        note("") caption("") ///
         graphregion(color(white))
     graph export "$FIGURES/figure_binscatter.pdf", replace
     graph export "$FIGURES/figure_binscatter.png", replace width(2400)

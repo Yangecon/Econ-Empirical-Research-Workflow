@@ -36,7 +36,7 @@ work/
 
 ## Required project inputs
 
-Always inspect:
+For project-wide routing, inspect:
 
 - `README.md`
 - `project.yaml`
@@ -51,6 +51,7 @@ Route to:
 - `research-identification` for estimand definition, identification design, assumptions, data requirements, and robustness planning
 - `research-empirics` for generic empirical production workflow
 - `empirical-analysis-stata` for the full Stata-first applied econ execution stack
+- `empirical-econ-figures` for supported descriptive, design and estimated-result figures
 - `research-writing` for prose drafting and draft-folder writing logic
 - `output-draft-overleaf-sync` for output-to-draft refresh and Overleaf handoff checks
 - `research-submission` for submission packaging and replication bundle work
@@ -58,7 +59,17 @@ Route to:
 
 For descriptive and regression tables, route to `empirical-analysis-stata` and apply its `references/08-tables-plots.md` contract. Default to one consolidated XLSX workbook with one table per sheet. Export CSV, Word, or TeX only when requested.
 
+## Figure requests
+
+For an explicit drawing request with existing observations or saved estimates, route to `empirical-econ-figures`. Read the project README/state when available; a standalone figure request does not require scaffolding a new empirical project. Do not mark identification, output or draft gates ready merely because a graph was rendered. If requested estimates or covariance are missing/stale, return to `empirical-analysis-stata` or `research-empirics` first.
+
+Use the catalog to choose among A reduced-form estimates, B structural-form estimates, C summary, D research design and E prediction/algorithm evaluation. Heterogeneity and robustness are tags within the numerical-origin category. Descriptive diagnostics and design diagrams may support early work without claiming a frozen causal design. Formal causal figures must preserve the project's frozen estimand, sample, estimator and inference.
+
+Keep estimation upstream, figure inputs under the project's existing `output/raw/` convention, accepted figures under `output/figures/`, and provenance in `notes/figure_log.csv` and the run log. Exploratory figures stay under `work/<slug>/`. Captions, sources and notes are supplied by writing/draft-sync. See [figure integration](../empirical-econ-figures/references/workflow_integration.md).
+
 ## Hard gate logic
+
+These gates govern progression of the main empirical pipeline. Standalone drawing follows the Figure requests section above.
 
 1. If `workflow_state.topic_gate_status != go`, stay in the idea stage and route to `research-topic-selection`.
 2. If `workflow_state.identification_gate_status != freeze`, route to `research-identification`.

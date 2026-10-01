@@ -1,0 +1,16 @@
+{
+  "paper": "Rambachan and Roth, A More Credible Approach to Parallel Trends",
+  "year": 2023,
+  "doi": "10.1093/restud/rdad018",
+  "figure": "HonestDiD relative-magnitude and smoothness sensitivity examples",
+  "pdf_page": null,
+  "image": null,
+  "caption": "Method-inspired synthetic-data example; no source-paper figure reproduced.",
+  "source_url": "https://github.com/mcaceresb/stata-honestdid",
+  "method_documentation": "https://github.com/mcaceresb/stata-honestdid",
+  "software_package": "HonestDiD for Stata",
+  "source_code_status": "The method-author repository and README examples were inspected. This implementation uses a locally available official SSC 1.3.0 package copy; the current upstream GitHub package is newer.",
+  "data_status": "Seeded synthetic panel; actual Stata fixed-effects event-study estimates and full clustered covariance supplied to actual honestdid RM and SD calls. No paper data or original figure image used.",
+  "source_image_status": "No original paper image is claimed or included.",
+  "bibliography_verified_url": "https://www.jonathandroth.com/assets/files/HonestParallelTrends_Main.pdf"
+}

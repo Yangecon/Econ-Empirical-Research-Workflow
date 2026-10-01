@@ -1,0 +1,7 @@
+estimator,min_event_time,max_event_time,reported_eN,preperiod_status,horizon_n
+BJS imputation,-5,5,4500.0,"pretrend tests, including -1",not reported uniformly by all commands
+Callaway-Santanna,-5,5,,"pretrend contrasts, including -1",not reported uniformly by all commands
+Sun-Abraham,-5,5,4500.0,coefficient; -1 normalized,not reported uniformly by all commands
+TWFE OLS,-5,5,4500.0,coefficient; -1 normalized,not reported uniformly by all commands
+Wooldridge jwdid,0,5,4500.0,post-treatment event ATT only; not-yet-treated controls,not reported uniformly by all commands
+dCDH dynamic,-5,5,,"placebo tests, including -1",not reported uniformly by all commands

@@ -56,7 +56,17 @@ Check:
 11. Whether the task touches Elicit, Zotero, Overleaf, raw data, restricted data, or submission.
 12. Whether `work/` or the main pipeline should be used.
 
+## Figure requests
+
+For an explicit drawing request with existing observations or saved estimates, route to `empirical-econ-figures`. Read the project README/state when available; a standalone figure request does not require scaffolding a new empirical project. Do not mark identification, output or draft gates ready merely because a graph was rendered. If requested estimates or covariance are missing/stale, return to `empirical-analysis-stata` or `research-empirics` first.
+
+Use the catalog to choose among A reduced-form estimates, B structural-form estimates, C summary, D research design and E prediction/algorithm evaluation. Heterogeneity and robustness are tags within the numerical-origin category. Descriptive diagnostics and design diagrams may support early work without claiming a frozen causal design. Formal causal figures must preserve the project's frozen estimand, sample, estimator and inference.
+
+Keep estimation upstream, figure inputs under the project's existing `output/raw/` convention, accepted figures under `output/figures/`, and provenance in `notes/figure_log.csv` and the run log. Exploratory figures stay under `work/<slug>/`. Captions, sources and notes are supplied by writing/draft-sync. See [figure integration](../empirical-econ-figures/references/workflow_integration.md).
+
 ## Hard routing logic
+
+These gates govern progression of the main empirical pipeline. Standalone drawing follows the Figure requests section above.
 
 1. If `workflow_state.topic_gate_status != go`, route to `research-topic-selection` and do not enter identification.
 2. If `workflow_state.identification_gate_status != freeze`, route to `research-identification` and do not enter empirical analysis.

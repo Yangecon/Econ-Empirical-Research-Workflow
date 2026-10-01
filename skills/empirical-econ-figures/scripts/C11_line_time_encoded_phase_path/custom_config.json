@@ -1,0 +1,10 @@
+{
+  "phases": [
+    {"id": "pre", "label_en": "Earlier period", "label_zh": "前期", "color": "#1764A0", "linestyle": "-"},
+    {"id": "post", "label_en": "Later period", "label_zh": "后期", "color": "#D55E00", "linestyle": "--"}
+  ],
+  "axes": {
+    "en": {"x": "Illustrative population coordinate", "y": "Illustrative wage coordinate", "title": "Illustrative historical path"},
+    "zh": {"x": "示例人口坐标", "y": "示例工资坐标", "title": "示例历史轨迹"}
+  }
+}

@@ -144,6 +144,7 @@ skills/
   research-identification/
   research-empirics/
   empirical-analysis-stata/
+  empirical-econ-figures/
   research-writing/
   output-draft-overleaf-sync/
   research-submission/
@@ -169,3 +170,14 @@ For a full empirical run, summary statistics and regression tables default to on
 ## Repo Contents
 
 For a compact inventory, see [docs/repo-contents.md](./docs/repo-contents.md).
+
+## Empirical economics figures
+
+`empirical-econ-figures` adds **50 accepted variants / 40 drawing targets** from supplied 2021–2026 Top 5 economics papers, selected NBER working papers and method references. The A–E taxonomy follows the origin of plotted numbers. Code and input schemas live in one skill; the companion gallery stores 97 English example PNGs. Documentation is bilingual, previews open on click, and figures omit overall titles and bottom notes by default.
+
+- [Integration and estimation-to-draft handoff](docs/figure-integration.md)
+- [Full skill overview and recipes](skills/empirical-econ-figures/README.md)
+- [PNG gallery and paper references](gallery/empirical-econ-figures/README.md)
+- [Figure resource attribution/licensing](skills/empirical-econ-figures/LICENSING.md)
+
+Use one Python environment for the project: `python -m pip install -r requirements-figures.txt`. Discover templates with `python scripts/figure_catalog.py --category reduced_form --tag "Event study"`, or read one record with `python scripts/figure_catalog.py --id A01 --json`. These commands select a documented interface; they do not run an estimator or automatically promote example results into the project.

@@ -1,0 +1,232 @@
+{
+  "stata_version": "19",
+  "retrieval_date": "2026-09-29",
+  "method_author_example": "https://github.com/borusyak/did_imputation/blob/main/five_estimators_example.do",
+  "event_plot_upstream": "https://github.com/borusyak/did_imputation/blob/main/event_plot.ado",
+  "jwdid_upstream": "https://github.com/friosavila/stpackages/tree/main/jwdid",
+  "jwdid_package_index": "https://github.com/friosavila/stpackages/blob/main/jwdid.pkg",
+  "local_event_plot_patch": [
+    "Quote e(cmd) in two fallback-stub checks to support a matrix-only call with no active e() results.",
+    "Correct the lag-plot count expression from a missing coef macro to coef indexed by model."
+  ],
+  "commands": {
+    "reghdfe": {
+      "path": "STATA_PLUS/r/reghdfe.ado",
+      "sha256": "f9462bb7364055b138b223a495d4b0fd4b3c5e3bedc1fc886b75bf1546f9d66a",
+      "header": [
+        "*! version 6.13.1 10Jan2026",
+        "program define reghdfe",
+        "* Intercept storing alphas",
+        "cap syntax, store_alphas"
+      ],
+      "source": "pre-existing Stata PLUS"
+    },
+    "ftools": {
+      "path": "STATA_PLUS/f/ftools.ado",
+      "sha256": "459666a26fdcc67b798b0a38eab3dcefa6714c4e679745f99eca945f41b3cd88",
+      "header": [
+        "*! version 2.50.0 09jan2026",
+        "* This file is just used to compile ftools.mlib",
+        "program define ftools",
+        "syntax, [*]"
+      ],
+      "source": "pre-existing Stata PLUS"
+    },
+    "csdid": {
+      "path": "STATA_PLUS/c/csdid.ado",
+      "sha256": "aa5dff1abef0940d46840890c7c72104b47e01f5fc7319ba902534d2a8fe7847",
+      "header": [
+        "* Next step Integrate all into csdid.mata <- so Do not need to play with many files",
+        "*! v1.8  by FRA. Trim",
+        "* v1.72  by FRA. Drops always treated",
+        "* v1.71  by FRA. adds weights back"
+      ],
+      "source": "pre-existing Stata PLUS"
+    },
+    "avar": {
+      "path": "scripts/staggered_event_study_estimator_comparison/packages/a/avar.ado",
+      "sha256": "4ae4a50e90ca94916d54fa130946dab74a9840f2a0a126ffd786e542c1ccc626",
+      "header": [
+        "*! avar 1.0.07  28July2015",
+        "*! authors cfb/mes",
+        "*! shell based on ranktest by fk/mes",
+        "*! see end of file for version comments"
+      ],
+      "source": "project-local SSC copy"
+    },
+    "drdid": {
+      "path": "scripts/staggered_event_study_estimator_comparison/packages/d/drdid.ado",
+      "sha256": "c3a3fd0d467359a8e7259b470397447b0d23e602ff0aeac50d77814193ad3bf0",
+      "header": [
+        "* Ver 1.91 Pedro Sant'Anna fixes some typos on IFs, trimming, and correct usage of weights.",
+        "* Ver 1.9 Scott Cunningham edits added a few lines of trimming propensity scores above 0.995 for the control groups",
+        "* Ver 1.8 Trimming",
+        "* Ver 1.71 bug with weights",
+        "* Ver 1.7 adds version for easier update"
+      ],
+      "source": "project-local SSC copy"
+    },
+    "did_imputation": {
+      "path": "scripts/staggered_event_study_estimator_comparison/packages/d/did_imputation.ado",
+      "sha256": "107d923b53375b88fc88044f7e56fd4853a76e2e3901abcc7277e16138a944e7",
+      "header": [
+        "*! did_imputation: Treatment effect estimation and pre-trend testing in staggered adoption diff-in-diff designs with an imputation approach of Borusyak, Jaravel, and Spiess (2023)",
+        "*! Version: November 22, 2023",
+        "*! Author: Kirill Borusyak",
+        "*! Recent updates: project() option can no longer be combined with autosample, which could lead to errors",
+        "*! Citation: Borusyak, Jaravel, and Spiess, \"Revisiting Event Study Designs: Robust and Efficient Estimation\" (2023)"
+      ],
+      "source": "project-local SSC copy"
+    },
+    "did_multiplegt_old": {
+      "path": "scripts/staggered_event_study_estimator_comparison/packages/d/did_multiplegt_old.ado",
+      "sha256": "08a47483891311d23b988886424a73fa1b80a47fcdade055eb40ac9857af2e11",
+      "header": [
+        "*﻿*Author: Clément de Chaisemartin",
+        "**1st version: November 8th 2019",
+        "**This version: May 2nd 2023",
+        "** Adding double at lines 214 and 980."
+      ],
+      "source": "project-local SSC copy"
+    },
+    "eventstudyinteract": {
+      "path": "scripts/staggered_event_study_estimator_comparison/packages/e/eventstudyinteract.ado",
+      "sha256": "e93d89de7321097a32bf03069745e245eced5a522aa27a5088746a289e700cb4",
+      "header": [
+        "*! version 0.1  24jan2022  Liyang Sun, lsun20@mit.edu",
+        "capture program drop eventstudyinteract",
+        "program define eventstudyinteract, eclass sortpreserve",
+        "version 13"
+      ],
+      "source": "project-local SSC copy"
+    },
+    "event_plot_patched": {
+      "path": "scripts/staggered_event_study_estimator_comparison/packages/e/event_plot.ado",
+      "sha256": "153ff0dbb4ff6e361424910e855c7b3bea563d94c33968a5d468cc2c5cd3a475",
+      "header": [
+        "*! event_plot: Plot coefficients from a staggered adoption event study analysis",
+        "*! Version: June 1, 2021",
+        "*! Author: Kirill Borusyak",
+        "*! Please check the latest version at https://github.com/borusyak/did_imputation/",
+        "*! Citation: Borusyak, Jaravel, and Spiess, \"Revisiting Event Study Designs: Robust and Efficient Estimation\" (2021)"
+      ],
+      "source": "project-local SSC copy"
+    },
+    "jwdid": {
+      "path": "scripts/staggered_event_study_estimator_comparison/packages/j/jwdid.ado",
+      "sha256": "5d9d59590076f043900375f0ae8a1d559a8ac0a763a05cbeff84cbba619979c0",
+      "header": [
+        "*!v2.201 Index Option",
+        "*v2.2 Fixing issue with RCS",
+        "*v2.13 Fixing Treatment Intensity",
+        "*v2.12 Bug with tobit",
+        "*v2.11 Bug with trtvar"
+      ],
+      "source": "method-author GitHub main"
+    },
+    "jwdid_estat": {
+      "path": "scripts/staggered_event_study_estimator_comparison/packages/j/jwdid_estat.ado",
+      "sha256": "61895a9eb005504926bc3b9e40e71deef2c257500bcecf6421fda19f8cfe79e1",
+      "header": [
+        "*! v2.2 FRA. Fixing error with weights Stata 17",
+        "* v2.1 FRA. More options including attgt and Over many",
+        "* v2.01 FRA. Margins Fix",
+        "* v2.0 FRA. Gravity",
+        "* v1.72 FRA. Anticipation without Never"
+      ],
+      "source": "method-author GitHub main"
+    },
+    "jwdid_plot": {
+      "path": "scripts/staggered_event_study_estimator_comparison/packages/j/jwdid_plot.ado",
+      "sha256": "5460a2b49d5807d351bf66843dd65a724f47d4a10bb16040be5af34a7c58d6d1",
+      "header": [
+        "*!v1.3 Allows Tight Graph",
+        "*v1.2 Bugs with Lwidth",
+        "*v1.1 Plot for SIMPLE OVER",
+        "* v1 Clone for jwdid:",
+        "/*capture program drop  csdid_plot"
+      ],
+      "source": "method-author GitHub main"
+    },
+    "hdfe": {
+      "path": "scripts/staggered_event_study_estimator_comparison/packages/h/hdfe.ado",
+      "sha256": "3eb14309652a9be9186105ecc97a32f1c1437f3e9eb3bcee8736b7e4d4b73bec",
+      "header": [
+        "*! reghdfe 3.2.9 21feb2016",
+        "*! Sergio Correia (sergio.correia@duke.edu)",
+        "// Mata code is first, then main reghdfe.ado, then auxiliary .ado files"
+      ],
+      "source": "pre-existing Stata 17 package copied locally"
+    }
+  },
+  "upstream_sources": {
+    "event_plot_upstream_ssc": {
+      "path": "scripts/staggered_event_study_estimator_comparison/packages/e/event_plot_upstream.ado",
+      "sha256": "1c6d77b8c505ddba55db8c786ca123937a40f5b1d6591eb9d0ec722e3c9b7248",
+      "header": [
+        "*! event_plot: Plot coefficients from a staggered adoption event study analysis",
+        "*! Version: June 1, 2021",
+        "*! Author: Kirill Borusyak",
+        "*! Please check the latest version at https://github.com/borusyak/did_imputation/",
+        "*! Citation: Borusyak, Jaravel, and Spiess, \"Revisiting Event Study Designs: Robust and Efficient Estimation\" (2021)"
+      ],
+      "source": "project-local SSC copy"
+    },
+    "event_plot_upstream_github_main": {
+      "path": "scripts/staggered_event_study_estimator_comparison/packages/e/event_plot_latest_upstream.ado",
+      "sha256": "35c90de3d74779bf2c33cb224911f2eb3eb9cadbf33ea761c092f0170d92a3d0",
+      "header": [
+        "*! event_plot: Plot coefficients from a staggered adoption event study analysis",
+        "*! Version: June 1, 2021",
+        "*! Author: Kirill Borusyak",
+        "*! Please check the latest version at https://github.com/borusyak/did_imputation/",
+        "*! Citation: Borusyak, Jaravel, and Spiess, \"Revisiting Event Study Designs: Robust and Efficient Estimation\" (2021)"
+      ],
+      "source": "method-author GitHub main"
+    },
+    "event_plot_help": {
+      "path": "scripts/staggered_event_study_estimator_comparison/packages/e/event_plot.sthlp",
+      "sha256": "7d1b40e0b7b4429a72feb7c9de354e9e327f11fd12c351b83a071fc055e9ff10",
+      "header": [
+        "{smcl}",
+        "{* *! version 1 2021-05-26}{...}",
+        "{vieweralsosee \"did_imputation\" \"help did_imputation\"}{...}",
+        "{vieweralsosee \"csdid\" \"help csdid\"}{...}",
+        "{vieweralsosee \"did_multiplegt\" \"help did_multiplegt\"}{...}"
+      ],
+      "source": "project-local SSC copy"
+    },
+    "borusyak_license": {
+      "path": "scripts/staggered_event_study_estimator_comparison/packages/e/LICENSE_BORUSYAK",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "header": [
+        "GNU GENERAL PUBLIC LICENSE",
+        "Version 3, 29 June 2007",
+        "Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>",
+        "Everyone is permitted to copy and distribute verbatim copies"
+      ],
+      "source": "project-local SSC copy"
+    },
+    "jwdid_help": {
+      "path": "scripts/staggered_event_study_estimator_comparison/packages/j/jwdid.sthlp",
+      "sha256": "e072c2d66b2bade526c9314cd4aafd48dcb33ca2c7706cd5b001f14a7c3e0a8b",
+      "header": [
+        "{smcl}",
+        "{* *! version 2.0 May_4_2024}{...}",
+        "{title:Title}",
+        "{phang}"
+      ],
+      "source": "method-author GitHub main"
+    },
+    "jwdid_postestimation_help": {
+      "path": "scripts/staggered_event_study_estimator_comparison/packages/j/jwdid_postestimation.sthlp",
+      "sha256": "db86ad776f7ea5cd59b2e13376849d7ec6939f4a682999b249c2d97a1d737fe9",
+      "header": [
+        "{smcl}",
+        "{* *! version 2 May 2024}{...}",
+        "{title:Title}"
+      ],
+      "source": "method-author GitHub main"
+    }
+  }
+}

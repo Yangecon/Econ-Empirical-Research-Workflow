@@ -1,0 +1,7 @@
+source,target,type,directed
+A1,B1,national_exam,0
+A1,C1,blood,0
+B1,C1,provincial_exam,0
+A2,A3,provincial_exam,0
+B2,C2,blood,0
+C1,A4,national_exam,1

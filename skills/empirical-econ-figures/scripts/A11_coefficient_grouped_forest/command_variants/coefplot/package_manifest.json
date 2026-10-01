@@ -1,0 +1,24 @@
+{
+  "package": "coefplot",
+  "version": "1.8.8 (22aug2025)",
+  "author": "Ben Jann",
+  "official_repository": "https://github.com/benjann/coefplot",
+  "retrieved": "2026-09-28",
+  "project_local_package_dir": "packages/c",
+  "files": {
+    "coefplot.ado": {
+      "sha256": "7c555af8d3a3efa1d72861988259ca4d2b67d52516bb87d82f21f31b639517f3",
+      "source": "https://raw.githubusercontent.com/benjann/coefplot/master/coefplot.ado"
+    },
+    "coefplot.sthlp": {
+      "sha256": "9b31f0702281293a698d618495a024f47cb0a3ede72fa548884dd52debb1207b",
+      "source": "https://raw.githubusercontent.com/benjann/coefplot/master/coefplot.sthlp"
+    },
+    "LICENSE": {
+      "sha256": "a1d281d076a69830224c7e8a78277004d39991deedb1462478800a003a52b728",
+      "source": "https://raw.githubusercontent.com/benjann/coefplot/master/LICENSE"
+    }
+  },
+  "install_scope": "Project-local copy; no global installation performed",
+  "runtime": "Stata 19; five executed variants"
+}

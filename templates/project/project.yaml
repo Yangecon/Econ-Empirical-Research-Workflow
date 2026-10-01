@@ -81,3 +81,13 @@ submission_policy:
   submission_folder: paper
   tex_folder: paper/tex
   replication_package: paper/replication_package
+
+figure_policy:
+  skill: empirical-econ-figures
+  language: en
+  overall_title: false
+  bottom_notes: false
+  event_study_reference_period: -1
+  inputs: output/raw
+  provenance_log: notes/figure_log.csv
+  synthetic_examples_are_not_paper_results: true

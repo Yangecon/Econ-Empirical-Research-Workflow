@@ -1,0 +1,8 @@
+{
+  "source": "validated final_skill, A01 revision 2026-09-30",
+  "accepted_variants": 50,
+  "drawing_targets": 40,
+  "source_manifest_sha256": "515374d1b756e15f9cfd33cff38caed4ee84fe2e85db7602cd4ea23e64519cc6",
+  "changes": "Workflow links, UI metadata and byte-preserving Git attributes; figure executable and input bytes unchanged",
+  "gallery": "97 generated English PNGs; original reference screenshots remain local"
+}

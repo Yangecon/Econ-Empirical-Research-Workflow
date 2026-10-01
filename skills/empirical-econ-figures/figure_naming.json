@@ -1,0 +1,455 @@
+{
+  "schema_version": 1,
+  "figures": [
+    {
+      "id": "event_study_with_pre_post_averages",
+      "legacy_display_id": "F01",
+      "display_id": "A01",
+      "canonical_name": "event_study_pre_post_averages",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A01_event_study_pre_post_averages"
+    },
+    {
+      "id": "grouped_event_study",
+      "legacy_display_id": "F02",
+      "display_id": "A02",
+      "canonical_name": "event_study_grouped",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A02_event_study_grouped"
+    },
+    {
+      "id": "staggered_event_study_estimator_comparison",
+      "legacy_display_id": "F49",
+      "display_id": "A03",
+      "canonical_name": "event_study_staggered_estimator_comparison",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A03_event_study_staggered_estimator_comparison"
+    },
+    {
+      "id": "honestdid_sensitivity",
+      "legacy_display_id": "F50",
+      "display_id": "A04",
+      "canonical_name": "event_study_honestdid_sensitivity",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A04_event_study_honestdid_sensitivity"
+    },
+    {
+      "id": "regression_discontinuity_binned_outcomes",
+      "legacy_display_id": "F03",
+      "display_id": "A05",
+      "canonical_name": "rd_binned_outcomes",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A05_rd_binned_outcomes"
+    },
+    {
+      "id": "threshold_binned_regression_panels",
+      "legacy_display_id": "F04",
+      "display_id": "A06",
+      "canonical_name": "rkd_binned_outcomes",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A06_rkd_binned_outcomes"
+    },
+    {
+      "id": "bandwidth_sensitivity_profile",
+      "legacy_display_id": "F14",
+      "display_id": "A07",
+      "canonical_name": "robustness_spatial_bandwidth",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A07_robustness_spatial_bandwidth"
+    },
+    {
+      "id": "paired_difference_distribution",
+      "legacy_display_id": "F05",
+      "display_id": "A08",
+      "canonical_name": "distribution_paired_differences",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A08_distribution_paired_differences"
+    },
+    {
+      "id": "residualized_scatter_panels",
+      "legacy_display_id": "F06",
+      "display_id": "A09",
+      "canonical_name": "scatter_residualized_fit",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A09_scatter_residualized_fit"
+    },
+    {
+      "id": "residualized_binned_scatter",
+      "legacy_display_id": "F07",
+      "display_id": "A10",
+      "canonical_name": "binscatter_residualized_fit",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A10_binscatter_residualized_fit"
+    },
+    {
+      "id": "grouped_coefficient_forest",
+      "legacy_display_id": "F08",
+      "display_id": "A11",
+      "canonical_name": "coefficient_grouped_forest",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A11_coefficient_grouped_forest"
+    },
+    {
+      "id": "binned_effect_with_support_histogram",
+      "legacy_display_id": "F09",
+      "display_id": "A12",
+      "canonical_name": "heterogeneity_binned_effects_support",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A12_heterogeneity_binned_effects_support"
+    },
+    {
+      "id": "bivariate_effect_heatmap",
+      "legacy_display_id": "F10",
+      "display_id": "A13",
+      "canonical_name": "heterogeneity_effect_heatmap",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A13_heterogeneity_effect_heatmap"
+    },
+    {
+      "id": "quantile_coefficient_profile",
+      "legacy_display_id": "F11",
+      "display_id": "A14",
+      "canonical_name": "coefficient_quantile_profile",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A14_coefficient_quantile_profile"
+    },
+    {
+      "id": "permutation_null_distribution",
+      "legacy_display_id": "F12",
+      "display_id": "A15",
+      "canonical_name": "inference_permutation_null",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A15_inference_permutation_null"
+    },
+    {
+      "id": "specification_curve_with_choice_matrix",
+      "legacy_display_id": "F13",
+      "display_id": "A16",
+      "canonical_name": "robustness_specification_curve",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A16_robustness_specification_curve"
+    },
+    {
+      "id": "prior_posterior_interval_comparison",
+      "legacy_display_id": "F15",
+      "display_id": "A17",
+      "canonical_name": "inference_prior_posterior_intervals",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A17_inference_prior_posterior_intervals"
+    },
+    {
+      "id": "joint_bootstrap_region_display",
+      "legacy_display_id": "F16",
+      "display_id": "A18",
+      "canonical_name": "inference_joint_bootstrap_regions",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A18_inference_joint_bootstrap_regions"
+    },
+    {
+      "id": "bunching_distribution_with_counterfactual",
+      "legacy_display_id": "F20",
+      "display_id": "A19",
+      "canonical_name": "bunching_counterfactual_distribution",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A19_bunching_counterfactual_distribution"
+    },
+    {
+      "id": "paired_accounting_waterfall",
+      "legacy_display_id": "F25",
+      "display_id": "A20",
+      "canonical_name": "welfare_accounting_waterfall",
+      "category": "reduced_form",
+      "category_folder": "A_reduced_form",
+      "folder_name": "A20_welfare_accounting_waterfall"
+    },
+    {
+      "id": "scenario_cdf_panels",
+      "legacy_display_id": "F17",
+      "display_id": "B01",
+      "canonical_name": "counterfactual_cdf_panels",
+      "category": "structural_form",
+      "category_folder": "B_structural_form",
+      "folder_name": "B01_counterfactual_cdf_panels"
+    },
+    {
+      "id": "quantile_group_boxplot",
+      "legacy_display_id": "F18",
+      "display_id": "B02",
+      "canonical_name": "distribution_estimated_probabilities_boxplot",
+      "category": "structural_form",
+      "category_folder": "B_structural_form",
+      "folder_name": "B02_distribution_estimated_probabilities_boxplot"
+    },
+    {
+      "id": "impulse_response_matrix_nested_bands",
+      "legacy_display_id": "F19",
+      "display_id": "B03",
+      "canonical_name": "irf_nested_confidence_bands",
+      "category": "structural_form",
+      "category_folder": "B_structural_form",
+      "folder_name": "B03_irf_nested_confidence_bands"
+    },
+    {
+      "id": "set_identified_impulse_response_bounds",
+      "legacy_display_id": "F22",
+      "display_id": "B04",
+      "canonical_name": "irf_set_identified_bounds",
+      "category": "structural_form",
+      "category_folder": "B_structural_form",
+      "folder_name": "B04_irf_set_identified_bounds"
+    },
+    {
+      "id": "policy_counterfactual_contours",
+      "legacy_display_id": "F21",
+      "display_id": "B05",
+      "canonical_name": "counterfactual_policy_contours",
+      "category": "structural_form",
+      "category_folder": "B_structural_form",
+      "folder_name": "B05_counterfactual_policy_contours"
+    },
+    {
+      "id": "merit_order_cost_curves",
+      "legacy_display_id": "F23",
+      "display_id": "B06",
+      "canonical_name": "cost_merit_order_curves",
+      "category": "structural_form",
+      "category_folder": "B_structural_form",
+      "folder_name": "B06_cost_merit_order_curves"
+    },
+    {
+      "id": "signed_component_decomposition",
+      "legacy_display_id": "F26",
+      "display_id": "C01",
+      "canonical_name": "decomposition_signed_components",
+      "category": "summary",
+      "category_folder": "C_summary",
+      "folder_name": "C01_decomposition_signed_components"
+    },
+    {
+      "id": "distribution_overlay_with_thresholds",
+      "legacy_display_id": "F27",
+      "display_id": "C02",
+      "canonical_name": "distribution_threshold_overlay",
+      "category": "summary",
+      "category_folder": "C_summary",
+      "folder_name": "C02_distribution_threshold_overlay"
+    },
+    {
+      "id": "lorenz_concentration_curves",
+      "legacy_display_id": "F28",
+      "display_id": "C03",
+      "canonical_name": "distribution_lorenz_concentration",
+      "category": "summary",
+      "category_folder": "C_summary",
+      "folder_name": "C03_distribution_lorenz_concentration"
+    },
+    {
+      "id": "grouped_category_bars",
+      "legacy_display_id": "F29",
+      "display_id": "C04",
+      "canonical_name": "bar_grouped_categories",
+      "category": "summary",
+      "category_folder": "C_summary",
+      "folder_name": "C04_bar_grouped_categories"
+    },
+    {
+      "id": "paired_binary_transition_stacks",
+      "legacy_display_id": "F30",
+      "display_id": "C05",
+      "canonical_name": "bar_binary_transitions",
+      "category": "summary",
+      "category_folder": "C_summary",
+      "folder_name": "C05_bar_binary_transitions"
+    },
+    {
+      "id": "joint_frequency_bubble_panels",
+      "legacy_display_id": "F31",
+      "display_id": "C06",
+      "canonical_name": "bubble_joint_frequencies",
+      "category": "summary",
+      "category_folder": "C_summary",
+      "folder_name": "C06_bubble_joint_frequencies"
+    },
+    {
+      "id": "horizon_density_ridgeline",
+      "legacy_display_id": "F32",
+      "display_id": "C07",
+      "canonical_name": "distribution_horizon_ridgeline",
+      "category": "summary",
+      "category_folder": "C_summary",
+      "folder_name": "C07_distribution_horizon_ridgeline"
+    },
+    {
+      "id": "log_density_tail_comparison",
+      "legacy_display_id": "F33",
+      "display_id": "C08",
+      "canonical_name": "distribution_log_density_tails",
+      "category": "summary",
+      "category_folder": "C_summary",
+      "folder_name": "C08_distribution_log_density_tails"
+    },
+    {
+      "id": "weighted_distribution_comparison",
+      "legacy_display_id": "F34",
+      "display_id": "C09",
+      "canonical_name": "distribution_weighted_comparison",
+      "category": "summary",
+      "category_folder": "C_summary",
+      "folder_name": "C09_distribution_weighted_comparison"
+    },
+    {
+      "id": "multi_series_time_trend",
+      "legacy_display_id": "F35",
+      "display_id": "C10",
+      "canonical_name": "line_multi_series_trend",
+      "category": "summary",
+      "category_folder": "C_summary",
+      "folder_name": "C10_line_multi_series_trend"
+    },
+    {
+      "id": "time_encoded_phase_path",
+      "legacy_display_id": "F36",
+      "display_id": "C11",
+      "canonical_name": "line_time_encoded_phase_path",
+      "category": "summary",
+      "category_folder": "C_summary",
+      "folder_name": "C11_line_time_encoded_phase_path"
+    },
+    {
+      "id": "historical_policy_timeline",
+      "legacy_display_id": "F37",
+      "display_id": "C12",
+      "canonical_name": "line_historical_annotations",
+      "category": "summary",
+      "category_folder": "C_summary",
+      "folder_name": "C12_line_historical_annotations"
+    },
+    {
+      "id": "discrete_duration_hazard_panels",
+      "legacy_display_id": "F38",
+      "display_id": "C13",
+      "canonical_name": "survival_duration_hazard",
+      "category": "summary",
+      "category_folder": "C_summary",
+      "folder_name": "C13_survival_duration_hazard"
+    },
+    {
+      "id": "kaplan_meier_survival_panels",
+      "legacy_display_id": "F39",
+      "display_id": "C14",
+      "canonical_name": "survival_kaplan_meier",
+      "category": "summary",
+      "category_folder": "C_summary",
+      "folder_name": "C14_survival_kaplan_meier"
+    },
+    {
+      "id": "bilateral_flow_sankey",
+      "legacy_display_id": "F43",
+      "display_id": "C15",
+      "canonical_name": "flow_bilateral_sankey",
+      "category": "summary",
+      "category_folder": "C_summary",
+      "folder_name": "C15_flow_bilateral_sankey"
+    },
+    {
+      "id": "typed_edge_community_network",
+      "legacy_display_id": "F44",
+      "display_id": "C16",
+      "canonical_name": "network_typed_communities",
+      "category": "summary",
+      "category_folder": "C_summary",
+      "folder_name": "C16_network_typed_communities"
+    },
+    {
+      "id": "geographic_choropleth",
+      "legacy_display_id": "F45",
+      "display_id": "C17",
+      "canonical_name": "map_geographic_choropleth",
+      "category": "summary",
+      "category_folder": "C_summary",
+      "folder_name": "C17_map_geographic_choropleth"
+    },
+    {
+      "id": "reference_perception_dumbbell",
+      "legacy_display_id": "F46",
+      "display_id": "C18",
+      "canonical_name": "dumbbell_reference_perception",
+      "category": "summary",
+      "category_folder": "C_summary",
+      "folder_name": "C18_dumbbell_reference_perception"
+    },
+    {
+      "id": "time_faceted_ternary_sentiment_scatter",
+      "legacy_display_id": "F48",
+      "display_id": "C19",
+      "canonical_name": "scatter_ternary_sentiment",
+      "category": "summary",
+      "category_folder": "C_summary",
+      "folder_name": "C19_scatter_ternary_sentiment"
+    },
+    {
+      "id": "staggered_policy_phase_timeline",
+      "legacy_display_id": "F40",
+      "display_id": "D01",
+      "canonical_name": "design_policy_phase_timeline",
+      "category": "research_design",
+      "category_folder": "D_research_design",
+      "folder_name": "D01_design_policy_phase_timeline"
+    },
+    {
+      "id": "randomization_decision_tree",
+      "legacy_display_id": "F41",
+      "display_id": "D02",
+      "canonical_name": "design_randomization_tree",
+      "category": "research_design",
+      "category_folder": "D_research_design",
+      "folder_name": "D02_design_randomization_tree"
+    },
+    {
+      "id": "monitoring_calendar",
+      "legacy_display_id": "F42",
+      "display_id": "D03",
+      "canonical_name": "design_monitoring_calendar",
+      "category": "research_design",
+      "category_folder": "D_research_design",
+      "folder_name": "D03_design_monitoring_calendar"
+    },
+    {
+      "id": "efficiency_equity_frontier",
+      "legacy_display_id": "F24",
+      "display_id": "E01",
+      "canonical_name": "prediction_efficiency_equity_frontier",
+      "category": "prediction_evaluation",
+      "category_folder": "E_prediction_evaluation",
+      "folder_name": "E01_prediction_efficiency_equity_frontier"
+    },
+    {
+      "id": "probability_belief_calibration",
+      "legacy_display_id": "F47",
+      "display_id": "E02",
+      "canonical_name": "prediction_probability_calibration",
+      "category": "prediction_evaluation",
+      "category_folder": "E_prediction_evaluation",
+      "folder_name": "E02_prediction_probability_calibration"
+    }
+  ]
+}

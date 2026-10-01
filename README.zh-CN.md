@@ -144,6 +144,7 @@ skills/
   research-identification/
   research-empirics/
   empirical-analysis-stata/
+  empirical-econ-figures/
   research-writing/
   output-draft-overleaf-sync/
   research-submission/
@@ -169,3 +170,14 @@ skills/
 ## Repo Contents
 
 精简目录清单见 [docs/repo-contents.md](./docs/repo-contents.md)。
+
+## 实证经济学绘图
+
+新增 `empirical-econ-figures`，包含所提供的 2021–2026 年 Top 5 经济学论文、部分 NBER working papers 与方法文献中的 **50 个已验收条目 / 40 个归并目标**。A–E 按图中数字的来源分类。代码和输入规范保存在一份 skill 中，配套画廊存放 97 张英文示例 PNG。说明中英文分开，预览点击后打开；图内默认无总标题和底部 notes。
+
+- [Workflow 接入与估计—绘图—draft 交接](docs/figure-integration.zh-CN.md)
+- [完整 skill 总览与使用说明](skills/empirical-econ-figures/README.zh-CN.md)
+- [PNG 画廊与文献来源](gallery/empirical-econ-figures/README.zh-CN.md)
+- [图形资源的来源与许可](skills/empirical-econ-figures/LICENSING.zh-CN.md)
+
+整个研究项目统一一个 Python 环境：`python -m pip install -r requirements-figures.txt`。筛选模板：`python scripts/figure_catalog.py --category reduced_form --tag "Event study"`；查看单项：`python scripts/figure_catalog.py --id A01 --json`。这些命令用于选择已说明的接口；不会自动估计或将示例结果纳入项目。

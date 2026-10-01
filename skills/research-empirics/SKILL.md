@@ -1,6 +1,6 @@
 ---
 name: research-empirics
-description: "Execute the frozen empirical design through data construction, front-end visual diagnostics, estimation, robustness, output export, and run logging. Use for generic empirical execution across the project pipeline when the user asks to build the sample, diagnose data visually, run code, refresh output tables and figures, or record a new empirical run. Pair with `summary-visuals` for the figure specifications and `empirical-analysis-stata` when the task needs a Stata-first applied econ workflow. Triggers: run the empirics, build final sample, visual diagnostics, visualize the sample, descriptive figures, refresh output, run estimation, cleaned tables, cleaned figures, update run log."
+description: "Execute the frozen empirical design through data construction, front-end visual diagnostics, estimation, robustness, output export, and run logging. Use for generic empirical execution across the project pipeline when the user asks to build the sample, diagnose data visually, run code, refresh output tables and figures, or record a new empirical run. Pair with `empirical-econ-figures` for the figure specifications and `empirical-analysis-stata` when the task needs a Stata-first applied econ workflow. Triggers: run the empirics, build final sample, visual diagnostics, visualize the sample, descriptive figures, refresh output, run estimation, cleaned tables, cleaned figures, update run log."
 ---
 
 # Research Empirics
@@ -67,7 +67,7 @@ Do not prescribe the internal structure of `output/raw/`.
 
 ## Front-end visual diagnostics
 
-Run visual diagnostics immediately after constructing the intended analytic sample and before the primary estimation. This is an empirical checkpoint, not a paper-figure polishing pass. Route the plotting work to `summary-visuals`; this skill specifies when the diagnostic runs and what must be recorded, without duplicating its figure recipes.
+Run visual diagnostics immediately after constructing the intended analytic sample and before the primary estimation. This is an empirical checkpoint, not a paper-figure polishing pass. Route the plotting work to `empirical-econ-figures`; this skill specifies when the diagnostic runs and what must be recorded, without duplicating its figure recipes.
 
 1. Record the analytic sample definition before plotting: input path and version/fingerprint, unit and time span, restrictions, constructed variables, transformations, and analytic weights.
 2. Choose a small diagnostic set that fits the data and question rather than generating every chart. Start with coverage or trend and key-variable distributions. Add an **Agreement Scatter** when two paired measures of the same construct must be compared. Add a **Binned Conditional Scatter** when the conditional descriptive relationship between pre-specified x and y, after fixed effects or controls, needs to be inspected.
@@ -80,7 +80,7 @@ Run visual diagnostics immediately after constructing the intended analytic samp
 1. Check that `notes/identification_status.json` is `freeze`.
 2. Build or refresh the sample using `code/build/`.
 3. Save final samples directly under `data/`.
-4. Run and record front-end visual diagnostics through `summary-visuals` before the primary estimation.
+4. Run and record front-end visual diagnostics through `empirical-econ-figures` before the primary estimation.
 5. Run estimation scripts from `code/`.
 6. Save raw case-specific outputs under `output/raw/`.
 7. Save cleaned paper-ready figures and tables under `output/figures/` and `output/tables/`.
@@ -107,3 +107,7 @@ work/<exploration_slug>/output/
 ```
 
 Do not merge work-folder outputs into the main `output/` unless a human explicitly promotes them.
+
+## Figure implementation handoff
+
+Read `empirical-econ-figures/references/catalog.json` and the chosen recipe. Export the actual observations or saved coefficient/covariance objects from the current estimation sample before drawing. The catalog does not implement every diagnostic: use a suitable descriptive renderer for unsupported cases and record that choice. Keep figures in English with no overall title or bottom notes by default. Rendering success does not by itself set `output_status: ready`; check required tables, figures, logs and numerical provenance first.

@@ -1,0 +1,12 @@
+side,node,label_zh,total_usd_billion
+source,British Virgin Islands,英属维尔京群岛,11
+source,Cayman Islands,开曼群岛,30
+source,Ireland,爱尔兰,7
+source,Luxembourg,卢森堡,10
+source,Netherlands,荷兰,23
+source,Other tax havens,其他避税地,9
+destination,Brazil,巴西,35
+destination,China,中国,33
+destination,India,印度,4
+destination,Russia,俄罗斯,13
+destination,South Africa,南非,5

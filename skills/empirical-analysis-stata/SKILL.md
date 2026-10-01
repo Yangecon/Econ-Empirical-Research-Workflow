@@ -247,3 +247,9 @@ When finishing a task under this skill, report:
 - which `.do` files or reference files were added or revised
 - which tables or figures are now expected in `output/`
 - which package assumptions still need human confirmation
+
+## Curated figure library
+
+For supported figure patterns, pair this estimation skill with `empirical-econ-figures` and read the selected input contract. Use actual saved estimates, full covariance when required, the same analytic sample, and the recorded package versions. Staggered DID comparisons must run their Stata estimators (including jwdid); HonestDiD passes the actual event-study covariance to the package. Never substitute assumed coefficients for a missing estimate. Native and package drawing variants retain distinct command names. Descriptive figures may use Python only.
+
+Export figure inputs to the project's `output/raw/` convention and final figures to `output/figures/`. Default labels are English; omit overall titles and bottom notes, leaving caption/source/inference notes to the draft. Record the template ID and actual input/estimation provenance in `notes/figure_log.csv`. [Integration guide](../empirical-econ-figures/references/workflow_integration.md).

@@ -1,0 +1,9 @@
+# Input and calculation contract
+
+[English](schema.md) · [中文](schema.zh-CN.md)
+
+UTF-8 CSV columns: `panel` (one of four configured IDs), `id` (unique within panel), numeric `running` in its original units, and numeric `outcome`. Values must be nonmissing and finite. The selected window is inclusive `[XMIN,XMAX]`, currently `[500,1200]`, and the interior threshold is currently 850. Rows outside the window are counted and excluded from bins and fit. Mixed outcomes can have different units, so every panel has its own explicitly configured y display limits; both implementations reject a bin mean or fitted line endpoint outside those limits.
+
+For each panel, the fitted model on **all underlying in-window rows** is `outcome = level_at_threshold + slope_left × (running-threshold) + slope_change × max(running-threshold,0)`. Thus the right slope is `slope_left+slope_change` and the fitted level is continuous. Each panel needs at least `6×B` in-window observations overall, a full-rank fit, and at least two observations in each of the `2×B` bins. Left and right side counts may differ. These are descriptive unweighted OLS coefficients with no SE or p-value. Do not interpret the slope change causally without the separate design assumptions, specification, and inference.
+
+The bin scatter uses B equal-width bins on each side, calculated separately from the fit. `running<threshold` belongs left; `running>=threshold` belongs right. The left endpoint enters left bin 1, the exact threshold enters right bin 1, and the right endpoint enters right bin B; internal bin boundaries enter the bin to their right. Each bin needs at least two observations. `_bins.csv` reports bin sample means and n; `_fits.csv` reports the continuous kink coefficients; `_sample.csv` reports included and excluded counts. The plotting script does not derive any study-specific administrative wage/benefit rule or residualization.

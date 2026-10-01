@@ -1,0 +1,4 @@
+interface:
+  display_name: "Empirical Econ Figures"
+  short_description: "Draw source-aware Python and Stata economics figures"
+  default_prompt: "Use $empirical-econ-figures to choose a catalogued template for these data or saved estimates, preserve inference, and export English figures with no title or bottom notes."

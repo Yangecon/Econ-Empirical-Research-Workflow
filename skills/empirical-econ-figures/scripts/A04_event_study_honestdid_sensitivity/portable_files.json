@@ -1,0 +1,24 @@
+{
+  "portable_files": [
+    "README.md",
+    "schema.md",
+    "build.do",
+    "source_metadata.json",
+    "dependency_manifest.json",
+    "portable_files.json",
+    "synthetic_panel.dta",
+    "event_study_coefficients.csv",
+    "event_study_covariance.csv",
+    "rm_intervals.csv",
+    "sd_intervals.csv",
+    "packages/c/coefplot.ado",
+    "packages/c/coefplot.sthlp",
+    "packages/c/LICENSE",
+    "packages/h/honestdid.ado",
+    "packages/h/honestdid.sthlp",
+    "packages/h/honestecos_windows.plugin",
+    "packages/h/honestosqp_windows.plugin",
+    "packages/h/honestwork.ado",
+    "packages/l/lhonestdid.mlib"
+  ]
+}

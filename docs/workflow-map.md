@@ -64,3 +64,7 @@ Human seed + data policy
 Maximum search rounds: 10.
 
 Elicit is evidence collection, not final judgment.
+
+## Figure handoff
+
+Analysis sample / saved estimates -> `empirical-econ-figures` -> `output/figures/` -> writing / output-draft sync. Exploratory diagnostics remain under `work/`. Figure rendering does not bypass the main gates. [English integration guide](figure-integration.md) · [中文接入说明](figure-integration.zh-CN.md).

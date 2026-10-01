@@ -1,0 +1,3768 @@
+{
+  "schema_version": 2,
+  "paths_relative_to": "skill_root",
+  "categories": [
+    {
+      "id": "reduced_form",
+      "name_zh": "约化式与非结构实证估计",
+      "name_en": "Reduced-form estimates",
+      "scope": "以回归、实验/准实验、数据驱动非结构估计及其推断为核心。包括第一阶段、异质性、稳健性和基于效应估计的福利核算；不把这些用途另立大类。"
+    },
+    {
+      "id": "structural_form",
+      "name_zh": "结构模型估计与模拟",
+      "name_en": "Structural-form estimates",
+      "scope": "经济行为/最优化模型、结构冲击识别、结构参数和由其生成的政策模拟。允许结构估计与约化式估计组合，但要标记混合来源；校准/工程参数不冒称全部由估计得到。"
+    },
+    {
+      "id": "summary",
+      "name_zh": "数据概貌与统计描述",
+      "name_en": "Summary",
+      "scope": "观测数据及其聚合、变换、核算、测度与描述性拟合。Distribution、Trend、Networks、Flows、Geography、Text measures 均为标签；有平滑线、误差棒或生成变量并不自动成为结构估计。"
+    },
+    {
+      "id": "research_design",
+      "name_zh": "研究设计",
+      "name_en": "Research design",
+      "scope": "分配机制、实验流程、政策实施、抽样和制度日历。"
+    },
+    {
+      "id": "prediction_evaluation",
+      "name_zh": "预测与算法评估",
+      "name_en": "Prediction & algorithm evaluation",
+      "scope": "以预测准确度、校准或算法选取绩效为主要对象；既非经济结构参数/行为反事实，也非处理效应。当前用于 E01、E02，防止把随机森林和预测概率误归 structural。"
+    }
+  ],
+  "targets": [
+    {
+      "id": "event_study",
+      "name_zh": "事件研究：分组、汇总与多估计器比较",
+      "name_en": "Event study: groups, averages and estimator comparisons",
+      "category": "reduced_form",
+      "tags": [
+        "Event study",
+        "DID-compatible display",
+        "Pre/post averages",
+        "Heterogeneity",
+        "DID",
+        "Staggered adoption",
+        "Estimator comparison",
+        "Robustness",
+        "Point-interval",
+        "event_plot",
+        "jwdid",
+        "ETWFE",
+        "Simulated data"
+      ],
+      "source_view_ids": [
+        "A01",
+        "A02",
+        "A03"
+      ],
+      "variants": [
+        {
+          "template_id": "event_study_with_pre_post_averages",
+          "source_view_id": "A01",
+          "name_zh": "事件研究与处理前后均值",
+          "recipe": "scripts/A01_event_study_pre_post_averages/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "980 行同期处理平衡面板实际估计：逐期效应、包含基准期零值的处理前均值、处理后均值，以及后减前的 DID 对比；区间使用完整协方差。"
+        },
+        {
+          "template_id": "grouped_event_study",
+          "source_view_id": "A02",
+          "name_zh": "分组事件研究动态效应",
+          "recipe": "scripts/A02_event_study_grouped/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "多组错位系数与置信区间，以实心/空心区分显著性，保留真实事件时间间距。"
+        },
+        {
+          "template_id": "staggered_event_study_estimator_comparison",
+          "source_view_id": "A03",
+          "name_zh": "多估计器 staggered DID 事件研究比较",
+          "recipe": "scripts/A03_event_study_staggered_estimator_comparison/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "六个实际 Stata 估计命令（含 jwdid）的结果提取、事件时间与支持范围对齐；Stata 和 Python 读取同一实际估计结果。论文图作为画法来源，不声称取得原作者 Analysis do-files 或复现原始数值。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance."
+    },
+    {
+      "id": "regression_discontinuity_binned_outcomes",
+      "name_zh": "断点两侧的分箱均值与局部线性拟合",
+      "name_en": "Regression discontinuity with binned outcomes",
+      "category": "reduced_form",
+      "tags": [
+        "RD",
+        "Binned scatter",
+        "Local linear fit"
+      ],
+      "source_view_ids": [
+        "A05"
+      ],
+      "variants": [
+        {
+          "template_id": "regression_discontinuity_binned_outcomes",
+          "source_view_id": "A05",
+          "name_zh": "断点两侧的分箱均值与局部线性拟合",
+          "recipe": "scripts/A05_rd_binned_outcomes/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "断点两侧分箱和拟合，重点为水平跳跃；与已排队的政策 kink 斜率变化图分别说明识别和输入，不能由图形外观推出设计有效。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "A05",
+      "canonical_name": "rd_binned_outcomes"
+    },
+    {
+      "id": "threshold_binned_regression_panels",
+      "name_zh": "回归折点：多结果分箱与连续拟合",
+      "name_en": "Regression kink panels with binned outcomes",
+      "category": "reduced_form",
+      "tags": [
+        "RKD",
+        "Threshold",
+        "Binned scatter"
+      ],
+      "source_view_ids": [
+        "A06"
+      ],
+      "variants": [
+        {
+          "template_id": "threshold_binned_regression_panels",
+          "source_view_id": "A06",
+          "name_zh": "回归折点：多结果分箱与连续拟合",
+          "recipe": "scripts/A06_rkd_binned_outcomes/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "已核对Landais Figure7图注：日工资850瑞典克朗处的回归折点，包含替代率规则与参保选择、风险面板。保留斜率改变和水平跳跃的区别；上游残差化与识别不由绘图代替。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "A06",
+      "canonical_name": "rkd_binned_outcomes"
+    },
+    {
+      "id": "paired_difference_distribution",
+      "name_zh": "配对结果与差值分布",
+      "name_en": "Paired outcomes and difference distributions",
+      "category": "reduced_form",
+      "tags": [
+        "RCT",
+        "Paired outcomes",
+        "Difference distribution"
+      ],
+      "source_view_ids": [
+        "A08"
+      ],
+      "variants": [
+        {
+          "template_id": "paired_difference_distribution",
+          "source_view_id": "A08",
+          "name_zh": "配对结果与差值分布",
+          "recipe": "scripts/A08_distribution_paired_differences/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "随机设置种族信号的 twin profiles 得到联系人数，图中配对个体和组均值/区间用于呈现实验处理差异；归 RCT 结果展示而非仅按散点外观分类。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "A08",
+      "canonical_name": "distribution_paired_differences"
+    },
+    {
+      "id": "conditional_scatter",
+      "name_zh": "条件关系散点：逐点与分箱",
+      "name_en": "Conditional scatter: raw and binned",
+      "category": "reduced_form",
+      "tags": [
+        "Residualization",
+        "Scatter",
+        "Group highlighting",
+        "IV first stage",
+        "Binscatter"
+      ],
+      "source_view_ids": [
+        "A09",
+        "A10"
+      ],
+      "variants": [
+        {
+          "template_id": "residualized_scatter_panels",
+          "source_view_id": "A09",
+          "name_zh": "残差散点、拟合线与分组突出",
+          "recipe": "scripts/A09_scatter_residualized_fit/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "多面板残差散点、灰色比较组、重点组突出与输入数据计算的拟合线。"
+        },
+        {
+          "template_id": "residualized_binned_scatter",
+          "source_view_id": "A10",
+          "name_zh": "残差分箱均值与观测层拟合",
+          "recipe": "scripts/A10_binscatter_residualized_fit/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "分箱均值与拟合关系需要明确输入和聚合规则，与逐观测散点分别整理。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance."
+    },
+    {
+      "id": "grouped_coefficient_forest",
+      "name_zh": "分组系数与稳健性森林图",
+      "name_en": "Grouped coefficient forest plot",
+      "category": "reduced_form",
+      "tags": [
+        "Heterogeneity",
+        "Coefficient plot",
+        "Specification comparison",
+        "Robustness",
+        "Forest plot"
+      ],
+      "source_view_ids": [
+        "A11"
+      ],
+      "variants": [
+        {
+          "template_id": "grouped_coefficient_forest",
+          "source_view_id": "A11",
+          "name_zh": "分组系数与稳健性森林图",
+          "recipe": "scripts/A11_coefficient_grouped_forest/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "用同一可配置图族支持横向设定比较和纵向分组结果系数，保留各结果单位与区间含义。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "A11",
+      "canonical_name": "coefficient_grouped_forest"
+    },
+    {
+      "id": "binned_effect_with_support_histogram",
+      "name_zh": "分组估计效应与样本分布组合图",
+      "name_en": "Binned effects with support histograms",
+      "category": "reduced_form",
+      "tags": [
+        "Heterogeneity",
+        "Binned effects",
+        "Sample support",
+        "Summary overlay",
+        "Fixed effects"
+      ],
+      "source_view_ids": [
+        "A12"
+      ],
+      "variants": [
+        {
+          "template_id": "binned_effect_with_support_histogram",
+          "source_view_id": "A12",
+          "name_zh": "分组估计效应与样本分布组合图",
+          "recipe": "scripts/A12_heterogeneity_binned_effects_support/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "左列为各网络支持分组的平均迁移率和 Wilson 区间，右列为固定效应回归的异质性 beta 与双向聚类区间；复合图以右列实证估计归类，同时标记 Summary overlay，不是结构模型输出。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "A12",
+      "canonical_name": "heterogeneity_binned_effects_support"
+    },
+    {
+      "id": "bivariate_effect_heatmap",
+      "name_zh": "双维分组效果热图与独立色阶",
+      "name_en": "Bivariate effect heatmap",
+      "category": "reduced_form",
+      "tags": [
+        "Heterogeneity",
+        "Interaction",
+        "Heatmap",
+        "Cost effectiveness"
+      ],
+      "source_view_ids": [
+        "A13"
+      ],
+      "variants": [
+        {
+          "template_id": "bivariate_effect_heatmap",
+          "source_view_id": "A13",
+          "name_zh": "双维分组效果热图与独立色阶",
+          "recipe": "scripts/A13_heterogeneity_effect_heatmap/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "按规则与裁量分数分组，用估计处理效应与协变量均值计算异质性，再乘企业规模、汇总并除以补贴金额构造成本效果；归实证效应及其派生核算。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "A13",
+      "canonical_name": "heterogeneity_effect_heatmap"
+    },
+    {
+      "id": "quantile_coefficient_profile",
+      "name_zh": "分位数回归系数曲线",
+      "name_en": "Quantile coefficient profile",
+      "category": "reduced_form",
+      "tags": [
+        "Quantile coefficients",
+        "UQR",
+        "Confidence intervals",
+        "Heterogeneity",
+        "Coefficient plot"
+      ],
+      "source_view_ids": [
+        "A14"
+      ],
+      "variants": [
+        {
+          "template_id": "quantile_coefficient_profile",
+          "source_view_id": "A14",
+          "name_zh": "分位数回归系数曲线",
+          "recipe": "scripts/A14_coefficient_quantile_profile/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "结果分布不同分位上的回归系数与预计算区间；原文为标准化PSAT分数对BNI的无条件分位数回归，99%CI，ZIP聚类。保留数值分位位置与区间水平；不是按x分位分组的均值，也不能自动改称分位处理效应。模板不把qreg当作无条件分位估计器。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "A14",
+      "canonical_name": "coefficient_quantile_profile"
+    },
+    {
+      "id": "permutation_null_distribution",
+      "name_zh": "置换零分布与观察统计量",
+      "name_en": "Permutation null distribution",
+      "category": "reduced_form",
+      "tags": [
+        "Randomization inference",
+        "Permutation",
+        "Null distribution",
+        "Inference",
+        "Histogram"
+      ],
+      "source_view_ids": [
+        "A15"
+      ],
+      "variants": [
+        {
+          "template_id": "permutation_null_distribution",
+          "source_view_id": "A15",
+          "name_zh": "置换零分布与观察统计量",
+          "recipe": "scripts/A15_inference_permutation_null/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "置换零分布与观察统计量是推断诊断，保留双语言；尾部规则和置换 p 值必须显式定义。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "A15",
+      "canonical_name": "inference_permutation_null"
+    },
+    {
+      "id": "specification_curve_with_choice_matrix",
+      "name_zh": "规格曲线与模型选择矩阵",
+      "name_en": "Specification curve with a choice matrix",
+      "category": "reduced_form",
+      "tags": [
+        "Specification curve",
+        "Model choices",
+        "Robustness"
+      ],
+      "source_view_ids": [
+        "A16"
+      ],
+      "variants": [
+        {
+          "template_id": "specification_curve_with_choice_matrix",
+          "source_view_id": "A16",
+          "name_zh": "规格曲线与模型选择矩阵",
+          "recipe": "scripts/A16_robustness_specification_curve/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "Figure3 Panel B：按结果值排序的设定曲线，下方逐列对齐二元设定选择矩阵。原图纵轴是各实验的平均t统计量，不是回归系数或单次t检验；不得对均值机械加±1.96阈值。排序后矩阵必须通过spec_id与结果保持一一对应，空设定值不能当作0。Panel A统计量分布属于另一图层，优先复现B的曲线+设定矩阵。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "A16",
+      "canonical_name": "robustness_specification_curve"
+    },
+    {
+      "id": "bandwidth_sensitivity_profile",
+      "name_zh": "带宽敏感性曲线与两种推断区间",
+      "name_en": "Bandwidth sensitivity profile",
+      "category": "reduced_form",
+      "tags": [
+        "Bandwidth sensitivity",
+        "Spatial inference",
+        "Robustness",
+        "Line plot"
+      ],
+      "source_view_ids": [
+        "A07"
+      ],
+      "variants": [
+        {
+          "template_id": "bandwidth_sensitivity_profile",
+          "source_view_id": "A07",
+          "name_zh": "带宽敏感性曲线与两种推断区间",
+          "recipe": "scripts/A07_robustness_spatial_bandwidth/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "六结果的空间带宽稳健性剖面：横轴为每次回归允许的距边界最大公里数，不是个体运行变量；每结果61次回归。灰带是census-block聚类稳健95%CI，点线是Conley95%CI，两种推断方法而非68/95双置信水平。输入明确方法名与给定区间，不代做聚类/Conley；可选基准线需用户给明含义，原文蓝虚线不自行猜测。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "A07",
+      "canonical_name": "robustness_spatial_bandwidth"
+    },
+    {
+      "id": "prior_posterior_interval_comparison",
+      "name_zh": "多来源先验、后验与频率派估计比较",
+      "name_en": "Prior–posterior interval comparison",
+      "category": "reduced_form",
+      "tags": [
+        "Bayesian inference",
+        "Prior/posterior",
+        "Interval comparison",
+        "RCT",
+        "Inference",
+        "Point-interval plot"
+      ],
+      "source_view_ids": [
+        "A17"
+      ],
+      "variants": [
+        {
+          "template_id": "prior_posterior_interval_comparison",
+          "source_view_id": "A17",
+          "name_zh": "多来源先验、后验与频率派估计比较",
+          "recipe": "scripts/A17_inference_prior_posterior_intervals/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "RCT 的 ITT 与实验数据更新后的后验；Bayesian 是推断方法，原图不估计经济行为结构参数。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "A17",
+      "canonical_name": "inference_prior_posterior_intervals"
+    },
+    {
+      "id": "joint_bootstrap_region_display",
+      "name_zh": "联合 Bootstrap 置信区域",
+      "name_en": "Joint bootstrap confidence regions",
+      "category": "reduced_form",
+      "tags": [
+        "Bootstrap",
+        "Joint uncertainty",
+        "Nested regions",
+        "Inference",
+        "Contour regions"
+      ],
+      "source_view_ids": [
+        "A18"
+      ],
+      "variants": [
+        {
+          "template_id": "joint_bootstrap_region_display",
+          "source_view_id": "A18",
+          "name_zh": "联合 Bootstrap 置信区域",
+          "recipe": "scripts/A18_inference_joint_bootstrap_regions/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "收益与期权数据构造的股权溢价贡献估计及 block bootstrap 联合抽样分布；原文下一节才与资产定价理论模型比较。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "A18",
+      "canonical_name": "inference_joint_bootstrap_regions"
+    },
+    {
+      "id": "bunching_distribution_with_counterfactual",
+      "name_zh": "门槛附近的扎堆分布与给定反事实",
+      "name_en": "Bunching distribution with a supplied counterfactual",
+      "category": "reduced_form",
+      "tags": [
+        "Bunching",
+        "Notch",
+        "Counterfactual density",
+        "Nonstructural estimation"
+      ],
+      "source_view_ids": [
+        "A19"
+      ],
+      "variants": [
+        {
+          "template_id": "bunching_distribution_with_counterfactual",
+          "source_view_id": "A19",
+          "name_zh": "门槛附近的扎堆分布与给定反事实",
+          "recipe": "scripts/A19_bunching_counterfactual_distribution/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "观测财富频数加排除扎堆区间后五阶多项式估计的反事实密度。主图所选层并非结构效用模型模拟；论文把额外参数化结构弹性另放附录。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "A19",
+      "canonical_name": "bunching_counterfactual_distribution"
+    },
+    {
+      "id": "paired_accounting_waterfall",
+      "name_zh": "并列核算瀑布图与独立比值",
+      "name_en": "Paired accounting waterfalls",
+      "category": "reduced_form",
+      "tags": [
+        "Welfare",
+        "Cost–benefit accounting",
+        "Waterfall",
+        "Decomposition",
+        "Sufficient statistics"
+      ],
+      "source_view_ids": [
+        "A20"
+      ],
+      "variants": [
+        {
+          "template_id": "paired_accounting_waterfall",
+          "source_view_id": "A20",
+          "name_zh": "并列核算瀑布图与独立比值",
+          "recipe": "scripts/A20_welfare_accounting_waterfall/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "直接审计收入与支出、随机审计结合匹配对照估计的长期威慑收入，再加 IRS 调查的金钱/时间成本构造 MVPF。是基于实证效应的充分统计量式福利核算，不是原始数据概貌，也不是完整结构模型输出。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "A20",
+      "canonical_name": "welfare_accounting_waterfall"
+    },
+    {
+      "id": "honestdid_sensitivity",
+      "name_zh": "平行趋势敏感性区间：相对幅度与平滑性限制",
+      "name_en": "HonestDiD sensitivity intervals: relative magnitudes and smoothness",
+      "category": "reduced_form",
+      "tags": [
+        "DID",
+        "Event study",
+        "Robustness",
+        "Sensitivity",
+        "Parallel trends",
+        "Confidence interval",
+        "honestdid",
+        "Relative magnitudes",
+        "Smoothness"
+      ],
+      "source_view_ids": [
+        "A04"
+      ],
+      "variants": [
+        {
+          "template_id": "honestdid_sensitivity",
+          "source_view_id": "A04",
+          "name_zh": "平行趋势敏感性区间：相对幅度与平滑性限制",
+          "recipe": "scripts/A04_event_study_honestdid_sensitivity/recipe.md",
+          "languages": [
+            "stata"
+          ],
+          "input_scope": "模拟单位×时间数据，实际估计事件研究 b 与完整 V，再由 honestdid 计算两类限制下目标处理后效应的稳健区间。Stata 命令原生绘图；不手填系数、不把稳健区间中点当作新的效应估计。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "A04",
+      "canonical_name": "event_study_honestdid_sensitivity"
+    },
+    {
+      "id": "scenario_cdf_panels",
+      "name_zh": "情景与分组累计分布比较",
+      "name_en": "Scenario-specific cumulative distribution panels",
+      "category": "structural_form",
+      "tags": [
+        "Counterfactual",
+        "CDF",
+        "Scenario comparison",
+        "Line plot"
+      ],
+      "source_view_ids": [
+        "B01"
+      ],
+      "variants": [
+        {
+          "template_id": "scenario_cdf_panels",
+          "source_view_id": "B01",
+          "name_zh": "情景与分组累计分布比较",
+          "recipe": "scripts/B01_counterfactual_cdf_panels/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "两阶段注意/离散计划选择模型 V，改变注意概率和 switching costs，模拟 overspending 改变的 CDF。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "B01",
+      "canonical_name": "counterfactual_cdf_panels"
+    },
+    {
+      "id": "quantile_group_boxplot",
+      "name_zh": "分位组箱线图与边界观测",
+      "name_en": "Quantile-group boxplots of estimated probabilities",
+      "category": "structural_form",
+      "tags": [
+        "Estimated probabilities",
+        "Quantile groups",
+        "Boxplot",
+        "Heterogeneity"
+      ],
+      "source_view_ids": [
+        "B02"
+      ],
+      "variants": [
+        {
+          "template_id": "quantile_group_boxplot",
+          "source_view_id": "B02",
+          "name_zh": "分位组箱线图与边界观测",
+          "recipe": "scripts/B02_distribution_estimated_probabilities_boxplot/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "同一行为模型 V 估计的个体注意概率，按潜在 acuity 十分位展示；不是原始观测概率的普通箱线图。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "B02",
+      "canonical_name": "distribution_estimated_probabilities_boxplot"
+    },
+    {
+      "id": "structural_impulse_response",
+      "name_zh": "结构脉冲响应：后验区间与识别界限",
+      "name_en": "Structural impulse responses",
+      "category": "structural_form",
+      "tags": [
+        "IRF",
+        "Structural model",
+        "Posterior bands",
+        "SVAR",
+        "Line plot",
+        "Partial identification",
+        "Identified bounds"
+      ],
+      "source_view_ids": [
+        "B03",
+        "B04"
+      ],
+      "variants": [
+        {
+          "template_id": "impulse_response_matrix_nested_bands",
+          "source_view_id": "B03",
+          "name_zh": "含双层后验区间的脉冲响应矩阵",
+          "recipe": "scripts/B03_irf_nested_confidence_bands/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "带 t 分布误差的 SVAR 正交结构冲击及 68%/90% 后验响应区间；不是任意回归动态系数。"
+        },
+        {
+          "template_id": "set_identified_impulse_response_bounds",
+          "source_view_id": "B04",
+          "name_zh": "集合识别的动态响应边界与代表路径",
+          "recipe": "scripts/B04_irf_set_identified_bounds/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "事件限制 panel VAR 从约化式协方差中筛选结构冲击响应矩阵，画 admissible set 边界；不是置信带。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance."
+    },
+    {
+      "id": "policy_counterfactual_contours",
+      "name_zh": "二维政策反事实与等结果线",
+      "name_en": "Policy counterfactual contours",
+      "category": "structural_form",
+      "tags": [
+        "Counterfactual",
+        "Policy grid",
+        "Contours",
+        "Mixed structural/reduced-form inputs",
+        "Contour plot"
+      ],
+      "source_view_ids": [
+        "B05"
+      ],
+      "variants": [
+        {
+          "template_id": "policy_counterfactual_contours",
+          "source_view_id": "B05",
+          "name_zh": "二维政策反事实与等结果线",
+          "recipe": "scripts/B05_counterfactual_policy_contours/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "最优重新提交索赔的 Bellman 决策模型与估计成本，再结合 Medicaid acceptance 的估计效应；属于结构与约化式混合输入的政策模拟。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "B05",
+      "canonical_name": "counterfactual_policy_contours"
+    },
+    {
+      "id": "merit_order_cost_curves",
+      "name_zh": "按成本排序的调度边际成本曲线",
+      "name_en": "Merit-order marginal-cost curves",
+      "category": "structural_form",
+      "tags": [
+        "Dispatch",
+        "Marginal costs",
+        "Counterfactual",
+        "Optimization",
+        "Calibrated inputs",
+        "Step plot"
+      ],
+      "source_view_ids": [
+        "B06"
+      ],
+      "variants": [
+        {
+          "template_id": "merit_order_cost_curves",
+          "source_view_id": "B06",
+          "name_zh": "按成本排序的调度边际成本曲线",
+          "recipe": "scripts/B06_cost_merit_order_curves/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "机组热耗/燃料价格构造边际成本、容量数据和核电成本等假设，解最小成本调度并改变空间约束。属于机制/优化模拟，不声称是偏好参数估计。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "B06",
+      "canonical_name": "cost_merit_order_curves"
+    },
+    {
+      "id": "signed_component_decomposition",
+      "name_zh": "有符号分量堆叠与代数分解",
+      "name_en": "Signed component decomposition",
+      "category": "summary",
+      "tags": [
+        "Decomposition",
+        "Signed components",
+        "Accounting identity",
+        "Accounting",
+        "Stacked bars"
+      ],
+      "source_view_ids": [
+        "C01"
+      ],
+      "variants": [
+        {
+          "template_id": "signed_component_decomposition",
+          "source_view_id": "C01",
+          "name_zh": "有符号分量堆叠与代数分解",
+          "recipe": "scripts/C01_decomposition_signed_components/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "产品价格和销售份额构造相对价格，劳动生产率部分由相对销售/劳动减价格部分得到；展示数据中的横截面核算关系，不用结构估计参数生成该图。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "C01",
+      "canonical_name": "decomposition_signed_components"
+    },
+    {
+      "id": "distribution_overlay_with_thresholds",
+      "name_zh": "加权分布叠图、阈值与区间份额",
+      "name_en": "Distribution overlays with thresholds",
+      "category": "summary",
+      "tags": [
+        "Weighted distribution",
+        "Threshold shares",
+        "Histogram"
+      ],
+      "source_view_ids": [
+        "C02"
+      ],
+      "variants": [
+        {
+          "template_id": "distribution_overlay_with_thresholds",
+          "source_view_id": "C02",
+          "name_zh": "加权分布叠图、阈值与区间份额",
+          "recipe": "scripts/C02_distribution_threshold_overlay/recipe.md",
+          "languages": [
+            "python"
+          ],
+          "input_scope": "按年份比较收入分布，标注共同或年份阈值及其下方质量；保留密度归一化和权重定义。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "C02",
+      "canonical_name": "distribution_threshold_overlay"
+    },
+    {
+      "id": "grouped_category_bars",
+      "name_zh": "分类比例的双组并列条形图",
+      "name_en": "Grouped category-share bars",
+      "category": "summary",
+      "tags": [
+        "Group comparison",
+        "Categorical shares",
+        "Bars"
+      ],
+      "source_view_ids": [
+        "C04"
+      ],
+      "variants": [
+        {
+          "template_id": "grouped_category_bars",
+          "source_view_id": "C04",
+          "name_zh": "分类比例的双组并列条形图",
+          "recipe": "scripts/C04_bar_grouped_categories/recipe.md",
+          "languages": [
+            "python"
+          ],
+          "input_scope": "基础分组条形图代表：明确类别顺序、组别、比例分母和零基线，长标签用横向并列条形；原图是按中奖金额与时点分组的入学率描述，不由柱高差异直接推断因果。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "C04",
+      "canonical_name": "bar_grouped_categories"
+    },
+    {
+      "id": "paired_binary_transition_stacks",
+      "name_zh": "成对二元状态的四类转换堆叠图",
+      "name_en": "Paired binary-transition stacks",
+      "category": "summary",
+      "tags": [
+        "Paired states",
+        "Transition shares",
+        "Stacked bars"
+      ],
+      "source_view_ids": [
+        "C05"
+      ],
+      "variants": [
+        {
+          "template_id": "paired_binary_transition_stacks",
+          "source_view_id": "C05",
+          "name_zh": "成对二元状态的四类转换堆叠图",
+          "recipe": "scripts/C05_bar_binary_transitions/recipe.md",
+          "languages": [
+            "python"
+          ],
+          "input_scope": "配对二元状态的四类联合分布：两次均为1、1转0、0转1、两次均为0，按任务画100%堆叠柱。核心选描述性柱层，不含原图底部p值与检验表，不声称完整复制整张结果图。以匹配个体为共同分母，条件转移率另用起始状态人数作分母；不能由两个独立横截面边际比例恢复转移。缺失配对需明确处理和报告，零分量保留、窄段标签避免挤压。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "C05",
+      "canonical_name": "bar_binary_transitions"
+    },
+    {
+      "id": "joint_frequency_bubble_panels",
+      "name_zh": "跨面板统一面积尺度的联合频数气泡图",
+      "name_en": "Joint-frequency bubble panels",
+      "category": "summary",
+      "tags": [
+        "Joint frequencies",
+        "Bubble area",
+        "Common scale"
+      ],
+      "source_view_ids": [
+        "C06"
+      ],
+      "variants": [
+        {
+          "template_id": "joint_frequency_bubble_panels",
+          "source_view_id": "C06",
+          "name_zh": "跨面板统一面积尺度的联合频数气泡图",
+          "recipe": "scripts/C06_bubble_joint_frequencies/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "个体实验回答的两个信念维度组成联合频数，气泡面积表示人数；图中的理论基准点不把观测频数变成结构估计。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "C06",
+      "canonical_name": "bubble_joint_frequencies"
+    },
+    {
+      "id": "horizon_density_ridgeline",
+      "name_zh": "跨期限分布的双面板山脊密度图",
+      "name_en": "Horizon-specific density ridgelines",
+      "category": "summary",
+      "tags": [
+        "Density",
+        "Horizons",
+        "Ridgeline"
+      ],
+      "source_view_ids": [
+        "C07"
+      ],
+      "variants": [
+        {
+          "template_id": "horizon_density_ridgeline",
+          "source_view_id": "C07",
+          "name_zh": "跨期限分布的双面板山脊密度图",
+          "recipe": "scripts/C07_distribution_horizon_ridgeline/recipe.md",
+          "languages": [
+            "python"
+          ],
+          "input_scope": "不同毫秒/秒窗口上的价格影响和利润KDE脊线。原文剔除恰好为零的质量；模板应显式选择保留/排除零并输出剔除比例，统一带宽规则、网格和密度高度尺度，不把每条峰值任意归一。纵向位置是类别排列而非真实时间轴。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "C07",
+      "canonical_name": "distribution_horizon_ridgeline"
+    },
+    {
+      "id": "weighted_distribution_comparison",
+      "name_zh": "按行业聚合的加权分布比较",
+      "name_en": "Weighted distribution comparison",
+      "category": "summary",
+      "tags": [
+        "Weighted shares",
+        "Industry aggregation",
+        "Distribution"
+      ],
+      "source_view_ids": [
+        "C09"
+      ],
+      "variants": [
+        {
+          "template_id": "weighted_distribution_comparison",
+          "source_view_id": "C09",
+          "name_zh": "按行业聚合的加权分布比较",
+          "recipe": "scripts/C09_distribution_weighted_comparison/recipe.md",
+          "languages": [
+            "python"
+          ],
+          "input_scope": "PDF Figure I 图注已核对：先在每个3位行业计算企业数份额和增加值份额，再用该年行业增加值权重平均。区别于对全体企业直接加权；同一横轴两个明确分母，采用共同尺度分面/叠图避免任意双轴缩放。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "C09",
+      "canonical_name": "distribution_weighted_comparison"
+    },
+    {
+      "id": "line_plot",
+      "name_zh": "通用折线与阶梯图",
+      "name_en": "General line and step plot",
+      "category": "summary",
+      "tags": [
+        "Time series",
+        "Trends",
+        "Base-year index",
+        "Time path",
+        "Phase trajectory",
+        "Trend",
+        "Phase path",
+        "Measurement",
+        "Line plot",
+        "Historical annotations",
+        "Family variant",
+        "Duration",
+        "Hazard",
+        "Risk sets",
+        "Survival",
+        "Kaplan–Meier",
+        "Censoring",
+        "Lorenz curve",
+        "Concentration curve",
+        "Inequality",
+        "Log density",
+        "Tail slopes",
+        "Normal benchmark"
+      ],
+      "source_view_ids": [
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C03",
+        "C08"
+      ],
+      "variants": [
+        {
+          "template_id": "multi_series_time_trend",
+          "source_view_id": "C10",
+          "name_zh": "多序列时间趋势与基期指数",
+          "recipe": "scripts/C10_line_multi_series_trend/recipe.md",
+          "languages": [
+            "python"
+          ],
+          "input_scope": "已有模拟演示，正修正短月度序列的日期刻度与留白；基础年度/月份折线保留真实日期间距、缺失期及显式基期归一化。"
+        },
+        {
+          "template_id": "time_encoded_phase_path",
+          "source_view_id": "C11",
+          "name_zh": "按时间连接的分阶段双变量轨迹",
+          "recipe": "scripts/C11_line_time_encoded_phase_path/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "横轴历史人口、纵轴实际工资，按年份连接；虽然后文据此估计劳动需求模型，这张 Figure II 本身展示数据关系。"
+        },
+        {
+          "template_id": "historical_policy_timeline",
+          "source_view_id": "C12",
+          "name_zh": "历史事件标注的时间趋势（变体）",
+          "recipe": "scripts/C12_line_historical_annotations/recipe.md",
+          "languages": [
+            "python"
+          ],
+          "input_scope": "QJE Figure III 是带历史事件标注的多序列真实工资趋势，归为 multi_series_time_trend 的待开发注释变体；AER日历图另列 monitoring_calendar，二者不混称同一模板。"
+        },
+        {
+          "template_id": "discrete_duration_hazard_panels",
+          "source_view_id": "C13",
+          "name_zh": "离散持续时间的条件风险率面板",
+          "recipe": "scripts/C13_survival_duration_hazard/recipe.md",
+          "languages": [
+            "python"
+          ],
+          "input_scope": "按持续月份比较条件风险率，必须输入事件数与当期风险集；原始频数或累计发生率不是 hazard。"
+        },
+        {
+          "template_id": "kaplan_meier_survival_panels",
+          "source_view_id": "C14",
+          "name_zh": "Kaplan–Meier 生存曲线面板",
+          "recipe": "scripts/C14_survival_kaplan_meier/recipe.md",
+          "languages": [
+            "python"
+          ],
+          "input_scope": "原始任职 spell 的分组生存曲线：包括 referral 分组和随机处理组比较，图注按入职日显示存活；不把邻近正文的控制变量 hazard 回归自动当成该图的输入。可加 RCT context 标签，若另画回归调整后的处理效应应走 Reduced-form。"
+        },
+        {
+          "template_id": "lorenz_concentration_curves",
+          "source_view_id": "C03",
+          "name_zh": "集中曲线与洛伦兹曲线",
+          "recipe": "scripts/C03_distribution_lorenz_concentration/recipe.md",
+          "languages": [
+            "python"
+          ],
+          "input_scope": "人口排序下的累计资源份额与平等线，分母/排序变量与普通 CDF 不同。"
+        },
+        {
+          "template_id": "log_density_tail_comparison",
+          "source_view_id": "C08",
+          "name_zh": "对数密度与尾部斜率比较",
+          "recipe": "scripts/C08_distribution_log_density_tails/recipe.md",
+          "languages": [
+            "python"
+          ],
+          "input_scope": "原图与 PDF p11 已核对：自然对数密度与正态基准、左右明确区间上的 log-density 直线。读取正密度或显式 log-density 输入；零密度不可强加 epsilon。原图显示斜率 +1.40/-2.18，文中尾指数0.40/1.18，二者不是同一数字；模板仅报告拟合斜率，不能自动把它称为 Pareto 指数。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance."
+    },
+    {
+      "id": "bilateral_flow_sankey",
+      "name_zh": "双边金额流向与归属的桑基图",
+      "name_en": "Bilateral attribution Sankey diagram",
+      "category": "summary",
+      "tags": [
+        "Bilateral attribution",
+        "Sankey",
+        "Financial stocks"
+      ],
+      "source_view_ids": [
+        "C15"
+      ],
+      "variants": [
+        {
+          "template_id": "bilateral_flow_sankey",
+          "source_view_id": "C15",
+          "name_zh": "双边金额流向与归属的桑基图",
+          "recipe": "scripts/C15_flow_bilateral_sankey/recipe.md",
+          "languages": [
+            "python"
+          ],
+          "input_scope": "守恒的双边资金流带图：带宽对应同一数量单位，节点总量与全部边流量逐一核对；展示居住地到最终国籍重新分类，不能把未匹配余额隐藏。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "C15",
+      "canonical_name": "flow_bilateral_sankey"
+    },
+    {
+      "id": "typed_edge_community_network",
+      "name_zh": "区分关系类型的群组网络",
+      "name_en": "Community network with typed edges",
+      "category": "summary",
+      "tags": [
+        "Network",
+        "Edge types",
+        "Communities"
+      ],
+      "source_view_ids": [
+        "C16"
+      ],
+      "variants": [
+        {
+          "template_id": "typed_edge_community_network",
+          "source_view_id": "C16",
+          "name_zh": "区分关系类型的群组网络",
+          "recipe": "scripts/C16_network_typed_communities/recipe.md",
+          "languages": [
+            "python"
+          ],
+          "input_scope": "按考试群组布置的精英关系网络，边线型区分关系种类、节点填充区分地区。读取节点、类型边和明确分组/坐标；布局位置不是地理距离或因果距离，环形节点排列不自动创建不存在的边。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "C16",
+      "canonical_name": "network_typed_communities"
+    },
+    {
+      "id": "geographic_choropleth",
+      "name_zh": "地理分区着色图",
+      "name_en": "Geographic choropleth map",
+      "category": "summary",
+      "tags": [
+        "Geography",
+        "Choropleth",
+        "Spatial coverage"
+      ],
+      "source_view_ids": [
+        "C17"
+      ],
+      "variants": [
+        {
+          "template_id": "geographic_choropleth",
+          "source_view_id": "C17",
+          "name_zh": "地理分区着色图",
+          "recipe": "scripts/C17_map_geographic_choropleth/recipe.md",
+          "languages": [
+            "python"
+          ],
+          "input_scope": "原图呈现地理分区的医疗巡诊记录等观测信息。通用地图接口已用真实2016年喀麦隆行政区及模拟值验证；演示行政区不是论文历史族群边界，原文边界和数值仍未取得。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "C17",
+      "canonical_name": "map_geographic_choropleth"
+    },
+    {
+      "id": "reference_perception_dumbbell",
+      "name_zh": "实际值与感知均值的配对哑铃图",
+      "name_en": "Reference–perception dumbbell plot",
+      "category": "summary",
+      "tags": [
+        "Beliefs",
+        "Actual–perceived gap",
+        "Dumbbell",
+        "Distribution",
+        "Measurement"
+      ],
+      "source_view_ids": [
+        "C18"
+      ],
+      "variants": [
+        {
+          "template_id": "reference_perception_dumbbell",
+          "source_view_id": "C18",
+          "name_zh": "实际值与感知均值的配对哑铃图",
+          "recipe": "scripts/C18_dumbbell_reference_perception/recipe.md",
+          "languages": [
+            "python"
+          ],
+          "input_scope": "六国实际移民占比与受访者感知均值/区间的描述性对照，非结构估计。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "C18",
+      "canonical_name": "dumbbell_reference_perception"
+    },
+    {
+      "id": "time_faceted_ternary_sentiment_scatter",
+      "name_zh": "按时间分面的三元主题与情绪散点",
+      "name_en": "Time-faceted ternary sentiment scatter",
+      "category": "summary",
+      "tags": [
+        "Text measures",
+        "Ternary composition",
+        "Time facets",
+        "Composition",
+        "Ternary scatter",
+        "Facets"
+      ],
+      "source_view_ids": [
+        "C19"
+      ],
+      "variants": [
+        {
+          "template_id": "time_faceted_ternary_sentiment_scatter",
+          "source_view_id": "C19",
+          "name_zh": "按时间分面的三元主题与情绪散点",
+          "recipe": "scripts/C19_scatter_ternary_sentiment/recipe.md",
+          "languages": [
+            "python"
+          ],
+          "input_scope": "每点为一本书，主题份额和情绪百分位是文本测度，按年份分面；测量模型不等于经济结构模型。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "C19",
+      "canonical_name": "scatter_ternary_sentiment"
+    },
+    {
+      "id": "staggered_policy_phase_timeline",
+      "name_zh": "分批政策的过渡、执行与终止时间线",
+      "name_en": "Staggered policy-phase timeline",
+      "category": "research_design",
+      "tags": [
+        "Policy rollout",
+        "Staggered timing",
+        "DID design context"
+      ],
+      "source_view_ids": [
+        "D01"
+      ],
+      "variants": [
+        {
+          "template_id": "staggered_policy_phase_timeline",
+          "source_view_id": "D01",
+          "name_zh": "分批政策的过渡、执行与终止时间线",
+          "recipe": "scripts/D01_design_policy_phase_timeline/recipe.md",
+          "languages": [
+            "python"
+          ],
+          "input_scope": "分批政策的自愿过渡、强制执行与结束时点需要阶段区间输入；纯制度说明可只用 Python。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "D01",
+      "canonical_name": "design_policy_phase_timeline"
+    },
+    {
+      "id": "randomization_decision_tree",
+      "name_zh": "选择、随机分配与后续选择的时序树",
+      "name_en": "Randomization and sequential-choice tree",
+      "category": "research_design",
+      "tags": [
+        "RCT",
+        "Random assignment",
+        "Sequential choice"
+      ],
+      "source_view_ids": [
+        "D02"
+      ],
+      "variants": [
+        {
+          "template_id": "randomization_decision_tree",
+          "source_view_id": "D02",
+          "name_zh": "选择、随机分配与后续选择的时序树",
+          "recipe": "scripts/D02_design_randomization_tree/recipe.md",
+          "languages": [
+            "python"
+          ],
+          "input_scope": "实验设计决策树：区分随机分配节点、受试者选择及后续结果时点；不能将自选择边标为随机化。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "D02",
+      "canonical_name": "design_randomization_tree"
+    },
+    {
+      "id": "monitoring_calendar",
+      "name_zh": "制度监测日历",
+      "name_en": "Monitoring calendar",
+      "category": "research_design",
+      "tags": [
+        "Monitoring schedule",
+        "Calendar",
+        "Institutional design"
+      ],
+      "source_view_ids": [
+        "D03"
+      ],
+      "variants": [
+        {
+          "template_id": "monitoring_calendar",
+          "source_view_id": "D03",
+          "name_zh": "制度监测日历",
+          "recipe": "scripts/D03_design_monitoring_calendar/recipe.md",
+          "languages": [
+            "python"
+          ],
+          "input_scope": "逐日制度日历：真实年月日与星期位置，显式监测日期列表/周期锚点，不把每3天误解为每周三。区分计划日程与实际执行；低于主要结果图的实施优先级。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "D03",
+      "canonical_name": "design_monitoring_calendar"
+    },
+    {
+      "id": "efficiency_equity_frontier",
+      "name_zh": "效率—公平政策路径与操作点",
+      "name_en": "Efficiency–equity policy paths",
+      "category": "prediction_evaluation",
+      "tags": [
+        "Policy comparison",
+        "Efficiency–equity",
+        "Operating points",
+        "Algorithm evaluation",
+        "Random forest",
+        "Policy ranking",
+        "Line plot"
+      ],
+      "source_view_ids": [
+        "E01"
+      ],
+      "variants": [
+        {
+          "template_id": "efficiency_equity_frontier",
+          "source_view_id": "E01",
+          "name_zh": "效率—公平政策路径与操作点",
+          "recipe": "scripts/E01_prediction_efficiency_equity_frontier/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "NRP 样本按真实漏报或 random forest 预测漏报排序，改变审计率后重新汇总检出额和差异；固定数据上的算法绩效评估，不求解行为反应或经济结构均衡。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance.",
+      "display_id": "E01",
+      "canonical_name": "prediction_efficiency_equity_frontier"
+    },
+    {
+      "id": "prediction_probability_calibration",
+      "name_zh": "平台预测概率与事后概率校准图",
+      "name_en": "Predicted-versus-realized probability calibration",
+      "category": "prediction_evaluation",
+      "tags": [
+        "Probability calibration",
+        "Binscatter",
+        "Prediction",
+        "Calibration",
+        "Matching simulation",
+        "Model validation"
+      ],
+      "source_view_ids": [
+        "E02"
+      ],
+      "variants": [
+        {
+          "template_id": "probability_belief_calibration",
+          "source_view_id": "E02",
+          "name_zh": "平台预测概率与事后概率校准图",
+          "recipe": "scripts/E02_prediction_probability_calibration/recipe.md",
+          "languages": [
+            "python",
+            "stata"
+          ],
+          "input_scope": "对申请名单和优先类型重抽样、抽取 lottery numbers，重复模拟匹配机制 500 次。预测概率使用当前申请和历史外推，事后基准使用实际申请；Figure I A 检验平台预测质量，不是受访者信念，也不是估计偏好/成本参数的结构 calibration。"
+        }
+      ],
+      "routing_policy": "Choose the source variant by its input and statistical object; no default estimator is inferred from appearance."
+    }
+  ],
+  "requirements": "requirements.txt",
+  "templates": [
+    {
+      "id": "bandwidth_sensitivity_profile",
+      "name_zh": "带宽敏感性曲线与两种推断区间",
+      "category": "reduced_form",
+      "legacy_storage_category": "estimation/robustness",
+      "tags": [
+        "Bandwidth sensitivity",
+        "Spatial inference",
+        "Robustness",
+        "Line plot"
+      ],
+      "source_view_id": "A07",
+      "merged_target": "bandwidth_sensitivity_profile",
+      "numeric_origin": "六结果的空间带宽稳健性剖面：横轴为每次回归允许的距边界最大公里数，不是个体运行变量；每结果61次回归。灰带是census-block聚类稳健95%CI，点线是Conley95%CI，两种推断方法而非68/95双置信水平。输入明确方法名与给定区间，不代做聚类/Conley；可选基准线需用户给明含义，原文蓝虚线不自行猜测。",
+      "description": "比较改变回归样本带宽后的系数，以灰带和虚线区分同一覆盖率下的两种推断方法。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/A07_robustness_spatial_bandwidth/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/A07_robustness_spatial_bandwidth/plot.py"
+        ],
+        "stata": [
+          "scripts/A07_robustness_spatial_bandwidth/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A07_robustness_spatial_bandwidth/demo.csv",
+        "scripts/A07_robustness_spatial_bandwidth/qa_crossing.csv"
+      ],
+      "schema": "scripts/A07_robustness_spatial_bandwidth/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Multinationals, Monopsony, and Local Development: Evidence From the United Fruit Company (2022)",
+      "source_figure": "Figure 3",
+      "source_authors": "Esteban Méndez; Diana Van Patten",
+      "source_pdf_page": 13,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.3982/ECTA19514",
+      "validation": "6个结果各61个带宽，共366行；Python与Stata中英文、标题和交叉区间版本实际运行并视检，输出数字最大差0。有效fixture中的两种95%区间相互交叉而均包含估计值，两语言均接受。Python另核验共同带宽网格、重复键、负带宽和无效区间。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "A07",
+      "canonical_name": "robustness_spatial_bandwidth"
+    },
+    {
+      "id": "binned_effect_with_support_histogram",
+      "name_zh": "分组估计效应与样本分布组合图",
+      "category": "reduced_form",
+      "legacy_storage_category": "estimation/heterogeneity",
+      "tags": [
+        "Heterogeneity",
+        "Binned effects",
+        "Sample support",
+        "Summary overlay",
+        "Fixed effects"
+      ],
+      "source_view_id": "A12",
+      "merged_target": "binned_effect_with_support_histogram",
+      "numeric_origin": "左列为各网络支持分组的平均迁移率和 Wilson 区间，右列为固定效应回归的异质性 beta 与双向聚类区间；复合图以右列实证估计归类，同时标记 Summary overlay，不是结构模型输出。",
+      "description": "上方展示分组估计值与区间，下方展示同一横轴变量的无条件样本分布；效应和样本数量分别输入。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/A12_heterogeneity_binned_effects_support/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/A12_heterogeneity_binned_effects_support/plot.py"
+        ],
+        "stata": [
+          "scripts/A12_heterogeneity_binned_effects_support/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A12_heterogeneity_binned_effects_support/effect_demo.csv",
+        "scripts/A12_heterogeneity_binned_effects_support/support_demo.csv"
+      ],
+      "schema": "scripts/A12_heterogeneity_binned_effects_support/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Migration and the Value of Social Networks (2025)",
+      "source_figure": "Figure 6",
+      "source_authors": "Joshua E. Blumenstock; Guanghua Chi; Xu Tan",
+      "source_pdf_page": 20,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1093/restud/rdad113",
+      "validation": "Python/Stata 中英文 PNG/PDF 实际执行并视检；4 面板、80 个估计点、80 个直方图区间。Stata 经修正保留数字纵轴并对齐上下横轴；新建嵌套输出目录测试通过。两语言共享给定估计、CI 与计数，不重估模型。版式差异：Stata 上下区域高度相近，Python 下方直方图较矮。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "A12",
+      "canonical_name": "heterogeneity_binned_effects_support"
+    },
+    {
+      "id": "bivariate_effect_heatmap",
+      "name_zh": "双维分组效果热图与独立色阶",
+      "category": "reduced_form",
+      "legacy_storage_category": "estimation/heterogeneity",
+      "tags": [
+        "Heterogeneity",
+        "Interaction",
+        "Heatmap",
+        "Cost effectiveness"
+      ],
+      "source_view_id": "A13",
+      "merged_target": "bivariate_effect_heatmap",
+      "numeric_origin": "按规则与裁量分数分组，用估计处理效应与协变量均值计算异质性，再乘企业规模、汇总并除以补贴金额构造成本效果；归实证效应及其派生核算。",
+      "description": "在两个分组维度的网格上展示已估计结果，分别标示各结果的单位、色档与缺失单元。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/A13_heterogeneity_effect_heatmap/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/A13_heterogeneity_effect_heatmap/plot.py"
+        ],
+        "stata": [
+          "scripts/A13_heterogeneity_effect_heatmap/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A13_heterogeneity_effect_heatmap/demo.csv",
+        "scripts/A13_heterogeneity_effect_heatmap/qa_boundaries_missing.csv"
+      ],
+      "schema": "scripts/A13_heterogeneity_effect_heatmap/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Making Subsidies Work: Rules versus Discretion (2025)",
+      "source_figure": "Figure 8",
+      "source_authors": "Federico Cingano; Filippo Palomba; Paolo Pinotti; Enrico Rettore",
+      "source_pdf_page": 25,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.3982/ecta21319",
+      "validation": "两面板50格，Python/Stata实际运行中英文、标题和缺失值版本并视检。输入估计值、缺失标记和色档逐格一致；测试每个面板全部11个色档边界，0.125的就业效应归第6档，最大值归第10档。省略坐标行在两语言均被拒绝；空值灰色与数值零分开。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "A13",
+      "canonical_name": "heterogeneity_effect_heatmap"
+    },
+    {
+      "id": "bunching_distribution_with_counterfactual",
+      "name_zh": "门槛附近的扎堆分布与给定反事实",
+      "category": "reduced_form",
+      "legacy_storage_category": "estimation/bunching",
+      "tags": [
+        "Bunching",
+        "Notch",
+        "Counterfactual density",
+        "Nonstructural estimation"
+      ],
+      "source_view_id": "A19",
+      "merged_target": "bunching_distribution_with_counterfactual",
+      "numeric_origin": "观测财富频数加排除扎堆区间后五阶多项式估计的反事实密度。主图所选层并非结构效用模型模拟；论文把额外参数化结构弹性另放附录。",
+      "description": "比较税收跳跃门槛附近的观测人数和给定反事实分布，并标明反事实估计的排除区间。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/A19_bunching_counterfactual_distribution/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/A19_bunching_counterfactual_distribution/plot.py"
+        ],
+        "stata": [
+          "scripts/A19_bunching_counterfactual_distribution/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A19_bunching_counterfactual_distribution/demo.csv"
+      ],
+      "schema": "scripts/A19_bunching_counterfactual_distribution/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Behavioural Responses to Wealth Taxation: Evidence from Colombia (2025)",
+      "source_figure": "Figure 3(a)",
+      "source_authors": "Juliana Londoño-Vélez; Javier Ávila-Mahecha",
+      "source_pdf_page": 11,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1093/restud/rdae076",
+      "validation": "100个等宽分箱，Python与Stata导出数值完全一致；两语言实际拒绝负人数与不等宽分箱。英中默认与可选标题版本实际运行并视检；主agent要求修正notch中文和排除边界图例后再次核对成图。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "A19",
+      "canonical_name": "bunching_counterfactual_distribution"
+    },
+    {
+      "id": "event_study_with_pre_post_averages",
+      "name_zh": "事件研究与处理前后均值",
+      "category": "reduced_form",
+      "legacy_storage_category": "estimation/event_study",
+      "tags": [
+        "Event study",
+        "DID-compatible display",
+        "Pre/post averages"
+      ],
+      "source_view_id": "A01",
+      "merged_target": "event_study",
+      "numeric_origin": "980 行同期处理平衡面板实际估计：逐期效应、包含基准期零值的处理前均值、处理后均值，以及后减前的 DID 对比；区间使用完整协方差。",
+      "description": "980 行同期处理平衡面板实际估计：逐期效应、包含基准期零值的处理前均值、处理后均值，以及后减前的 DID 对比；区间使用完整协方差。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/A01_event_study_pre_post_averages/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/A01_event_study_pre_post_averages/event_study_with_pre_post_averages.py",
+          "scripts/A01_event_study_pre_post_averages/estimate_demo_panel.py"
+        ],
+        "stata": [
+          "scripts/A01_event_study_pre_post_averages/event_study_with_pre_post_averages.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A01_event_study_pre_post_averages/demo_panel.csv",
+        "scripts/A01_event_study_pre_post_averages/demo_estimates.csv",
+        "scripts/A01_event_study_pre_post_averages/demo_covariance.csv",
+        "scripts/A01_event_study_pre_post_averages/demo_contrasts.csv"
+      ],
+      "schema": "scripts/A01_event_study_pre_post_averages/recipe.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": null,
+      "source_figure": null,
+      "source_authors": null,
+      "source_pdf_page": null,
+      "source_status": "用户提供的本地模拟绘图示例；不是已核实论文图",
+      "source_doi": null,
+      "validation": "980 行、70 个体（35 处理 / 35 对照）的同期处理平衡面板；Python 与 Stata 19 均实际估计静态 DID 和事件研究并出图。前期六期含 -1 零值，后期八期；使用完整协方差、个体聚类 CR0 和正态 95% 区间。两语言均值、后减前及区间误差小于 1e-12；独立个体变化核对通过，PNG 已视检。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "A01",
+      "canonical_name": "event_study_pre_post_averages"
+    },
+    {
+      "id": "grouped_coefficient_forest",
+      "name_zh": "分组系数与稳健性森林图",
+      "category": "reduced_form",
+      "legacy_storage_category": "estimation/coefficient_comparison",
+      "tags": [
+        "Heterogeneity",
+        "Coefficient plot",
+        "Specification comparison",
+        "Robustness",
+        "Forest plot"
+      ],
+      "source_view_id": "A11",
+      "merged_target": "grouped_coefficient_forest",
+      "numeric_origin": "用同一可配置图族支持横向设定比较和纵向分组结果系数，保留各结果单位与区间含义。",
+      "description": "横向多结果规格比较与纵向分组系数两种变体；按结果保留独立单位、置信区间和明确显示顺序。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/A11_coefficient_grouped_forest/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/A11_coefficient_grouped_forest/plot.py"
+        ],
+        "stata": [
+          "scripts/A11_coefficient_grouped_forest/plot.do",
+          "scripts/A11_coefficient_grouped_forest/plot_twoway.do",
+          "scripts/A11_coefficient_grouped_forest/command_variants/coefplot/plot_coefplot.do",
+          "scripts/A11_coefficient_grouped_forest/command_variants/coefplot/run_demo.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A11_coefficient_grouped_forest/demo.csv",
+        "scripts/A11_coefficient_grouped_forest/command_variants/coefplot/package_manifest.json"
+      ],
+      "schema": "scripts/A11_coefficient_grouped_forest/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Andrew Goodman-Bacon, The Long-Run Effects of Childhood Insurance Coverage: Medicaid Implementation, Adult Health, and Labor Market Outcomes (2021)",
+      "source_figure": "Figure 8",
+      "source_authors": "Andrew Goodman-Bacon",
+      "source_pdf_page": 31,
+      "source_status": "原始页图与 PDF 图注已核对；第一来源为 IV 规格比较，另一来源为 DD 分组结果，估计含义不合并",
+      "source_doi": "10.1257/aer.20171671",
+      "validation": "Python 3.12 与 Stata 19 的两个方向、中英文八张 PNG 均实际运行并视检；四面板横向示例 32 行，单面板纵向示例 6 行，包含一行 SE 回退。Stata 四份日志有完成标记。单面板默认无顶部名称，多面板保留结果标签。 Additional Stata checks reject a one-sided missing CI (expected rc=9) and inconsistent horizontal term order (expected rc=459); all four valid demo runs were repeated successfully after repair. coefplot 1.8.8 命令版五次 Stata 运行通过，38 行输入及区间回填规则经核对，首选规格以红色点和区间突出。成图已视检；未另导出包版绘制坐标做独立数值对照。单面板默认无标题，多面板保留必要面板名。",
+      "shared_resources": [],
+      "command_variants": [
+        {
+          "command": "coefplot",
+          "accepted": true,
+          "entrypoint": "scripts/A11_coefficient_grouped_forest/command_variants/coefplot/plot_coefplot.do",
+          "runner": "scripts/A11_coefficient_grouped_forest/command_variants/coefplot/run_demo.do",
+          "methods": "scripts/A11_coefficient_grouped_forest/command_variants/coefplot/README.md",
+          "manifest": "scripts/A11_coefficient_grouped_forest/command_variants/coefplot/package_manifest.json",
+          "default_title": false,
+          "native_entrypoint": "scripts/A11_coefficient_grouped_forest/plot_twoway.do"
+        }
+      ],
+      "display_id": "A11",
+      "canonical_name": "coefficient_grouped_forest"
+    },
+    {
+      "id": "grouped_event_study",
+      "name_zh": "分组事件研究动态效应",
+      "category": "reduced_form",
+      "legacy_storage_category": "estimation/event_study",
+      "tags": [
+        "Event study",
+        "DID-compatible display",
+        "Heterogeneity"
+      ],
+      "source_view_id": "A02",
+      "merged_target": "event_study",
+      "numeric_origin": "多组错位系数与置信区间，以实心/空心区分显著性，保留真实事件时间间距。",
+      "description": "多组错位系数与置信区间，以实心/空心区分显著性，保留真实事件时间间距。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/A02_event_study_grouped/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/A02_event_study_grouped/grouped_event_study.py"
+        ],
+        "stata": [
+          "scripts/A02_event_study_grouped/grouped_event_study.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A02_event_study_grouped/demo_estimates.csv"
+      ],
+      "schema": "scripts/A02_event_study_grouped/recipe.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": null,
+      "source_figure": "Figure A3",
+      "source_authors": null,
+      "source_pdf_page": null,
+      "source_status": "截图显示 Figure A3；论文身份待主材料核实",
+      "source_doi": null,
+      "validation": "Python 3.12 与 Stata 19 实际运行并视检通过。主示例 26 个估计、2 组、14 个 CI 排除零；另验证列顺序变化、3 组、非等距事件时间及显式区间输入。Python 中文已视检；Stata 中文未单独视检。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "A02",
+      "canonical_name": "event_study_grouped"
+    },
+    {
+      "id": "honestdid_sensitivity",
+      "name_zh": "平行趋势敏感性区间：相对幅度与平滑性限制",
+      "category": "reduced_form",
+      "legacy_storage_category": "estimation/robustness",
+      "tags": [
+        "DID",
+        "Event study",
+        "Robustness",
+        "Sensitivity",
+        "Parallel trends",
+        "Confidence interval",
+        "honestdid",
+        "Relative magnitudes",
+        "Smoothness"
+      ],
+      "source_view_id": "A04",
+      "merged_target": "honestdid_sensitivity",
+      "numeric_origin": "模拟单位×时间数据，实际估计事件研究 b 与完整 V，再由 honestdid 计算两类限制下目标处理后效应的稳健区间。Stata 命令原生绘图；不手填系数、不把稳健区间中点当作新的效应估计。",
+      "description": "模拟面板实际估计事件研究及完整协方差；honestdid 分别计算相对幅度和二阶差分平滑性限制下的95%稳健区间，再调用原生 coefplot 选项成图。",
+      "languages": [
+        "stata"
+      ],
+      "recipe": "scripts/A04_event_study_honestdid_sensitivity/recipe.md",
+      "entrypoints": {
+        "stata": [
+          "scripts/A04_event_study_honestdid_sensitivity/build.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A04_event_study_honestdid_sensitivity/source_metadata.json",
+        "scripts/A04_event_study_honestdid_sensitivity/dependency_manifest.json",
+        "scripts/A04_event_study_honestdid_sensitivity/portable_files.json",
+        "scripts/A04_event_study_honestdid_sensitivity/synthetic_panel.dta",
+        "scripts/A04_event_study_honestdid_sensitivity/event_study_coefficients.csv",
+        "scripts/A04_event_study_honestdid_sensitivity/event_study_covariance.csv",
+        "scripts/A04_event_study_honestdid_sensitivity/rm_intervals.csv",
+        "scripts/A04_event_study_honestdid_sensitivity/sd_intervals.csv"
+      ],
+      "schema": "scripts/A04_event_study_honestdid_sensitivity/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "actual_stata_estimation_on_simulated_data",
+      "source_paper": "Rambachan and Roth, A More Credible Approach to Parallel Trends (2023)",
+      "source_figure": "HonestDiD relative-magnitude and smoothness sensitivity examples",
+      "source_authors": "Ashesh Rambachan; Jonathan Roth",
+      "source_pdf_page": null,
+      "source_status": "方法来源为 Rambachan–Roth 论文与 HonestDiD 作者命令文档；不对应指定论文 Figure，不附伪造原图。",
+      "source_doi": "10.1093/restud/rdad018",
+      "validation": "Stata19在320单位×9期模拟面板实际执行xtreg与honestdid；参考期-1，完整8×8单位聚类协方差，目标为k=0。RM/SD各9个限制值与1条Original常规区间；日志成功标记、数值范围/协方差/区间及可选标题检查通过，主agent视检通过。使用已测试HonestDiD1.3.0和Windows插件；未声称验证其他平台或最新版本。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "A04",
+      "canonical_name": "event_study_honestdid_sensitivity"
+    },
+    {
+      "id": "joint_bootstrap_region_display",
+      "name_zh": "联合 Bootstrap 置信区域",
+      "category": "reduced_form",
+      "legacy_storage_category": "estimation/interval_comparison",
+      "tags": [
+        "Bootstrap",
+        "Joint uncertainty",
+        "Nested regions",
+        "Inference",
+        "Contour regions"
+      ],
+      "source_view_id": "A18",
+      "merged_target": "joint_bootstrap_region_display",
+      "numeric_origin": "收益与期权数据构造的股权溢价贡献估计及 block bootstrap 联合抽样分布；原文下一节才与资产定价理论模型比较。",
+      "description": "读取外部二维网格与嵌套90/95/99%联合区域，叠加点估计及 x+y=0.5 判别线。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/A18_inference_joint_bootstrap_regions/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/A18_inference_joint_bootstrap_regions/plot.py"
+        ],
+        "stata": [
+          "scripts/A18_inference_joint_bootstrap_regions/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A18_inference_joint_bootstrap_regions/demo_joint_grid.csv",
+        "scripts/A18_inference_joint_bootstrap_regions/demo_point.csv"
+      ],
+      "schema": "scripts/A18_inference_joint_bootstrap_regions/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Dissecting the Equity Premium (2022)",
+      "source_figure": "Figure 3",
+      "source_authors": "Tyler Beason; David Schreindorfer",
+      "source_pdf_page": 11,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1086/720396",
+      "validation": "已核网格完整性、区间嵌套、非法格点拒绝以及每格区域的 Python/Stata 一致性。示例区域由模拟网格给定，不实施原文 block bootstrap，也不以边际矩形/正态椭圆代替联合区域；边界接触需检查截断。 两语言实跑和主 agent 成图视检已通过；示例不等于原论文数值复现。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "A18",
+      "canonical_name": "inference_joint_bootstrap_regions"
+    },
+    {
+      "id": "paired_accounting_waterfall",
+      "name_zh": "并列核算瀑布图与独立比值",
+      "category": "reduced_form",
+      "legacy_storage_category": "estimation/decomposition",
+      "tags": [
+        "Welfare",
+        "Cost–benefit accounting",
+        "Waterfall",
+        "Decomposition",
+        "Sufficient statistics"
+      ],
+      "source_view_id": "A20",
+      "merged_target": "paired_accounting_waterfall",
+      "numeric_origin": "直接审计收入与支出、随机审计结合匹配对照估计的长期威慑收入，再加 IRS 调查的金钱/时间成本构造 MVPF。是基于实证效应的充分统计量式福利核算，不是原始数据概貌，也不是完整结构模型输出。",
+      "description": "在分组面板中分别核算两套金额分量、小计和合计，并单独标注无量纲比值。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/A20_welfare_accounting_waterfall/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/A20_welfare_accounting_waterfall/plot.py"
+        ],
+        "stata": [
+          "scripts/A20_welfare_accounting_waterfall/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A20_welfare_accounting_waterfall/demo.csv"
+      ],
+      "schema": "scripts/A20_welfare_accounting_waterfall/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "A Welfare Analysis of Tax Audits Across the Income Distribution (2025)",
+      "source_figure": "Figure VIII",
+      "source_authors": "William C. Boning; Nathaniel Hendren; Ben Sprung-Keyser; Ellen Stuart",
+      "source_pdf_page": 41,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1093/qje/qjae037",
+      "validation": "两组18个账目步骤，中英文Python/Stata均实际运行并视检，另检查标题开关。浮动柱边界、运行余额和两组比值的跨语言最大差2.22e-16。Python拒绝不平衡合计、缺账本、错误条目归属和断号；Stata不平衡小计测试返回r(9)。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "A20",
+      "canonical_name": "welfare_accounting_waterfall"
+    },
+    {
+      "id": "paired_difference_distribution",
+      "name_zh": "配对结果与差值分布",
+      "category": "reduced_form",
+      "legacy_storage_category": "estimation/distribution",
+      "tags": [
+        "RCT",
+        "Paired outcomes",
+        "Difference distribution"
+      ],
+      "source_view_id": "A08",
+      "merged_target": "paired_difference_distribution",
+      "numeric_origin": "随机设置种族信号的 twin profiles 得到联系人数，图中配对个体和组均值/区间用于呈现实验处理差异；归 RCT 结果展示而非仅按散点外观分类。",
+      "description": "真实配对 ID 连接个体结果，展示边际密度、组均值及配对差异；不会按结果排序猜测配对。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/A08_distribution_paired_differences/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/A08_distribution_paired_differences/plot.py"
+        ],
+        "stata": [
+          "scripts/A08_distribution_paired_differences/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A08_distribution_paired_differences/demo_pairs.csv"
+      ],
+      "schema": "scripts/A08_distribution_paired_differences/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "LinkedOut? A Field Experiment on Discrimination in Job Network Formation (2025)",
+      "source_figure": "Figure III",
+      "source_authors": "Yulia Evsyukova; Felix Rusche; Wladislaw Mill",
+      "source_pdf_page": 22,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1093/qje/qjae035",
+      "validation": "已核手算配对样例、同一配对坐标、组均值及配对差异标准误的 Python/Stata 一致性。两种密度平滑配置不同，未宣称密度曲线数值一致；均值95%区间为1.96正态近似。 两语言实跑和主 agent 成图视检已通过；示例不等于原论文数值复现。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "A08",
+      "canonical_name": "distribution_paired_differences"
+    },
+    {
+      "id": "permutation_null_distribution",
+      "name_zh": "置换零分布与观察统计量",
+      "category": "reduced_form",
+      "legacy_storage_category": "diagnostic/randomization_inference",
+      "tags": [
+        "Randomization inference",
+        "Permutation",
+        "Null distribution",
+        "Inference",
+        "Histogram"
+      ],
+      "source_view_id": "A15",
+      "merged_target": "permutation_null_distribution",
+      "numeric_origin": "置换零分布与观察统计量是推断诊断，保留双语言；尾部规则和置换 p 值必须显式定义。",
+      "description": "并列展示给定的随机化零分布与观察值，显式定义单侧或双侧极端事件和 Monte Carlo p 值。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/A15_inference_permutation_null/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/A15_inference_permutation_null/plot.py"
+        ],
+        "stata": [
+          "scripts/A15_inference_permutation_null/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A15_inference_permutation_null/demo.csv"
+      ],
+      "schema": "scripts/A15_inference_permutation_null/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "An Experimental Evaluation of Deferred Acceptance: Evidence from Over 100 Army Officer Labor Markets (2026)",
+      "source_figure": "Figure 1",
+      "source_authors": "Jonathan M. V. Davis; Kyle Greenberg; Damon Jones",
+      "source_pdf_page": 19,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.3982/ecta22160",
+      "validation": "Python 与 Stata 中英文 PNG/PDF 实际运行并视检；单面板默认无上方名称，多面板保留标签，Stata 纵轴刻度横排。2 个面板各 2,500 次模拟抽取；右尾、左尾、显式中心双侧规则的极端计数一致，p 值最大差小于 5.2e-14。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "A15",
+      "canonical_name": "inference_permutation_null"
+    },
+    {
+      "id": "prior_posterior_interval_comparison",
+      "name_zh": "多来源先验、后验与频率派估计比较",
+      "category": "reduced_form",
+      "legacy_storage_category": "estimation/interval_comparison",
+      "tags": [
+        "Bayesian inference",
+        "Prior/posterior",
+        "Interval comparison",
+        "RCT",
+        "Inference",
+        "Point-interval plot"
+      ],
+      "source_view_id": "A17",
+      "merged_target": "prior_posterior_interval_comparison",
+      "numeric_origin": "RCT 的 ITT 与实验数据更新后的后验；Bayesian 是推断方法，原图不估计经济行为结构参数。",
+      "description": "按来源成对排列先验与后验中位数及其区间，并单独展示ITT点估计与置信区间。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/A17_inference_prior_posterior_intervals/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/A17_inference_prior_posterior_intervals/plot.py"
+        ],
+        "stata": [
+          "scripts/A17_inference_prior_posterior_intervals/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A17_inference_prior_posterior_intervals/demo.csv"
+      ],
+      "schema": "scripts/A17_inference_prior_posterior_intervals/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Bayesian Impact Evaluation with Informative Priors: An Application to a Colombian Management and Export Improvement Program (2025)",
+      "source_figure": "Figure 2",
+      "source_authors": "Leonardo Iacovone; David McKenzie; Rachael Meager",
+      "source_pdf_page": 15,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.3982/ECTA21567",
+      "validation": "4面板共40行，按panel/source/kind逐项对照两语言数值完全一致。两语言拒绝无效区间和缺失配对，调整CSV列顺序后数值一致。英中默认与标题版本实际运行并视检；Stata行标签经可读性调整后再核对。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "A17",
+      "canonical_name": "inference_prior_posterior_intervals"
+    },
+    {
+      "id": "quantile_coefficient_profile",
+      "name_zh": "分位数回归系数曲线",
+      "category": "reduced_form",
+      "legacy_storage_category": "estimation/distributional_effects",
+      "tags": [
+        "Quantile coefficients",
+        "UQR",
+        "Confidence intervals",
+        "Heterogeneity",
+        "Coefficient plot"
+      ],
+      "source_view_id": "A14",
+      "merged_target": "quantile_coefficient_profile",
+      "numeric_origin": "结果分布不同分位上的回归系数与预计算区间；原文为标准化PSAT分数对BNI的无条件分位数回归，99%CI，ZIP聚类。保留数值分位位置与区间水平；不是按x分位分组的均值，也不能自动改称分位处理效应。模板不把qreg当作无条件分位估计器。",
+      "description": "沿数值分位位置连接预估系数，并绘制各分位给定的置信区间。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/A14_coefficient_quantile_profile/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/A14_coefficient_quantile_profile/plot.py"
+        ],
+        "stata": [
+          "scripts/A14_coefficient_quantile_profile/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A14_coefficient_quantile_profile/demo.csv"
+      ],
+      "schema": "scripts/A14_coefficient_quantile_profile/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Distinctively Black Names and Educational Outcomes (2023)",
+      "source_figure": "Figure 4",
+      "source_authors": "Daniel Kreisman; Jonathan Smith",
+      "source_pdf_page": 15,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1086/722093",
+      "validation": "9个分位数的Python与Stata导出数值完全一致。两语言实际拒绝不含点估计的区间和未排序分位，CSV列顺序调整后数值仍一致；中英文默认图和标题版本运行通过，默认图经主agent视检。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "A14",
+      "canonical_name": "coefficient_quantile_profile"
+    },
+    {
+      "id": "regression_discontinuity_binned_outcomes",
+      "name_zh": "断点两侧的分箱均值与局部线性拟合",
+      "category": "reduced_form",
+      "legacy_storage_category": "estimation/threshold",
+      "tags": [
+        "RD",
+        "Binned scatter",
+        "Local linear fit"
+      ],
+      "source_view_id": "A05",
+      "merged_target": "regression_discontinuity_binned_outcomes",
+      "numeric_origin": "断点两侧分箱和拟合，重点为水平跳跃；与已排队的政策 kink 斜率变化图分别说明识别和输入，不能由图形外观推出设计有效。",
+      "description": "分别在断点两侧计算等宽分箱均值，并用窗口内原始观测拟合两条直线，展示水平跳跃。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/A05_rd_binned_outcomes/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/A05_rd_binned_outcomes/plot.py"
+        ],
+        "stata": [
+          "scripts/A05_rd_binned_outcomes/plot.do",
+          "scripts/A05_rd_binned_outcomes/plot_twoway.do",
+          "scripts/A05_rd_binned_outcomes/command_variants/rdplot/plot_rdplot.do",
+          "scripts/A05_rd_binned_outcomes/command_variants/rdplot/run_demo.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A05_rd_binned_outcomes/demo.csv",
+        "scripts/A05_rd_binned_outcomes/command_variants/rdplot/package_manifest.json"
+      ],
+      "schema": "scripts/A05_rd_binned_outcomes/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Political Foundations of Racial Violence in the Post-Reconstruction South (2026)",
+      "source_figure": "Figure V",
+      "source_authors": "Patrick A. Testa; Jhacova Williams",
+      "source_pdf_page": 26,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1093/qje/qjaf045",
+      "validation": "5,900行模拟输入，40个分箱、4条两侧OLS拟合；Python/Stata中英文实际执行并视检，数值最大差4.57e-11以内。已检查窗口端点和断点归属、窗口外样本计数、重复/未知ID、概率范围；合法但超出显示范围的高概率输入在两语言都被拒绝，Stata返回r(9)，避免静默裁图。 rdplot 11.1.0 命令版 EN/ZH 默认及可选标题四次 Stata 运行通过；40 个 bin 的计数和均值与原生版一致（误差<2.14e-14），4 条拟合线误差<3.11e-15。箱中点与样本均值横坐标区别已保留。",
+      "shared_resources": [],
+      "command_variants": [
+        {
+          "command": "rdplot",
+          "accepted": true,
+          "entrypoint": "scripts/A05_rd_binned_outcomes/command_variants/rdplot/plot_rdplot.do",
+          "runner": "scripts/A05_rd_binned_outcomes/command_variants/rdplot/run_demo.do",
+          "methods": "scripts/A05_rd_binned_outcomes/command_variants/rdplot/README.md",
+          "manifest": "scripts/A05_rd_binned_outcomes/command_variants/rdplot/package_manifest.json",
+          "default_title": false,
+          "native_entrypoint": "scripts/A05_rd_binned_outcomes/plot_twoway.do"
+        }
+      ],
+      "display_id": "A05",
+      "canonical_name": "rd_binned_outcomes"
+    },
+    {
+      "id": "residualized_binned_scatter",
+      "name_zh": "残差分箱均值与观测层拟合",
+      "category": "reduced_form",
+      "legacy_storage_category": "estimation/scatter_regression",
+      "tags": [
+        "IV first stage",
+        "Residualization",
+        "Binscatter"
+      ],
+      "source_view_id": "A10",
+      "merged_target": "conditional_scatter",
+      "numeric_origin": "分箱均值与拟合关系需要明确输入和聚合规则，与逐观测散点分别整理。",
+      "description": "以等量分箱均值展示残差关系；拟合线使用全部原始观测，明确分箱排序和并列值规则。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/A10_binscatter_residualized_fit/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/A10_binscatter_residualized_fit/plot.py"
+        ],
+        "stata": [
+          "scripts/A10_binscatter_residualized_fit/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A10_binscatter_residualized_fit/demo.csv"
+      ],
+      "schema": "scripts/A10_binscatter_residualized_fit/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Thorsten Rogall, Mobilizing the Masses for Genocide (2021)",
+      "source_figure": "Figure 1",
+      "source_authors": "Thorsten Rogall",
+      "source_pdf_page": 16,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1257/aer.20160999",
+      "validation": "Python/Stata 中英文四张 PNG 实际执行与视检通过，PDF 已导出。503 行观测分成 50 个箱，每箱 10–11 行；两语言箱计数一致，均值最大差小于 5e-11，观测层 OLS 截距/斜率一致到八位小数。输入包含大量并列 rx，已验证确定性规则。 续作修复首次输出到不存在目录时的失败：EN 默认和 ZH 标题两次 fresh-folder 运行成功，50 个 bin 的导出表与原验收数据逐值一致，503 个观测的 OLS 系数一致。Stata 与统计计算未改。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "A10",
+      "canonical_name": "binscatter_residualized_fit"
+    },
+    {
+      "id": "residualized_scatter_panels",
+      "name_zh": "残差散点、拟合线与分组突出",
+      "category": "reduced_form",
+      "legacy_storage_category": "estimation/scatter_regression",
+      "tags": [
+        "Residualization",
+        "Scatter",
+        "Group highlighting"
+      ],
+      "source_view_id": "A09",
+      "merged_target": "conditional_scatter",
+      "numeric_origin": "多面板残差散点、灰色比较组、重点组突出与输入数据计算的拟合线。",
+      "description": "多面板残差散点、灰色比较组、重点组突出与输入数据计算的拟合线。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/A09_scatter_residualized_fit/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/A09_scatter_residualized_fit/plot.py"
+        ],
+        "stata": [
+          "scripts/A09_scatter_residualized_fit/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A09_scatter_residualized_fit/demo.csv"
+      ],
+      "schema": "scripts/A09_scatter_residualized_fit/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": null,
+      "source_figure": "Figure 1",
+      "source_authors": null,
+      "source_pdf_page": null,
+      "source_status": "截图显示 Figure 1；论文身份待主材料核实",
+      "source_doi": null,
+      "validation": "2026-09-29 通用标签修订：Python 3.12 与 Stata 19 英中四张图均实跑并视检，PNG/PDF 完整。样本仍为 440/200，输入 CSV 哈希未变，两套实现的截距与斜率保持原验收值并一致到六位小数。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "A09",
+      "canonical_name": "scatter_residualized_fit"
+    },
+    {
+      "id": "specification_curve_with_choice_matrix",
+      "name_zh": "规格曲线与模型选择矩阵",
+      "category": "reduced_form",
+      "legacy_storage_category": "estimation/robustness",
+      "tags": [
+        "Specification curve",
+        "Model choices",
+        "Robustness"
+      ],
+      "source_view_id": "A16",
+      "merged_target": "specification_curve_with_choice_matrix",
+      "numeric_origin": "Figure3 Panel B：按结果值排序的设定曲线，下方逐列对齐二元设定选择矩阵。原图纵轴是各实验的平均t统计量，不是回归系数或单次t检验；不得对均值机械加±1.96阈值。排序后矩阵必须通过spec_id与结果保持一一对应，空设定值不能当作0。Panel A统计量分布属于另一图层，优先复现B的曲线+设定矩阵。",
+      "description": "将预先计算的结果排序，并把每个模型的明确选择项与同一列严格对齐。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/A16_robustness_specification_curve/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/A16_robustness_specification_curve/plot.py"
+        ],
+        "stata": [
+          "scripts/A16_robustness_specification_curve/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A16_robustness_specification_curve/demo.csv",
+        "scripts/A16_robustness_specification_curve/qa_with_ci.csv"
+      ],
+      "schema": "scripts/A16_robustness_specification_curve/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Policy Experimentation in China: The Political Economy of Policy Learning (2025)",
+      "source_figure": "Figure 3, Panel B: Average t statistics among all experiments",
+      "source_authors": "Shaoda Wang; David Y. Yang",
+      "source_pdf_page": 21,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1086/734873",
+      "validation": "48个模型、11个选择项；两语言排序结果及选择矩阵完全一致，随机打乱输入不改变输出。实际运行并视检中英文、可选区间和标题版本；Stata改变结果范围为[-5,10]后上图与矩阵仍分离。单侧区间、非数值区间和未知选择列均按预期拒绝。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "A16",
+      "canonical_name": "robustness_specification_curve"
+    },
+    {
+      "id": "staggered_event_study_estimator_comparison",
+      "name_zh": "多估计器 staggered DID 事件研究比较",
+      "category": "reduced_form",
+      "legacy_storage_category": "estimation/event_study",
+      "tags": [
+        "DID",
+        "Staggered adoption",
+        "Event study",
+        "Estimator comparison",
+        "Robustness",
+        "Point-interval",
+        "event_plot",
+        "jwdid",
+        "ETWFE",
+        "Simulated data"
+      ],
+      "source_view_id": "A03",
+      "merged_target": "event_study",
+      "numeric_origin": "六个实际 Stata 估计命令（含 jwdid）的结果提取、事件时间与支持范围对齐；Stata 和 Python 读取同一实际估计结果。论文图作为画法来源，不声称取得原作者 Analysis do-files 或复现原始数值。",
+      "description": "六条实际 Stata 估计路线（含 jwdid）共用模拟面板，导出共同结果后由 Python、原生 twoway、event_plot 提取加 twoway 叠加绘制。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/A03_event_study_staggered_estimator_comparison/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/A03_event_study_staggered_estimator_comparison/plot_python.py"
+        ],
+        "stata": [
+          "scripts/A03_event_study_staggered_estimator_comparison/estimate_all.do",
+          "scripts/A03_event_study_staggered_estimator_comparison/plot_event_plot.do",
+          "scripts/A03_event_study_staggered_estimator_comparison/plot_twoway.do",
+          "scripts/A03_event_study_staggered_estimator_comparison/run_plot_twoway.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A03_event_study_staggered_estimator_comparison/audited_estimates.csv",
+        "scripts/A03_event_study_staggered_estimator_comparison/dependency_manifest.json",
+        "scripts/A03_event_study_staggered_estimator_comparison/estimator_support.csv",
+        "scripts/A03_event_study_staggered_estimator_comparison/jwdid_event_covariance.csv"
+      ],
+      "schema": "scripts/A03_event_study_staggered_estimator_comparison/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "actual_stata_estimation_on_simulated_data",
+      "source_paper": "Braghieri, Luca, Ro'ee Levy, and Alexey Makarin, Social Media and Mental Health (2022)",
+      "source_figure": "Figure 2",
+      "source_authors": "Luca Braghieri, Ro’ee Levy, and Alexey Makarin",
+      "source_pdf_page": 19,
+      "source_status": "原论文 Figure 2、PDF p19 及用户截图已核对；作者档案已定位但原分析 do-file 未取得，另核方法作者示例。",
+      "source_doi": "10.1257/aer.20211218",
+      "validation": "六种Stata命令在300单位×15期模拟面板实际执行，dCDH使用199次单位聚类bootstrap。共同表61行（59条估计/检验、2条归一化参考）；jwdid实际提取k=0..5和完整6×6协方差，不补造处理前系数。三种绘图输入一致，event_plot区间最大差小于1.35e-7；主agent视检通过。Python只重绘Stata导出表；不同pre-period含义和estimand不完全相同。全新Stata安装未重建；保留依赖和已测环境。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "A03",
+      "canonical_name": "event_study_staggered_estimator_comparison"
+    },
+    {
+      "id": "threshold_binned_regression_panels",
+      "name_zh": "回归折点：多结果分箱与连续拟合",
+      "category": "reduced_form",
+      "legacy_storage_category": "estimation/threshold",
+      "tags": [
+        "RKD",
+        "Threshold",
+        "Binned scatter"
+      ],
+      "source_view_id": "A06",
+      "merged_target": "threshold_binned_regression_panels",
+      "numeric_origin": "已核对Landais Figure7图注：日工资850瑞典克朗处的回归折点，包含替代率规则与参保选择、风险面板。保留斜率改变和水平跳跃的区别；上游残差化与识别不由绘图代替。",
+      "description": "在同一政策阈值两侧展示多种结果的分箱均值，用连续分段线性拟合显示斜率变化。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/A06_rkd_binned_outcomes/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/A06_rkd_binned_outcomes/plot.py"
+        ],
+        "stata": [
+          "scripts/A06_rkd_binned_outcomes/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/A06_rkd_binned_outcomes/demo.csv"
+      ],
+      "schema": "scripts/A06_rkd_binned_outcomes/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Risk-Based Selection in Unemployment Insurance: Evidence and Implications (2021)",
+      "source_figure": "Figure 7",
+      "source_authors": "Camille Landais; Arash Nekoei; Peter Nilsson; David Seim; Johannes Spinnewijn",
+      "source_pdf_page": 30,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1257/aer.20180820",
+      "validation": "17,600行模拟数据、96个分箱和4个连续折点拟合，Python/Stata中英文均实际执行并视检，CSV数值最大差4.60e-9以内。两语言一致接受各面板左侧24行/右侧48行的非对称样本，少一行按预期拒绝；另检查端点、阈值右侧归属、满秩和显示范围。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "A06",
+      "canonical_name": "rkd_binned_outcomes"
+    },
+    {
+      "id": "impulse_response_matrix_nested_bands",
+      "name_zh": "含双层后验区间的脉冲响应矩阵",
+      "category": "structural_form",
+      "legacy_storage_category": "estimation/dynamic_response",
+      "tags": [
+        "IRF",
+        "Structural model",
+        "Posterior bands",
+        "SVAR",
+        "Line plot"
+      ],
+      "source_view_id": "B03",
+      "merged_target": "structural_impulse_response",
+      "numeric_origin": "带 t 分布误差的 SVAR 正交结构冲击及 68%/90% 后验响应区间；不是任意回归动态系数。",
+      "description": "按响应变量和冲击排列动态中位数及68%/90%后验区间，同一响应行共用纵轴尺度。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/B03_irf_nested_confidence_bands/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/B03_irf_nested_confidence_bands/plot.py"
+        ],
+        "stata": [
+          "scripts/B03_irf_nested_confidence_bands/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/B03_irf_nested_confidence_bands/demo.csv"
+      ],
+      "schema": "scripts/B03_irf_nested_confidence_bands/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Feedbacks, Financial Markets, and Economic Activity (2021)",
+      "source_figure": "Figure 1",
+      "source_authors": "Markus Brunnermeier; Darius Palia; Karthik A. Sastry; Christopher A. Sims",
+      "source_pdf_page": 14,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1257/aer.20180733",
+      "validation": "525行模拟后验汇总、25面板。Python/Stata中英文均实际执行并视检，数值最大差为0，外层区间排除零的行数均为331。48个月终点的425行变体数值亦一致，Stata刻度0/24/48已视检；多余未知单元按预期返回r(9)。另检查完整矩阵、共同预测期网格、区间嵌套和逐行尺度边界；不重估VAR或后验。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "B03",
+      "canonical_name": "irf_nested_confidence_bands"
+    },
+    {
+      "id": "merit_order_cost_curves",
+      "name_zh": "按成本排序的调度边际成本曲线",
+      "category": "structural_form",
+      "legacy_storage_category": "estimation/policy_frontier",
+      "tags": [
+        "Dispatch",
+        "Marginal costs",
+        "Counterfactual",
+        "Optimization",
+        "Calibrated inputs",
+        "Step plot"
+      ],
+      "source_view_id": "B06",
+      "merged_target": "merit_order_cost_curves",
+      "numeric_origin": "机组热耗/燃料价格构造边际成本、容量数据和核电成本等假设，解最小成本调度并改变空间约束。属于机制/优化模拟，不声称是偏好参数估计。",
+      "description": "按边际成本排序，阶梯宽度使用实际调度 MWh；比较满足相同总需求的两套已求解场景。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/B06_cost_merit_order_curves/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/B06_cost_merit_order_curves/plot.py"
+        ],
+        "stata": [
+          "scripts/B06_cost_merit_order_curves/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/B06_cost_merit_order_curves/demo_dispatch.csv"
+      ],
+      "schema": "scripts/B06_cost_merit_order_curves/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Power Flows: Transmission Lines, Allocative Efficiency, and Corporate Profits (2025)",
+      "source_figure": "Figure 1",
+      "source_authors": "Catherine Hausman",
+      "source_pdf_page": 10,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1257/aer.20240276",
+      "validation": "已核零边际成本、共同需求、正调度量以及每个阶梯端点的 Python/Stata 一致性；不把容量当宽度，不在绘图阶段求解调度优化。 两语言实跑和主 agent 成图视检已通过；示例不等于原论文数值复现。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "B06",
+      "canonical_name": "cost_merit_order_curves"
+    },
+    {
+      "id": "policy_counterfactual_contours",
+      "name_zh": "二维政策反事实与等结果线",
+      "category": "structural_form",
+      "legacy_storage_category": "estimation/policy_contours",
+      "tags": [
+        "Counterfactual",
+        "Policy grid",
+        "Contours",
+        "Mixed structural/reduced-form inputs",
+        "Contour plot"
+      ],
+      "source_view_id": "B05",
+      "merged_target": "policy_counterfactual_contours",
+      "numeric_origin": "最优重新提交索赔的 Bellman 决策模型与估计成本，再结合 Medicaid acceptance 的估计效应；属于结构与约化式混合输入的政策模拟。",
+      "description": "在费用和拒付概率的政策网格上，叠加接受率不变线与每次就诊支付变化的等值线。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/B05_counterfactual_policy_contours/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/B05_counterfactual_policy_contours/plot.py"
+        ],
+        "stata": [
+          "scripts/B05_counterfactual_policy_contours/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/B05_counterfactual_policy_contours/demo.csv"
+      ],
+      "schema": "scripts/B05_counterfactual_policy_contours/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "A Denial a Day Keeps the Doctor Away (2024)",
+      "source_figure": "Figure VIII",
+      "source_authors": "Abe Dunn; Joshua D. Gottlieb; Adam Hale Shapiro; Daniel J. Sonnenstuhl; Pietro Tebaldi",
+      "source_pdf_page": 39,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1093/qje/qjad035",
+      "validation": "651格完整网格，两语言输入数值一致；独立提取轮廓与解析曲线的端点残差最大4.08e-5。检查九个支付水平完整且顺序正确、接受率0线过原点；Stata水平等值线fixture保留全部水平。两语言实际拒绝缺网格和未归一化原点。默认中英文及标题版本已运行视检，修复虚线漏段和Python标签碰撞。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "B05",
+      "canonical_name": "counterfactual_policy_contours"
+    },
+    {
+      "id": "quantile_group_boxplot",
+      "name_zh": "分位组箱线图与边界观测",
+      "category": "structural_form",
+      "legacy_storage_category": "estimation/distribution",
+      "tags": [
+        "Estimated probabilities",
+        "Quantile groups",
+        "Boxplot",
+        "Heterogeneity"
+      ],
+      "source_view_id": "B02",
+      "merged_target": "quantile_group_boxplot",
+      "numeric_origin": "同一行为模型 V 估计的个体注意概率，按潜在 acuity 十分位展示；不是原始观测概率的普通箱线图。",
+      "description": "按已定义的分位组比较个体估计值分布，明确四分位插值、箱须与异常值规则。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/B02_distribution_estimated_probabilities_boxplot/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/B02_distribution_estimated_probabilities_boxplot/plot.py"
+        ],
+        "stata": [
+          "scripts/B02_distribution_estimated_probabilities_boxplot/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/B02_distribution_estimated_probabilities_boxplot/demo.csv"
+      ],
+      "schema": "scripts/B02_distribution_estimated_probabilities_boxplot/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Heiss et al., Inattention and Switching Costs as Sources of Inertia in Medicare Part D (2021)",
+      "source_figure": "Figure 1",
+      "source_authors": "Florian Heiss; Daniel McFadden; Joachim Winter; Amelie Wuppermann; Bo Zhou",
+      "source_pdf_page": 29,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1257/aer.20170471",
+      "validation": "Python/Stata 中英文 PNG/PDF 实际运行并视检。700 行含并列值的模拟数据、10 组、21 个箱须外观测；两语言组计数、箱须和异常值数量一致，四分位数最大差约 1.11e-16。Python 已另验证新建嵌套输出目录，0/1 边界点可完整显示。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "B02",
+      "canonical_name": "distribution_estimated_probabilities_boxplot"
+    },
+    {
+      "id": "scenario_cdf_panels",
+      "name_zh": "情景与分组累计分布比较",
+      "category": "structural_form",
+      "legacy_storage_category": "estimation/counterfactual_distribution",
+      "tags": [
+        "Counterfactual",
+        "CDF",
+        "Scenario comparison",
+        "Line plot"
+      ],
+      "source_view_id": "B01",
+      "merged_target": "scenario_cdf_panels",
+      "numeric_origin": "两阶段注意/离散计划选择模型 V，改变注意概率和 switching costs，模拟 overspending 改变的 CDF。",
+      "description": "按情景分面，以不同线型比较组别的累计分布；明确区分横轴结果变量、CDF 与模型情景假设。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/B01_counterfactual_cdf_panels/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/B01_counterfactual_cdf_panels/plot.py"
+        ],
+        "stata": [
+          "scripts/B01_counterfactual_cdf_panels/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/B01_counterfactual_cdf_panels/demo.csv"
+      ],
+      "schema": "scripts/B01_counterfactual_cdf_panels/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Heiss et al., Inattention and Switching Costs as Sources of Inertia in Medicare Part D (2021)",
+      "source_figure": "Figure 10",
+      "source_authors": "Florian Heiss; Daniel McFadden; Joachim Winter; Amelie Wuppermann; Bo Zhou",
+      "source_pdf_page": 40,
+      "source_status": "页图与 PDF 图注已核对；原图为 Model V 反事实减少超额支出的经验累计分布，非注意力概率",
+      "source_doi": "10.1257/aer.20170471",
+      "validation": "Python 3.12 与 Stata 19 的中英文四张 PNG 均实际执行并视检，另导出 PDF。共同 CSV 有 966 行，即 2 面板×3 组×161 个横轴点；每条曲线检查唯一横轴、CDF 范围及单调性。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "B01",
+      "canonical_name": "counterfactual_cdf_panels"
+    },
+    {
+      "id": "set_identified_impulse_response_bounds",
+      "name_zh": "集合识别的动态响应边界与代表路径",
+      "category": "structural_form",
+      "legacy_storage_category": "estimation/dynamic_response",
+      "tags": [
+        "IRF",
+        "Partial identification",
+        "Identified bounds",
+        "SVAR",
+        "Line plot"
+      ],
+      "source_view_id": "B04",
+      "merged_target": "structural_impulse_response",
+      "numeric_origin": "事件限制 panel VAR 从约化式协方差中筛选结构冲击响应矩阵，画 admissible set 边界；不是置信带。",
+      "description": "分别画出各期限的可容许响应上下界、逐期中位数和给定的maxG代表路径。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/B04_irf_set_identified_bounds/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/B04_irf_set_identified_bounds/plot.py"
+        ],
+        "stata": [
+          "scripts/B04_irf_set_identified_bounds/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/B04_irf_set_identified_bounds/demo.csv"
+      ],
+      "schema": "scripts/B04_irf_set_identified_bounds/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Using Disasters to Estimate the Impact of Uncertainty (2024)",
+      "source_figure": "Figure 3",
+      "source_authors": "Scott R. Baker; Nicholas Bloom; Stephen J. Terry",
+      "source_pdf_page": 20,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1093/restud/rdad036",
+      "validation": "15个期限，中英文两版本的Python与Stata输出数值完全一致。两语言实际拒绝超出可容许边界的中位数及乱序期限。默认中英文和标题版本运行通过，默认图经视检；修正横轴以明确第1期为冲击当期。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "B04",
+      "canonical_name": "irf_set_identified_bounds"
+    },
+    {
+      "id": "bilateral_flow_sankey",
+      "name_zh": "双边金额流向与归属的桑基图",
+      "category": "summary",
+      "legacy_storage_category": "descriptive/flows",
+      "tags": [
+        "Bilateral attribution",
+        "Sankey",
+        "Financial stocks"
+      ],
+      "source_view_id": "C15",
+      "merged_target": "bilateral_flow_sankey",
+      "numeric_origin": "守恒的双边资金流带图：带宽对应同一数量单位，节点总量与全部边流量逐一核对；展示居住地到最终国籍重新分类，不能把未匹配余额隐藏。",
+      "description": "用同一数量尺度连接两侧类别，流带按金额分配高度，节点总额与相连流带逐一核对。",
+      "languages": [
+        "python"
+      ],
+      "recipe": "scripts/C15_flow_bilateral_sankey/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/C15_flow_bilateral_sankey/plot.py"
+        ]
+      },
+      "example_inputs": [
+        "scripts/C15_flow_bilateral_sankey/figures/demo_flows.csv",
+        "scripts/C15_flow_bilateral_sankey/figures/demo_nodes.csv"
+      ],
+      "schema": "scripts/C15_flow_bilateral_sankey/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Redrawing the Map of Global Capital Flows: The Role of Cross-Border Financing and Tax Havens (2021)",
+      "source_figure": "Figure II",
+      "source_authors": "Antonio Coppola; Matteo Maggiori; Brent Neiman; Jesse Schreger",
+      "source_pdf_page": 21,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1093/qje/qjab014",
+      "validation": "30条模拟双边记录含13条零流，11个节点逐一守恒，两侧总额均900亿美元。负金额、重复边、未知端点与节点金额不匹配均拒绝。允许总额为零的节点；中英文PNG/PDF实际执行并视检，原图和图注核对通过。 主验收修复可选标题顶部裁切，中英文标题版重新执行，代表图视检通过。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "C15",
+      "canonical_name": "flow_bilateral_sankey"
+    },
+    {
+      "id": "discrete_duration_hazard_panels",
+      "name_zh": "离散持续时间的条件风险率面板",
+      "category": "summary",
+      "legacy_storage_category": "descriptive/time_series",
+      "tags": [
+        "Duration",
+        "Hazard",
+        "Risk sets"
+      ],
+      "source_view_id": "C13",
+      "merged_target": "line_plot",
+      "numeric_origin": "按持续月份比较条件风险率，必须输入事件数与当期风险集；原始频数或累计发生率不是 hazard。",
+      "description": "以事件数除以当期风险集的离散 hazard；保留缺失月份间隔，默认用条形表达期间条件概率。",
+      "languages": [
+        "python"
+      ],
+      "recipe": "scripts/C13_survival_duration_hazard/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/C13_survival_duration_hazard/plot.py"
+        ]
+      },
+      "example_inputs": [
+        "scripts/C13_survival_duration_hazard/f38_hazard.csv"
+      ],
+      "schema": "scripts/C13_survival_duration_hazard/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Aggregate Nominal Wage Adjustments: New Evidence from Administrative Payroll Data (2021)",
+      "source_figure": "3",
+      "source_authors": "John Grigsby; Erik Hurst; Ahu Yildirmaz",
+      "source_pdf_page": 21,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1257/aer.20190318",
+      "validation": "Python 实际执行并由主 agent 视检；共享适配器通过手算风险集、同刻失败/删失、Greenwood、全失败、缺失月份、非法输入检查。独立便携目录重跑 rc=0；不声称复现原论文数值。 续作共享折线／阶梯几何后，从不同工作目录重跑，默认导出坐标与原验收结果在1e-10容差内一致；统计适配保留，F38条形不变。 另修复 argparse 帮助文本百分号导致 --help 失败的问题；仅文字改变，帮助命令已执行通过。",
+      "shared_resources": [
+        "scripts/discrete_duration_hazard_panels/../_shared/line_geometry.py"
+      ],
+      "command_variants": [],
+      "display_id": "C13",
+      "canonical_name": "survival_duration_hazard"
+    },
+    {
+      "id": "distribution_overlay_with_thresholds",
+      "name_zh": "加权分布叠图、阈值与区间份额",
+      "category": "summary",
+      "legacy_storage_category": "descriptive/distribution",
+      "tags": [
+        "Weighted distribution",
+        "Threshold shares",
+        "Histogram"
+      ],
+      "source_view_id": "C02",
+      "merged_target": "distribution_overlay_with_thresholds",
+      "numeric_origin": "按年份比较收入分布，标注共同或年份阈值及其下方质量；保留密度归一化和权重定义。",
+      "description": "比较多组分布，在明确阈值以下填充完整分箱，并标注使用全样本权重分母计算的份额。",
+      "languages": [
+        "python"
+      ],
+      "recipe": "scripts/C02_distribution_threshold_overlay/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/C02_distribution_threshold_overlay/plot.py"
+        ]
+      },
+      "example_inputs": [
+        "scripts/C02_distribution_threshold_overlay/demo.csv"
+      ],
+      "schema": "scripts/C02_distribution_threshold_overlay/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Evaluating the Success of the War on Poverty since 1963 Using an Absolute Full-Income Poverty Measure (2024)",
+      "source_figure": "Figure 10",
+      "source_authors": "Richard V. Burkhauser; Kevin Corinth; James Elwell; Jeff Larrimore",
+      "source_pdf_page": 37,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1086/725705",
+      "validation": "Python 中英文 PNG/PDF 实际执行并视检。14,000 条模拟观测；每组每个阈值的加权份额与完整分箱质量核对一致。另测试恰等于阈值及横轴上界的观测、非零左界拒绝和新建嵌套输出目录。右侧被截去的 597 条后期观测仍在分母内，可见质量约 91.4856%，不重新归一化成 100%。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "C02",
+      "canonical_name": "distribution_threshold_overlay"
+    },
+    {
+      "id": "geographic_choropleth",
+      "name_zh": "地理分区着色图",
+      "category": "summary",
+      "legacy_storage_category": "descriptive/geography",
+      "tags": [
+        "Geography",
+        "Choropleth",
+        "Spatial coverage"
+      ],
+      "source_view_id": "C17",
+      "merged_target": "geographic_choropleth",
+      "numeric_origin": "原图呈现地理分区的医疗巡诊记录等观测信息。通用地图接口已用真实2016年喀麦隆行政区及模拟值验证；演示行政区不是论文历史族群边界，原文边界和数值仍未取得。",
+      "description": "真实现代行政区 GeoJSON 与显式区域ID数值匹配，使用共同分箱并区分无数据；演示值为模拟。",
+      "languages": [
+        "python"
+      ],
+      "recipe": "scripts/C17_map_geographic_choropleth/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/C17_map_geographic_choropleth/plot.py"
+        ]
+      },
+      "example_inputs": [
+        "scripts/C17_map_geographic_choropleth/demo_region_values.csv",
+        "scripts/C17_map_geographic_choropleth/api_metadata.json",
+        "scripts/C17_map_geographic_choropleth/retrieval.json"
+      ],
+      "schema": "scripts/C17_map_geographic_choropleth/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "real_modern_geometry_synthetic_region_values_drawing_demonstration",
+      "source_paper": "The Legacy of Colonial Medicine in Central Africa (2021)",
+      "source_figure": "Figure 2",
+      "source_authors": "Sara Lowes; Eduardo Montero",
+      "source_pdf_page": 12,
+      "source_status": "论文图注与页图已核对；通用画法演示使用另一套真实现代行政区和模拟值，不复现论文历史边界或数值。边界来源与许可随模板保存。",
+      "source_doi": "10.1257/aer.20180284",
+      "validation": "已核10个真实区域、唯一ID匹配、未知/重复ID拒绝、缺失值斜线及多边形孔洞像素测试。喀麦隆2016行政区与论文历史族群边界不同；模拟值不复现论文结果。本地等距圆柱近似仅供显示，不用于距离/面积推断，范围限制见schema。 Python已实跑，主agent已视检；绘图示例不等于原论文数值复现。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "C17",
+      "canonical_name": "map_geographic_choropleth"
+    },
+    {
+      "id": "grouped_category_bars",
+      "name_zh": "分类比例的双组并列条形图",
+      "category": "summary",
+      "legacy_storage_category": "descriptive/group_comparison",
+      "tags": [
+        "Group comparison",
+        "Categorical shares",
+        "Bars"
+      ],
+      "source_view_id": "C04",
+      "merged_target": "grouped_category_bars",
+      "numeric_origin": "基础分组条形图代表：明确类别顺序、组别、比例分母和零基线，长标签用横向并列条形；原图是按中奖金额与时点分组的入学率描述，不由柱高差异直接推断因果。",
+      "description": "按预设类别顺序比较两组比例，使用各单元格的分子和分母、零基线及黑白填充。",
+      "languages": [
+        "python"
+      ],
+      "recipe": "scripts/C04_bar_grouped_categories/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/C04_bar_grouped_categories/plot.py"
+        ]
+      },
+      "example_inputs": [
+        "scripts/C04_bar_grouped_categories/demo.csv"
+      ],
+      "schema": "scripts/C04_bar_grouped_categories/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Parental Resources and College Attendance: Evidence from Lottery Wins (2021)",
+      "source_figure": "Figure 1",
+      "source_authors": "George Bulman; Robert Fairlie; Sarena Goodman; Adam Isen",
+      "source_pdf_page": 13,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1257/aer.20171272",
+      "validation": "12个模拟单元格、6个类别、2组。中英文及标题开启模式均实际执行、视检；标题图例重叠已修正。比例精确等于各格分子/分母；分子超分母、零分母、重复格、非整数计数及第三组配置均按预期拒绝。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "C04",
+      "canonical_name": "bar_grouped_categories"
+    },
+    {
+      "id": "historical_policy_timeline",
+      "name_zh": "历史事件标注的时间趋势（变体）",
+      "category": "summary",
+      "legacy_storage_category": "descriptive/time_series",
+      "tags": [
+        "Time series",
+        "Historical annotations",
+        "Family variant"
+      ],
+      "source_view_id": "C12",
+      "merged_target": "line_plot",
+      "numeric_origin": "QJE Figure III 是带历史事件标注的多序列真实工资趋势，归为 multi_series_time_trend 的待开发注释变体；AER日历图另列 monitoring_calendar，二者不混称同一模板。",
+      "description": "带真实日期间距、明确缺失断线和历史事件标注的趋势；共享 line family 绘图入口。",
+      "languages": [
+        "python"
+      ],
+      "recipe": "scripts/C12_line_historical_annotations/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/C12_line_historical_annotations/plot.py"
+        ]
+      },
+      "example_inputs": [
+        "scripts/C12_line_historical_annotations/f37_trend.csv",
+        "scripts/C12_line_historical_annotations/f37_events.csv"
+      ],
+      "schema": "scripts/C12_line_historical_annotations/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Minimum Wages and Racial Inequality (2021)",
+      "source_figure": "III",
+      "source_authors": "Ellora Derenoncourt; Claire Montialoux",
+      "source_pdf_page": 14,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1093/qje/qjaa031",
+      "validation": "Python 实际执行并由主 agent 视检；共享适配器通过手算风险集、同刻失败/删失、Greenwood、全失败、缺失月份、非法输入检查。独立便携目录重跑 rc=0；不声称复现原论文数值。 续作共享折线／阶梯几何后，从不同工作目录重跑，默认导出坐标与原验收结果在1e-10容差内一致；统计适配保留，F38条形不变。 另修复 argparse 帮助文本百分号导致 --help 失败的问题；仅文字改变，帮助命令已执行通过。",
+      "shared_resources": [
+        "scripts/historical_policy_timeline/../_shared/line_geometry.py"
+      ],
+      "command_variants": [],
+      "display_id": "C12",
+      "canonical_name": "line_historical_annotations"
+    },
+    {
+      "id": "horizon_density_ridgeline",
+      "name_zh": "跨期限分布的双面板山脊密度图",
+      "category": "summary",
+      "legacy_storage_category": "descriptive/distribution",
+      "tags": [
+        "Density",
+        "Horizons",
+        "Ridgeline"
+      ],
+      "source_view_id": "C07",
+      "merged_target": "horizon_density_ridgeline",
+      "numeric_origin": "不同毫秒/秒窗口上的价格影响和利润KDE脊线。原文剔除恰好为零的质量；模板应显式选择保留/排除零并输出剔除比例，统一带宽规则、网格和密度高度尺度，不把每条峰值任意归一。纵向位置是类别排列而非真实时间轴。",
+      "description": "以逐期限密度曲线比较两个指标的分布，统一带宽与高度尺度，并单独记录零值和缺失分母。",
+      "languages": [
+        "python"
+      ],
+      "recipe": "scripts/C07_distribution_horizon_ridgeline/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/C07_distribution_horizon_ridgeline/plot.py"
+        ]
+      },
+      "example_inputs": [
+        "scripts/C07_distribution_horizon_ridgeline/outputs/synthetic_input.csv"
+      ],
+      "schema": "scripts/C07_distribution_horizon_ridgeline/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Quantifying the High-Frequency Trading ‘Arms Race’ (2022)",
+      "source_figure": "Figure V, panels A and B",
+      "source_authors": "Matteo Aquilina; Eric Budish; Peter O’Neill",
+      "source_pdf_page": 39,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1093/qje/qjab032",
+      "validation": "6000行模拟观测形成2指标×5期限的10条曲线；共同Gaussian带宽0.55基点，每面板共同401点网格，全图同一高度尺度。检查零值剔除/纳入、缺失分母及全零组拒绝；中英文默认和标题PNG/PDF已运行并视检。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "C07",
+      "canonical_name": "distribution_horizon_ridgeline"
+    },
+    {
+      "id": "joint_frequency_bubble_panels",
+      "name_zh": "跨面板统一面积尺度的联合频数气泡图",
+      "category": "summary",
+      "legacy_storage_category": "estimation/distribution",
+      "tags": [
+        "Joint frequencies",
+        "Bubble area",
+        "Common scale"
+      ],
+      "source_view_id": "C06",
+      "merged_target": "joint_frequency_bubble_panels",
+      "numeric_origin": "个体实验回答的两个信念维度组成联合频数，气泡面积表示人数；图中的理论基准点不把观测频数变成结构估计。",
+      "description": "以二维取值对的频数控制气泡面积，跨轮次共用同一尺度，另外标出给定理论基准点。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/C06_bubble_joint_frequencies/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/C06_bubble_joint_frequencies/plot.py"
+        ],
+        "stata": [
+          "scripts/C06_bubble_joint_frequencies/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/C06_bubble_joint_frequencies/demo.csv"
+      ],
+      "schema": "scripts/C06_bubble_joint_frequencies/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Mental Models and Learning: The Case of Base-Rate Neglect (2024)",
+      "source_figure": "Figure 3: Density Plots for Primitives",
+      "source_authors": "Ignacio Esponda; Emanuel Vespa; Sevgi Yuksel",
+      "source_pdf_page": 13,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1257/aer.20201004",
+      "validation": "29行模拟输入，跨面板最大频数60，两种实现面积比最大数值差5.56e-17，2条零频数保留而不绘制；缺失频数在两语言实际被拒绝。中英文及标题版实际运行，默认成图经视检；源Figure 3及图注核对通过。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "C06",
+      "canonical_name": "bubble_joint_frequencies"
+    },
+    {
+      "id": "kaplan_meier_survival_panels",
+      "name_zh": "Kaplan–Meier 生存曲线面板",
+      "category": "summary",
+      "legacy_storage_category": "descriptive/time_series",
+      "tags": [
+        "Survival",
+        "Kaplan–Meier",
+        "Censoring"
+      ],
+      "source_view_id": "C14",
+      "merged_target": "line_plot",
+      "numeric_origin": "原始任职 spell 的分组生存曲线：包括 referral 分组和随机处理组比较，图注按入职日显示存活；不把邻近正文的控制变量 hazard 回归自动当成该图的输入。可加 RCT context 标签，若另画回归调整后的处理效应应走 Reduced-form。",
+      "description": "从持续时间与右删失状态计算 Kaplan–Meier 阶梯生存曲线，可显示点态 Greenwood 正态区间。",
+      "languages": [
+        "python"
+      ],
+      "recipe": "scripts/C14_survival_kaplan_meier/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/C14_survival_kaplan_meier/plot.py"
+        ]
+      },
+      "example_inputs": [
+        "scripts/C14_survival_kaplan_meier/f39_spells.csv"
+      ],
+      "schema": "scripts/C14_survival_kaplan_meier/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "What Do Employee Referral Programs Do? Measuring the Direct and Overall Effects of a Management Practice (2023)",
+      "source_figure": "3",
+      "source_authors": "Guido Friebel; Matthias Heinz; Mitchell Hoffman; Nick Zubanov",
+      "source_pdf_page": 20,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1086/721735",
+      "validation": "Python 实际执行并由主 agent 视检；共享适配器通过手算风险集、同刻失败/删失、Greenwood、全失败、缺失月份、非法输入检查。独立便携目录重跑 rc=0；不声称复现原论文数值。 续作共享折线／阶梯几何后，从不同工作目录重跑，默认导出坐标与原验收结果在1e-10容差内一致；统计适配保留，F38条形不变。 另修复 argparse 帮助文本百分号导致 --help 失败的问题；仅文字改变，帮助命令已执行通过。",
+      "shared_resources": [
+        "scripts/kaplan_meier_survival_panels/../_shared/line_geometry.py"
+      ],
+      "command_variants": [],
+      "display_id": "C14",
+      "canonical_name": "survival_kaplan_meier"
+    },
+    {
+      "id": "log_density_tail_comparison",
+      "name_zh": "对数密度与尾部斜率比较",
+      "category": "summary",
+      "legacy_storage_category": "descriptive/distribution",
+      "tags": [
+        "Log density",
+        "Tail slopes",
+        "Normal benchmark"
+      ],
+      "source_view_id": "C08",
+      "merged_target": "line_plot",
+      "numeric_origin": "原图与 PDF p11 已核对：自然对数密度与正态基准、左右明确区间上的 log-density 直线。读取正密度或显式 log-density 输入；零密度不可强加 epsilon。原图显示斜率 +1.40/-2.18，文中尾指数0.40/1.18，二者不是同一数字；模板仅报告拟合斜率，不能自动把它称为 Pareto 指数。",
+      "description": "给定密度或对数密度，展示正态基准与显式区间内的左右尾部斜率。",
+      "languages": [
+        "python"
+      ],
+      "recipe": "scripts/C08_distribution_log_density_tails/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/C08_distribution_log_density_tails/plot.py"
+        ]
+      },
+      "example_inputs": [
+        "scripts/C08_distribution_log_density_tails/demo_density.csv"
+      ],
+      "schema": "scripts/C08_distribution_log_density_tails/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "What Do Data on Millions of U.S. Workers Reveal About Lifecycle Earnings Dynamics? (2021)",
+      "source_figure": "Figure 6",
+      "source_authors": "Fatih Guvenen; Fatih Karahan; Serdar Ozkan; Jae Song",
+      "source_pdf_page": 11,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.3982/ECTA14603",
+      "validation": "已核有限网格示例密度积分为1、左右精确斜率+1.40/-2.18及零密度/重复x拒绝。对数密度斜率不自动等于Pareto指数；用户输入不自动归一化，正态基准仅显示均值±4SD。 Python已实跑，主agent已视检；绘图示例不等于原论文数值复现。 续作共享折线／阶梯几何后，从不同工作目录重跑，默认导出坐标与原验收结果在1e-10容差内一致；统计适配保留，F38条形不变。",
+      "shared_resources": [
+        "scripts/log_density_tail_comparison/../_shared/line_geometry.py"
+      ],
+      "command_variants": [],
+      "display_id": "C08",
+      "canonical_name": "distribution_log_density_tails"
+    },
+    {
+      "id": "lorenz_concentration_curves",
+      "name_zh": "集中曲线与洛伦兹曲线",
+      "category": "summary",
+      "legacy_storage_category": "descriptive/distribution",
+      "tags": [
+        "Lorenz curve",
+        "Concentration curve",
+        "Inequality"
+      ],
+      "source_view_id": "C03",
+      "merged_target": "line_plot",
+      "numeric_origin": "人口排序下的累计资源份额与平等线，分母/排序变量与普通 CDF 不同。",
+      "description": "展示累计人口权重与累计资源份额，区分共同排序变量的集中曲线和按资源自身排序的洛伦兹曲线。",
+      "languages": [
+        "python"
+      ],
+      "recipe": "scripts/C03_distribution_lorenz_concentration/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/C03_distribution_lorenz_concentration/plot.py"
+        ]
+      },
+      "example_inputs": [
+        "scripts/C03_distribution_lorenz_concentration/demo.csv"
+      ],
+      "schema": "scripts/C03_distribution_lorenz_concentration/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Curbing Leakage in Public Programs: Evidence from India's Direct Benefit Transfer Policy (2024)",
+      "source_figure": "Figure 1",
+      "source_authors": "Prabhat Barnwal",
+      "source_pdf_page": 7,
+      "source_status": "原始页图与 PDF 图注已核对；参考页上半部 Figure 1 对应本模板，下半部另有 Figure 2",
+      "source_doi": "10.1257/aer.20161864",
+      "validation": "900 条模拟家庭观测。Python 中英文集中曲线及英文洛伦兹变体均实际执行、视检；加权起终点、精确并列排序聚合和两种排序的差异通过测试。另运行开启标题的洛伦兹变体，确认标题与模式一致。 续作共享折线／阶梯几何后，从不同工作目录重跑，默认导出坐标与原验收结果在1e-10容差内一致；统计适配保留，F38条形不变。",
+      "shared_resources": [
+        "scripts/lorenz_concentration_curves/../_shared/line_geometry.py"
+      ],
+      "command_variants": [],
+      "display_id": "C03",
+      "canonical_name": "distribution_lorenz_concentration"
+    },
+    {
+      "id": "multi_series_time_trend",
+      "name_zh": "多序列时间趋势与基期指数",
+      "category": "summary",
+      "legacy_storage_category": "descriptive/time_series",
+      "tags": [
+        "Time series",
+        "Trends",
+        "Base-year index"
+      ],
+      "source_view_id": "C10",
+      "merged_target": "line_plot",
+      "numeric_origin": "已有模拟演示，正修正短月度序列的日期刻度与留白；基础年度/月份折线保留真实日期间距、缺失期及显式基期归一化。",
+      "description": "按真实年度或月度间距展示多条趋势，保留缺失期断线，并可按显式共同日期分别归一为100。",
+      "languages": [
+        "python"
+      ],
+      "recipe": "scripts/C10_line_multi_series_trend/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/C10_line_multi_series_trend/plot.py"
+        ]
+      },
+      "example_inputs": [
+        "scripts/C10_line_multi_series_trend/demo.csv",
+        "scripts/C10_line_multi_series_trend/qa_monthly.csv",
+        "scripts/C10_line_multi_series_trend/custom_config.json",
+        "scripts/C10_line_multi_series_trend/custom_demo.csv"
+      ],
+      "schema": "scripts/C10_line_multi_series_trend/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Knowledge Spillovers and Corporate Investment in Scientific Research (2021)",
+      "source_figure": "Figure 2",
+      "source_authors": "Ashish Arora; Sharon Belenzon; Lia Sheer",
+      "source_pdf_page": 5,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1257/aer.20171742",
+      "validation": "68条模拟年度观测，补齐内部缺失期后72行；两条1980基期均为100。年度中英文、原单位模式和三/六月短序列均实际运行；日期刻度与右侧留白修正后视检通过。月份缺口与缺失基期拒绝检查通过。 续作共享折线／阶梯几何后，从不同工作目录重跑，默认导出坐标与原验收结果在1e-10容差内一致；统计适配保留，F38条形不变。 已执行外部系列/阶段ID、中文标签及可选标题示例，非法值或阶段/年份顺序输入会拒绝。",
+      "shared_resources": [
+        "scripts/multi_series_time_trend/../_shared/line_geometry.py"
+      ],
+      "command_variants": [],
+      "display_id": "C10",
+      "canonical_name": "line_multi_series_trend"
+    },
+    {
+      "id": "paired_binary_transition_stacks",
+      "name_zh": "成对二元状态的四类转换堆叠图",
+      "category": "summary",
+      "legacy_storage_category": "descriptive/group_comparison",
+      "tags": [
+        "Paired states",
+        "Transition shares",
+        "Stacked bars"
+      ],
+      "source_view_id": "C05",
+      "merged_target": "paired_binary_transition_stacks",
+      "numeric_origin": "配对二元状态的四类联合分布：两次均为1、1转0、0转1、两次均为0，按任务画100%堆叠柱。核心选描述性柱层，不含原图底部p值与检验表，不声称完整复制整张结果图。以匹配个体为共同分母，条件转移率另用起始状态人数作分母；不能由两个独立横截面边际比例恢复转移。缺失配对需明确处理和报告，零分量保留、窄段标签避免挤压。",
+      "description": "从个体配对观测计算四种状态转换，以共同完整配对分母画百分比堆叠柱。",
+      "languages": [
+        "python"
+      ],
+      "recipe": "scripts/C05_bar_binary_transitions/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/C05_bar_binary_transitions/plot.py"
+        ]
+      },
+      "example_inputs": [
+        "scripts/C05_bar_binary_transitions/figures/demo_pairs.csv"
+      ],
+      "schema": "scripts/C05_bar_binary_transitions/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Contingent Thinking and the Sure-Thing Principle: Revisiting Classic Anomalies in the Laboratory (2024)",
+      "source_figure": "Figure 7, upper descriptive bars only",
+      "source_authors": "Ignacio Esponda; Emanuel Vespa",
+      "source_pdf_page": 16,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1093/restud/rdad102",
+      "validation": "5项任务200行模拟观测，194个完整配对、6个未配对剔除；每根柱总和100%。零组成保留，初始状态组为空时条件转换率保持未定义。中英文实际运行并视检；原图及图注已核对。 主验收修复可选标题顶部裁切，中英文标题版重新执行，代表图视检通过。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "C05",
+      "canonical_name": "bar_binary_transitions"
+    },
+    {
+      "id": "reference_perception_dumbbell",
+      "name_zh": "实际值与感知均值的配对哑铃图",
+      "category": "summary",
+      "legacy_storage_category": "descriptive/group_comparison",
+      "tags": [
+        "Beliefs",
+        "Actual–perceived gap",
+        "Dumbbell",
+        "Distribution",
+        "Measurement"
+      ],
+      "source_view_id": "C18",
+      "merged_target": "reference_perception_dumbbell",
+      "numeric_origin": "六国实际移民占比与受访者感知均值/区间的描述性对照，非结构估计。",
+      "description": "逐组连接实际份额与感知均值，仅在感知均值处显示给定区间，保留输入排序。",
+      "languages": [
+        "python"
+      ],
+      "recipe": "scripts/C18_dumbbell_reference_perception/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/C18_dumbbell_reference_perception/plot.py"
+        ]
+      },
+      "example_inputs": [
+        "scripts/C18_dumbbell_reference_perception/figures/demo_values.csv"
+      ],
+      "schema": "scripts/C18_dumbbell_reference_perception/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Immigration and Redistribution (2023)",
+      "source_figure": "Figure 2, left panel only",
+      "source_authors": "Alberto Alesina; Armando Miano; Stefanie Stantcheva",
+      "source_pdf_page": 12,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1093/restud/rdac011",
+      "validation": "6个类别保留输入顺序，模拟值含负差和零差；0–100百分比及完整区间校验通过。支持全部给定区间或全部不提供，拒绝不完整或无效区间。中英文PNG/PDF实际运行并视检，原图和图注已核对。 主验收修复可选标题顶部裁切，中英文标题版重新执行，代表图视检通过。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "C18",
+      "canonical_name": "dumbbell_reference_perception"
+    },
+    {
+      "id": "signed_component_decomposition",
+      "name_zh": "有符号分量堆叠与代数分解",
+      "category": "summary",
+      "legacy_storage_category": "estimation/decomposition",
+      "tags": [
+        "Decomposition",
+        "Signed components",
+        "Accounting identity",
+        "Accounting",
+        "Stacked bars"
+      ],
+      "source_view_id": "C01",
+      "merged_target": "signed_component_decomposition",
+      "numeric_origin": "产品价格和销售份额构造相对价格，劳动生产率部分由相对销售/劳动减价格部分得到；展示数据中的横截面核算关系，不用结构估计参数生成该图。",
+      "description": "沿分箱横轴显示正负分量；正值与负值分别堆叠，并核对分量之和等于总量。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/C01_decomposition_signed_components/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/C01_decomposition_signed_components/plot.py"
+        ],
+        "stata": [
+          "scripts/C01_decomposition_signed_components/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/C01_decomposition_signed_components/demo.csv"
+      ],
+      "schema": "scripts/C01_decomposition_signed_components/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "The Micro-Level Anatomy of the Labor Share Decline (2021)",
+      "source_figure": "Figure VIII",
+      "source_authors": "Matthias Kehrig; Nicolas Vincent",
+      "source_pdf_page": 37,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1093/qje/qjab002",
+      "validation": "20个连续等宽分箱；Python与Stata中英文及标题版本实际运行并视检，数值最大差1.11e-16。另检查价格负而生产率正的反向混合符号，Stata拒绝不满足加总恒等式的输入；Python拒绝分箱间隙、不等宽及超出[0,1]。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "C01",
+      "canonical_name": "decomposition_signed_components"
+    },
+    {
+      "id": "time_encoded_phase_path",
+      "name_zh": "按时间连接的分阶段双变量轨迹",
+      "category": "summary",
+      "legacy_storage_category": "estimation/time_path",
+      "tags": [
+        "Time path",
+        "Phase trajectory",
+        "Trend",
+        "Phase path",
+        "Measurement",
+        "Line plot"
+      ],
+      "source_view_id": "C11",
+      "merged_target": "line_plot",
+      "numeric_origin": "横轴历史人口、纵轴实际工资，按年份连接；虽然后文据此估计劳动需求模型，这张 Figure II 本身展示数据关系。",
+      "description": "以两个已给定变量为坐标，按年份连接并以阶段灰阶和年份标注编码历史路径。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/C11_line_time_encoded_phase_path/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/C11_line_time_encoded_phase_path/plot.py"
+        ],
+        "stata": [
+          "scripts/C11_line_time_encoded_phase_path/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/C11_line_time_encoded_phase_path/demo.csv",
+        "scripts/C11_line_time_encoded_phase_path/custom_config.json",
+        "scripts/C11_line_time_encoded_phase_path/custom_demo.csv"
+      ],
+      "schema": "scripts/C11_line_time_encoded_phase_path/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "When Did Growth Begin? New Estimates of Productivity Growth in England from 1250 to 1870 (2025)",
+      "source_figure": "Figure II: Real Wages and Population",
+      "source_authors": "Paul Bouscasse; Emi Nakamura; Jón Steinsson",
+      "source_pdf_page": 5,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1093/qje/qjae046",
+      "validation": "20个模拟年份，双语言中英文输出数值完全一致，保留横轴逆行。两语言拒绝年份乱序及非连续重复阶段。默认图和标题版本实际运行，默认图经视检；主验收补充了标注年份的整数检查和额外CSV列兼容。 续作共享折线／阶梯几何后，从不同工作目录重跑，默认导出坐标与原验收结果在1e-10容差内一致；统计适配保留，F38条形不变。 已执行外部系列/阶段ID、中文标签及可选标题示例，非法值或阶段/年份顺序输入会拒绝。",
+      "shared_resources": [
+        "scripts/time_encoded_phase_path/../_shared/line_geometry.py"
+      ],
+      "command_variants": [],
+      "display_id": "C11",
+      "canonical_name": "line_time_encoded_phase_path"
+    },
+    {
+      "id": "time_faceted_ternary_sentiment_scatter",
+      "name_zh": "按时间分面的三元主题与情绪散点",
+      "category": "summary",
+      "legacy_storage_category": "descriptive/distribution",
+      "tags": [
+        "Text measures",
+        "Ternary composition",
+        "Time facets",
+        "Composition",
+        "Ternary scatter",
+        "Facets"
+      ],
+      "source_view_id": "C19",
+      "merged_target": "time_faceted_ternary_sentiment_scatter",
+      "numeric_origin": "每点为一本书，主题份额和情绪百分位是文本测度，按年份分面；测量模型不等于经济结构模型。",
+      "description": "每点一本书，三份额组成三元坐标；按时间分面并使用跨面板共同情绪百分位颜色。",
+      "languages": [
+        "python"
+      ],
+      "recipe": "scripts/C19_scatter_ternary_sentiment/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/C19_scatter_ternary_sentiment/plot.py"
+        ]
+      },
+      "example_inputs": [
+        "scripts/C19_scatter_ternary_sentiment/demo_books.csv"
+      ],
+      "schema": "scripts/C19_scatter_ternary_sentiment/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Enlightenment Ideals and Belief in Progress in the Run-up to the Industrial Revolution: A Textual Analysis (2026)",
+      "source_figure": "Figure VI",
+      "source_authors": "Ali Almelhem; Murat Iyigun; Austin Kennedy; Jared Rubin",
+      "source_pdf_page": 30,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1093/qje/qjaf054",
+      "validation": "已核顶点坐标、非负份额及和为1、书目ID、百分位范围和含端点的时间窗口。颜色输入是上游百分位，不在面板内重新排序；最大值用可见浅灰，不用白底白点。 Python已实跑，主agent已视检；绘图示例不等于原论文数值复现。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "C19",
+      "canonical_name": "scatter_ternary_sentiment"
+    },
+    {
+      "id": "typed_edge_community_network",
+      "name_zh": "区分关系类型的群组网络",
+      "category": "summary",
+      "legacy_storage_category": "descriptive/flows",
+      "tags": [
+        "Network",
+        "Edge types",
+        "Communities"
+      ],
+      "source_view_id": "C16",
+      "merged_target": "typed_edge_community_network",
+      "numeric_origin": "按考试群组布置的精英关系网络，边线型区分关系种类、节点填充区分地区。读取节点、类型边和明确分组/坐标；布局位置不是地理距离或因果距离，环形节点排列不自动创建不存在的边。",
+      "description": "考试群组作示意布局，区域以节点填充分辨，明确输入的关系以线型分辨；只绘制列出的边。",
+      "languages": [
+        "python"
+      ],
+      "recipe": "scripts/C16_network_typed_communities/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/C16_network_typed_communities/plot.py"
+        ]
+      },
+      "example_inputs": [
+        "scripts/C16_network_typed_communities/demo_nodes.csv",
+        "scripts/C16_network_typed_communities/demo_edges.csv"
+      ],
+      "schema": "scripts/C16_network_typed_communities/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Web of Power: How Elite Networks Shaped War and Politics in China (2023)",
+      "source_figure": "Figure I",
+      "source_authors": "Ying Bai; Ruixue Jia; Jiaojiao Yang",
+      "source_pdf_page": 14,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1093/qje/qjac041",
+      "validation": "已核节点与端点、类型、方向、重复无向边、显式坐标和仅绘六条给定边；Python 实跑并视检。布局不是地理或因果距离。 所有示例数值及关系为模拟，不是原论文结果复现。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "C16",
+      "canonical_name": "network_typed_communities"
+    },
+    {
+      "id": "weighted_distribution_comparison",
+      "name_zh": "按行业聚合的加权分布比较",
+      "category": "summary",
+      "legacy_storage_category": "descriptive/distribution",
+      "tags": [
+        "Weighted shares",
+        "Industry aggregation",
+        "Distribution"
+      ],
+      "source_view_id": "C09",
+      "merged_target": "weighted_distribution_comparison",
+      "numeric_origin": "PDF Figure I 图注已核对：先在每个3位行业计算企业数份额和增加值份额，再用该年行业增加值权重平均。区别于对全体企业直接加权；同一横轴两个明确分母，采用共同尺度分面/叠图避免任意双轴缩放。",
+      "description": "先在行业内计算企业数份额和增加值份额，再按行业增加值加权；共同分箱和纵轴尺度。",
+      "languages": [
+        "python"
+      ],
+      "recipe": "scripts/C09_distribution_weighted_comparison/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/C09_distribution_weighted_comparison/plot.py"
+        ]
+      },
+      "example_inputs": [
+        "scripts/C09_distribution_weighted_comparison/demo.csv"
+      ],
+      "schema": "scripts/C09_distribution_weighted_comparison/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "The Micro-Level Anatomy of the Labor Share Decline (2021)",
+      "source_figure": "Figure I",
+      "source_authors": "Matthias Kehrig; Nicolas Vincent",
+      "source_pdf_page": 3,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1093/qje/qjab002",
+      "validation": "已核行业内两类分母、行业年度权重、总份额为一、共同箱端点和非法分箱；Python 实跑并视检。 所有示例数值及关系为模拟，不是原论文结果复现。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "C09",
+      "canonical_name": "distribution_weighted_comparison"
+    },
+    {
+      "id": "monitoring_calendar",
+      "name_zh": "制度监测日历",
+      "category": "research_design",
+      "legacy_storage_category": "design/assignment",
+      "tags": [
+        "Monitoring schedule",
+        "Calendar",
+        "Institutional design"
+      ],
+      "source_view_id": "D03",
+      "merged_target": "monitoring_calendar",
+      "numeric_origin": "逐日制度日历：真实年月日与星期位置，显式监测日期列表/周期锚点，不把每3天误解为每周三。区分计划日程与实际执行；低于主要结果图的实施优先级。",
+      "description": "按完整日期与显式周期锚点展示监测计划，独立标记实际观测；保持跨月日程连续。",
+      "languages": [
+        "python"
+      ],
+      "recipe": "scripts/D03_design_monitoring_calendar/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/D03_design_monitoring_calendar/plot.py"
+        ]
+      },
+      "example_inputs": [
+        "scripts/D03_design_monitoring_calendar/demo_observed.csv"
+      ],
+      "schema": "scripts/D03_design_monitoring_calendar/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Unwatched Pollution: The Effect of Intermittent Monitoring on Air Quality (2021)",
+      "source_figure": "Figure 1",
+      "source_authors": "Eric Yongchen Zou",
+      "source_pdf_page": 6,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1257/aer.20181346",
+      "validation": "已核 2024 闰年、日期位置、跨月三日/六日周期和计划/观测分离；Python 实跑并视检。六日边框和三日填色独立编码。 所有示例数值及关系为模拟，不是原论文结果复现。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "D03",
+      "canonical_name": "design_monitoring_calendar"
+    },
+    {
+      "id": "randomization_decision_tree",
+      "name_zh": "选择、随机分配与后续选择的时序树",
+      "category": "research_design",
+      "legacy_storage_category": "design/assignment",
+      "tags": [
+        "RCT",
+        "Random assignment",
+        "Sequential choice"
+      ],
+      "source_view_id": "D02",
+      "merged_target": "randomization_decision_tree",
+      "numeric_origin": "实验设计决策树：区分随机分配节点、受试者选择及后续结果时点；不能将自选择边标为随机化。",
+      "description": "用不同节点区分行为选择与随机分配，沿时间展示实验中的五条观测路径。",
+      "languages": [
+        "python"
+      ],
+      "recipe": "scripts/D02_design_randomization_tree/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/D02_design_randomization_tree/plot.py"
+        ]
+      },
+      "example_inputs": [
+        "scripts/D02_design_randomization_tree/figures/demo_design.json"
+      ],
+      "schema": "scripts/D02_design_randomization_tree/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Whither Formal Contracts? (2021)",
+      "source_figure": "Figure 1",
+      "source_authors": "Raúl Sánchez de la Sierra",
+      "source_pdf_page": 10,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.3982/ECTA16083",
+      "validation": "中英文默认和标题版实际执行并视检。五条路径的模拟概率之和为1，独立分配约束与条件分母核对通过。主验收修复线条穿过英文分支标签，并明确省略决策节点来自样本行为而非设计逻辑限制。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "D02",
+      "canonical_name": "design_randomization_tree"
+    },
+    {
+      "id": "staggered_policy_phase_timeline",
+      "name_zh": "分批政策的过渡、执行与终止时间线",
+      "category": "research_design",
+      "legacy_storage_category": "design/policy_timeline",
+      "tags": [
+        "Policy rollout",
+        "Staggered timing",
+        "DID design context"
+      ],
+      "source_view_id": "D01",
+      "merged_target": "staggered_policy_phase_timeline",
+      "numeric_origin": "分批政策的自愿过渡、强制执行与结束时点需要阶段区间输入；纯制度说明可只用 Python。",
+      "description": "按队列展示月度政策阶段、样本数和共同终止时点；保留未实施政策的比较组。",
+      "languages": [
+        "python"
+      ],
+      "recipe": "scripts/D01_design_policy_phase_timeline/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/D01_design_policy_phase_timeline/plot.py"
+        ]
+      },
+      "example_inputs": [
+        "scripts/D01_design_policy_phase_timeline/demo.csv"
+      ],
+      "schema": "scripts/D01_design_policy_phase_timeline/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Prabhat Barnwal, Curbing Leakage in Public Programs: Evidence from India's Direct Benefit Transfer Policy (2024)",
+      "source_figure": "Figure 3",
+      "source_authors": "Prabhat Barnwal",
+      "source_pdf_page": 10,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1257/aer.20161864",
+      "validation": "Python 3.12 中英文 PNG 实际执行并视检，另导出 PDF。示例为 3 个政策队列与 1 个非政策组；五种错误时点输入被拒绝，包括区间重叠、倒置、越过终止、非月初日期和非政策组带区间。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "D01",
+      "canonical_name": "design_policy_phase_timeline"
+    },
+    {
+      "id": "efficiency_equity_frontier",
+      "name_zh": "效率—公平政策路径与操作点",
+      "category": "prediction_evaluation",
+      "legacy_storage_category": "estimation/policy_frontier",
+      "tags": [
+        "Policy comparison",
+        "Efficiency–equity",
+        "Operating points",
+        "Algorithm evaluation",
+        "Random forest",
+        "Policy ranking",
+        "Line plot"
+      ],
+      "source_view_id": "E01",
+      "merged_target": "efficiency_equity_frontier",
+      "numeric_origin": "NRP 样本按真实漏报或 random forest 预测漏报排序，改变审计率后重新汇总检出额和差异；固定数据上的算法绩效评估，不求解行为反应或经济结构均衡。",
+      "description": "比较政策参数变化下的效率与群体差距，显示给定的不确定区间、操作点和现状基准。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/E01_prediction_efficiency_equity_frontier/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/E01_prediction_efficiency_equity_frontier/plot.py"
+        ],
+        "stata": [
+          "scripts/E01_prediction_efficiency_equity_frontier/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/E01_prediction_efficiency_equity_frontier/demo.csv"
+      ],
+      "schema": "scripts/E01_prediction_efficiency_equity_frontier/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Measuring and Mitigating Racial Disparities in Tax Audits (2025)",
+      "source_figure": "Figure VIII",
+      "source_authors": "Hadi Elzayn; Evelyn Smith; Thomas Hertz; Cameron Guage; Arun Ramesh; Robin Fisher; Daniel E. Ho; Jacob Goldin",
+      "source_pdf_page": 35,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1093/qje/qjae027",
+      "validation": "69行模拟输入：4条各17点的路径和1个现状点。Python/Stata中英文均实际执行并视检；解析数值最大差8.89e-16。Stata仅一端填写现状CI的异常输入按预期在导出前返回r(9)，两语言均检查区间完整性、操作点唯一性及路径顺序。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "E01",
+      "canonical_name": "prediction_efficiency_equity_frontier"
+    },
+    {
+      "id": "probability_belief_calibration",
+      "name_zh": "平台预测概率与事后概率校准图",
+      "category": "prediction_evaluation",
+      "legacy_storage_category": "estimation/scatter_regression",
+      "tags": [
+        "Probability calibration",
+        "Binscatter",
+        "Prediction",
+        "Calibration",
+        "Matching simulation",
+        "Model validation"
+      ],
+      "source_view_id": "E02",
+      "merged_target": "prediction_probability_calibration",
+      "numeric_origin": "对申请名单和优先类型重抽样、抽取 lottery numbers，重复模拟匹配机制 500 次。预测概率使用当前申请和历史外推，事后基准使用实际申请；Figure I A 检验平台预测质量，不是受访者信念，也不是估计偏好/成本参数的结构 calibration。",
+      "description": "平台预测概率与事后概率的分箱校准；旧 belief 代码 ID 仅作兼容名称，来源不是受访者信念。",
+      "languages": [
+        "python",
+        "stata"
+      ],
+      "recipe": "scripts/E02_prediction_probability_calibration/recipe.md",
+      "entrypoints": {
+        "python": [
+          "scripts/E02_prediction_probability_calibration/plot.py"
+        ],
+        "stata": [
+          "scripts/E02_prediction_probability_calibration/plot.do"
+        ]
+      },
+      "example_inputs": [
+        "scripts/E02_prediction_probability_calibration/demo.csv"
+      ],
+      "schema": "scripts/E02_prediction_probability_calibration/schema.md",
+      "default_title": false,
+      "default_bottom_notes": false,
+      "data_status": "synthetic_drawing_demonstration",
+      "source_paper": "Smart Matching Platforms and Heterogeneous Beliefs in Centralized School Choice (2022)",
+      "source_figure": "Figure I Panel A: Predicted vs. True Placement Probabilities",
+      "source_authors": "Felipe Arteaga; Adam J. Kapor; Christopher A. Neilson; Seth D. Zimmerman",
+      "source_pdf_page": 25,
+      "source_status": "原始页图与 PDF 图注已核对；仅以模拟数据演示画法",
+      "source_doi": "10.1093/qje/qjac013",
+      "validation": "160条模拟观测：10个常规箱各12人，>.99尾组40人。均值、线性插值四分位数和OLS拟合两语言最大差2.5e-8。精确.99归常规箱，>.99归尾组；两语言实际拒绝1.01概率。中英文默认及标题图已执行，默认图视检通过。",
+      "shared_resources": [],
+      "command_variants": [],
+      "display_id": "E02",
+      "canonical_name": "prediction_probability_calibration"
+    }
+  ],
+  "usage": "Read each recipe for its invocation and statistical input contract; entrypoints do not share one universal CLI."
+}

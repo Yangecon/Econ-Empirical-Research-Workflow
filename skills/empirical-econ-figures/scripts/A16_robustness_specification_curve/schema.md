@@ -1,0 +1,9 @@
+# Input contract
+
+[English](schema.md) · [中文](schema.zh-CN.md)
+
+UTF-8 CSV, one row per unique `spec_id` (at least five). Required: `spec_id`, finite numeric `result`, and one explicit `0`/`1` field for every configured `opt_*` choice. No option may be blank; zero means a known choice is off, not “missing.” The current 11 option fields are `opt_baseline`, `opt_regional`, `opt_first_round`, `opt_exclude_municipalities`, `opt_pool_one_site`, `opt_logarithm`, `opt_gdp`, `opt_gdp_per_capita`, `opt_population`, `opt_fiscal_income`, and `opt_fiscal_expenditure`. Edit those IDs and ordered bilingual labels together in both plotting scripts for another application; an extra unconfigured `opt_*` column is rejected.
+
+Optional `ci_low` and `ci_high` columns must be provided as a pair. On each row, either both are blank or both are finite and satisfy `ci_low <= result <= ci_high`; nonempty nonnumeric text is rejected. No interval type or coverage is assumed. The script does not calculate an interval or infer significance. Configured display bounds currently cover result/interval values from −1 through 6 and must be edited if the data exceed them; no point may be silently clipped. The Stata canvas maps that configured range to the upper plot area, keeping it separate from the lower matrix even when the range changes.
+
+The deterministic order is ascending `(result, spec_id)`; ties break by the text ID. `_ordered.csv` includes `rank`, `spec_id`, `result`, optional bounds, and every choice value after sorting. Both the upper result curve and each lower matrix column use that same rank. The lower gray dot means explicit `0`; the black dot means explicit `1`. The current result label is “Mean t-statistic across experiments,” reflecting the primary source, and must be changed for another estimand. The zero line is a descriptive reference, not a critical-value threshold.

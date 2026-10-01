@@ -263,3 +263,7 @@ When asked to draft or revise a section, return:
 4. optional LaTeX-ready version if the user asks
 
 Do not fabricate table numbers, sample means, coefficients, appendix labels, or data details.
+
+## Figure narrative handoff
+
+Use accepted project outputs from `empirical-econ-figures`, preserving their template and estimation provenance. Put the figure title, source attribution, estimand, sample, reference period, weights, confidence level and inference notes in the draft caption/notes as relevant. Do not describe a library demonstration as the paper's empirical result. Keep generated images free of overall titles and bottom notes by default.

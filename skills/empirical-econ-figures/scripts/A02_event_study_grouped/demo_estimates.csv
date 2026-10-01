@@ -1,0 +1,27 @@
+event_time,group,estimate,se
+-6,Urban Hukou,-0.04,0.115
+-5,Urban Hukou,0.02,0.105
+-4,Urban Hukou,-0.01,0.093
+-3,Urban Hukou,0.04,0.085
+-2,Urban Hukou,0.01,0.075
+0,Urban Hukou,0.13,0.075
+1,Urban Hukou,0.22,0.080
+2,Urban Hukou,0.29,0.085
+3,Urban Hukou,0.33,0.090
+4,Urban Hukou,0.35,0.100
+5,Urban Hukou,0.39,0.110
+6,Urban Hukou,0.38,0.120
+7,Urban Hukou,0.41,0.130
+-6,Rural Hukou,0.02,0.105
+-5,Rural Hukou,-0.01,0.100
+-4,Rural Hukou,0.03,0.090
+-3,Rural Hukou,-0.02,0.080
+-2,Rural Hukou,0.00,0.075
+0,Rural Hukou,-0.10,0.080
+1,Rural Hukou,-0.18,0.085
+2,Rural Hukou,-0.22,0.090
+3,Rural Hukou,-0.27,0.100
+4,Rural Hukou,-0.29,0.110
+5,Rural Hukou,-0.31,0.120
+6,Rural Hukou,-0.35,0.130
+7,Rural Hukou,-0.36,0.140

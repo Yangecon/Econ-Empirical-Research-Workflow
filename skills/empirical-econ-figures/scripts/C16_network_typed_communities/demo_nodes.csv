@@ -1,0 +1,16 @@
+id,label,region,exam_group,label_show
+A1,Person A1,Hunan,Exam A,1
+A2,Person A2,Other,Exam A,0
+A3,Person A3,Other,Exam A,0
+A4,Person A4,Hunan,Exam A,0
+A5,Person A5,Other,Exam A,0
+B1,Person B1,Hunan,Exam B,1
+B2,Person B2,Other,Exam B,0
+B3,Person B3,Other,Exam B,0
+B4,Person B4,Hunan,Exam B,0
+B5,Person B5,Other,Exam B,0
+C1,Person C1,Hunan,Exam C,1
+C2,Person C2,Other,Exam C,0
+C3,Person C3,Other,Exam C,0
+C4,Person C4,Hunan,Exam C,0
+C5,Person C5,Other,Exam C,0

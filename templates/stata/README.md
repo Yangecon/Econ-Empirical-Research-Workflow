@@ -16,3 +16,5 @@ Each `.do` file should append its own package/version footprint to:
 - `output/raw/stata_version_log.csv`
 
 The `.do` templates are project scaffolds. Set `pre_var` to the design's 0/1 pre-treatment indicator when applicable; the templates then calculate the outcome mean on each model's pre-treatment estimation observations. Leave it empty for a correctly labeled full-sample mean. Their CSVs under `output/raw/` are inputs for the default single `output/tables/results_tables.xlsx` workbook. Put one complete three-line table and a concrete note on each sheet. Do not mark output ready until that workbook is built and checked against the stored Stata estimates. See `skills/empirical-analysis-stata/references/08-tables-plots.md` for the format contract and `09-table-examples.md` for illustrative sheets. Export Word or TeX only when requested.
+
+Figure templates default to English labels without overall titles or bottom notes. Set `INCLUDE_TITLES` in `03_figures.do` to enable titles. For the curated A–E families, read the selected `empirical-econ-figures` recipe; export its actual inputs and record provenance in `notes/figure_log.csv`.

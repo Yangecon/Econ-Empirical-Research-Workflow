@@ -91,3 +91,7 @@ Report:
 - whether wrappers or snippets were added or updated
 - whether `draft/main.tex` is aligned
 - whether the project is ready for Overleaf sync
+
+## Curated figure inputs
+
+When upstream uses `empirical-econ-figures`, verify the figure against its saved numerical inputs and `notes/figure_log.csv` before copying it to `draft/images/`. Use the actual PNG or supported vector export in the wrapper; a PNG-only preview is not evidence of a vector PDF. Keep title, source and statistical notes in the draft. Check that wrappers point to current project results, never to synthetic gallery previews.

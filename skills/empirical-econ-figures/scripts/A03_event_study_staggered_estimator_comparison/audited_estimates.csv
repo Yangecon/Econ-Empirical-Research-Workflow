@@ -1,0 +1,62 @@
+estimator,event_time,b,se,ci_low,ci_high,status,sample_n,command,inference
+BJS imputation,-5,-.0334830611278447,.071443982,-.1735107,.10654458,pretrend_test,4500,did_imputation,unit_cluster_normal
+BJS imputation,-4,-.0144646529294726,.087873913,-.18669435,.15776505,pretrend_test,4500,did_imputation,unit_cluster_normal
+BJS imputation,-3,-.0667801652540388,.10041583,-.26359159,.13003126,pretrend_test,4500,did_imputation,unit_cluster_normal
+BJS imputation,-2,-.0223989383861313,.10627876,-.23070149,.18590361,pretrend_test,4500,did_imputation,unit_cluster_normal
+BJS imputation,-1,-.0890425603332648,.12437107,-.3328054,.15472026,pretrend_test,4500,did_imputation,unit_cluster_normal
+BJS imputation,0,.0854318703635551,.079731897,-.070839778,.24170351,estimated,4500,did_imputation,unit_cluster_normal
+BJS imputation,1,.6695368084372362,.083747417,.50539488,.83367872,estimated,4500,did_imputation,unit_cluster_normal
+BJS imputation,2,1.083880195008237,.10123315,.88546687,1.2822936,estimated,4500,did_imputation,unit_cluster_normal
+BJS imputation,3,1.604685335285558,.13327007,1.3434808,1.8658899,estimated,4500,did_imputation,unit_cluster_normal
+BJS imputation,4,1.918661839266605,.15311384,1.6185642,2.2187595,estimated,4500,did_imputation,unit_cluster_normal
+BJS imputation,5,2.651424308693273,.24323024,2.1747017,3.1281469,estimated,4500,did_imputation,unit_cluster_normal
+Callaway-Santanna,-5,-.0682273240298073,.10223348,-.26860127,.13214661,pretrend_test,,csdid_estat_event,unit_cluster_normal
+Callaway-Santanna,-4,-.0127560841383466,.10503446,-.21861982,.19310766,pretrend_test,,csdid_estat_event,unit_cluster_normal
+Callaway-Santanna,-3,-.0718441582182589,.1010965,-.26998967,.12630133,pretrend_test,,csdid_estat_event,unit_cluster_normal
+Callaway-Santanna,-2,.0779602546374063,.11351871,-.14453232,.30045283,pretrend_test,,csdid_estat_event,unit_cluster_normal
+Callaway-Santanna,-1,-.0482672347028964,.10871062,-.26133612,.16480166,pretrend_test,,csdid_estat_event,unit_cluster_normal
+Callaway-Santanna,0,.1408581106996379,.1534224,-.15984426,.44156048,estimated,,csdid_estat_event,unit_cluster_normal
+Callaway-Santanna,1,.7141743775144032,.14688331,.42628837,1.0020604,estimated,,csdid_estat_event,unit_cluster_normal
+Callaway-Santanna,2,1.132017306609691,.15450233,.8291983,1.4348363,estimated,,csdid_estat_event,unit_cluster_normal
+Callaway-Santanna,3,1.565302400738884,.17431918,1.2236431,1.9069617,estimated,,csdid_estat_event,unit_cluster_normal
+Callaway-Santanna,4,1.89941337945694,.21220674,1.4834958,2.315331,estimated,,csdid_estat_event,unit_cluster_normal
+Callaway-Santanna,5,2.773816577330082,.28892303,2.2075379,3.3400953,estimated,,csdid_estat_event,unit_cluster_normal
+Sun-Abraham,-5,.1663743127351973,.11590937,-.060803875,.39355251,estimated,4500,eventstudyinteract,unit_cluster_normal
+Sun-Abraham,-4,.1461789379466382,.10958384,-.068601437,.36095932,estimated,4500,eventstudyinteract,unit_cluster_normal
+Sun-Abraham,-3,.0648201539062357,.098386638,-.12801412,.25765443,estimated,4500,eventstudyinteract,unit_cluster_normal
+Sun-Abraham,-2,.1017395623403766,.097960547,-.090259582,.29373869,estimated,4500,eventstudyinteract,unit_cluster_normal
+Sun-Abraham,-1,0,,,,normalized_reference,4500,eventstudyinteract,none
+Sun-Abraham,0,.1056290541186912,.14823006,-.18489654,.39615464,estimated,4500,eventstudyinteract,unit_cluster_normal
+Sun-Abraham,1,.6319129342173024,.14688113,.34403121,.91979468,estimated,4500,eventstudyinteract,unit_cluster_normal
+Sun-Abraham,2,.994586197312217,.16148712,.67807728,1.3110951,estimated,4500,eventstudyinteract,unit_cluster_normal
+Sun-Abraham,3,1.465402918895775,.18563721,1.1015607,1.8292451,estimated,4500,eventstudyinteract,unit_cluster_normal
+Sun-Abraham,4,1.820727045132823,.22084506,1.3878787,2.2535753,estimated,4500,eventstudyinteract,unit_cluster_normal
+Sun-Abraham,5,2.773816577330054,.29261023,2.2003112,3.347322,estimated,4500,eventstudyinteract,unit_cluster_normal
+TWFE OLS,-5,.5773095274993597,.11428615,.35331279,.80130625,estimated,4500,reghdfe,unit_cluster_normal
+TWFE OLS,-4,.592653416171955,.10848486,.380027,.80527985,estimated,4500,reghdfe,unit_cluster_normal
+TWFE OLS,-3,.4820691308042206,.09525203,.2953786,.66875964,estimated,4500,reghdfe,unit_cluster_normal
+TWFE OLS,-2,.3767514503035747,.089826614,.20069452,.5528084,estimated,4500,reghdfe,unit_cluster_normal
+TWFE OLS,-1,0,,,,normalized_reference,4500,reghdfe,none
+TWFE OLS,0,.0244805825147658,.12655474,-.22356217,.27252334,estimated,4500,reghdfe,unit_cluster_normal
+TWFE OLS,1,.4694466733480059,.11827643,.23762912,.7012642,estimated,4500,reghdfe,unit_cluster_normal
+TWFE OLS,2,.6425521913908494,.12726538,.39311665,.89198774,estimated,4500,reghdfe,unit_cluster_normal
+TWFE OLS,3,.9318330807417901,.15601791,.62604362,1.2376226,estimated,4500,reghdfe,unit_cluster_normal
+TWFE OLS,4,1.034057576016278,.17637834,.68836236,1.3797528,estimated,4500,reghdfe,unit_cluster_normal
+TWFE OLS,5,1.420223328075037,.24370608,.94256818,1.8978785,estimated,4500,reghdfe,unit_cluster_normal
+Wooldridge jwdid,0,.0854318692705363,.080177598,-.071713328,.24257708,estimated,4500,jwdid_estat_event,unit_cluster_delta_normal
+Wooldridge jwdid,1,.6695368077157866,.084215559,.50447732,.83459628,estimated,4500,jwdid_estat_event,unit_cluster_delta_normal
+Wooldridge jwdid,2,1.083880193480354,.10179904,.88435775,1.2834027,estimated,4500,jwdid_estat_event,unit_cluster_delta_normal
+Wooldridge jwdid,3,1.60468533353307,.13401505,1.3420206,1.86735,estimated,4500,jwdid_estat_event,unit_cluster_delta_normal
+Wooldridge jwdid,4,1.918661837897304,.15396975,1.6168867,2.220437,estimated,4500,jwdid_estat_event,unit_cluster_delta_normal
+Wooldridge jwdid,5,2.651424302657659,.2445899,2.1720369,3.1308117,estimated,4500,jwdid_estat_event,unit_cluster_delta_normal
+dCDH dynamic,-5,.029969806193119,.20406936,-.36999881,.42993841,placebo_test,,did_multiplegt_old,unit_bootstrap_normal
+dCDH dynamic,-4,-.0692491049386155,.14834408,-.35999817,.22149995,placebo_test,,did_multiplegt_old,unit_bootstrap_normal
+dCDH dynamic,-3,.0305156662332091,.150537,-.26453143,.32556275,placebo_test,,did_multiplegt_old,unit_bootstrap_normal
+dCDH dynamic,-2,.0460631846818082,.1159315,-.18115838,.27328476,placebo_test,,did_multiplegt_old,unit_bootstrap_normal
+dCDH dynamic,-1,.0482672347028964,.11587665,-.17884684,.2753813,placebo_test,,did_multiplegt_old,unit_bootstrap_normal
+dCDH dynamic,0,.1408581106996382,.14630657,-.14589751,.42761374,estimated,,did_multiplegt_old,unit_bootstrap_normal
+dCDH dynamic,1,.7141743775144028,.14654532,.42695081,1.001398,estimated,,did_multiplegt_old,unit_bootstrap_normal
+dCDH dynamic,2,1.132017306609691,.1626907,.81314939,1.4508852,estimated,,did_multiplegt_old,unit_bootstrap_normal
+dCDH dynamic,3,1.565302400738884,.19266886,1.1876783,1.9429264,estimated,,did_multiplegt_old,unit_bootstrap_normal
+dCDH dynamic,4,1.899413379456941,.21236721,1.4831812,2.3156455,estimated,,did_multiplegt_old,unit_bootstrap_normal
+dCDH dynamic,5,2.773816577330082,.30454171,2.1769259,3.3707073,estimated,,did_multiplegt_old,unit_bootstrap_normal

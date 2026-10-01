@@ -56,3 +56,5 @@ estimates store m1
 ## Figures
 
 Use `coefplot`, `binscatter`, `marginsplot`, `rdplot`, or clean `twoway` graphs as appropriate. Keep readable labels, white backgrounds, grayscale legibility, stable names, and PDF/PNG exports when downstream workflows need both.
+
+For curated plotting patterns, read `empirical-econ-figures` and its selected recipe after estimation. Figure defaults are English labels with no overall title or bottom notes; supply the title, source and inference notes in the draft. Preserve full covariance and actual aggregation weights. This figure convention does not change the table-title or workbook-note contract above.

@@ -1,0 +1,14 @@
+{
+  "data_status": "synthetic illustrative parameters, not source-paper values",
+  "p_initial_accept": 0.62,
+  "p_contract_maintained_given_initial_accept": 0.5,
+  "p_contract_maintained_given_initial_reject": 0.5,
+  "p_ultimate_accept_given_initial_reject_and_lifted": 0.35,
+  "paths": [
+    "A1_F1_U1",
+    "A1_F0_U1",
+    "A0_F1_U0",
+    "A0_F0_U1",
+    "A0_F0_U0"
+  ]
+}
