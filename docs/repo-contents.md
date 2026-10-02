@@ -84,7 +84,7 @@ shared/prompts/topic_evaluation_prompt.md
 ## Curated figure resources
 
 - `skills/empirical-econ-figures/`: portable skill, 50 templates, inputs, paired documentation and shared dependencies.
-- `gallery/empirical-econ-figures/`: English PNG previews and paired 50-row overview; no duplicated plotting code or source-paper screenshots.
+- `gallery/empirical-econ-figures/`: 97 English example PNGs, 56 paper/original reference PNGs and paired 50-row overview; shared plotting code stays in the skill.
 - `scripts/figure_catalog.py`: category/tag/language/ID discovery.
 - `scripts/validate_figures.py`: catalog, integrity, gallery and runtime checks.
 - `docs/figure-integration.md` / `.zh-CN.md`: workflow handoff and examples.

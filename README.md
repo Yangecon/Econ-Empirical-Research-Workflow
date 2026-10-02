@@ -173,7 +173,7 @@ For a compact inventory, see [docs/repo-contents.md](./docs/repo-contents.md).
 
 ## Empirical economics figures
 
-`empirical-econ-figures` adds **50 accepted variants / 40 drawing targets** from supplied 2021–2026 Top 5 economics papers, selected NBER working papers and method references. The A–E taxonomy follows the origin of plotted numbers. Code and input schemas live in one skill; the companion gallery stores 97 English example PNGs. Documentation is bilingual, previews open on click, and figures omit overall titles and bottom notes by default.
+`empirical-econ-figures` adds **50 accepted variants / 40 drawing targets** from supplied 2021–2026 Top 5 economics papers, selected NBER working papers and method references. The A–E taxonomy follows the origin of plotted numbers. Code and input schemas live in one skill; the companion gallery stores 97 English example PNGs and 56 paper/original reference PNGs. Documentation is bilingual, previews open on click, and figures omit overall titles and bottom notes by default.
 
 - [Integration and estimation-to-draft handoff](docs/figure-integration.md)
 - [Full skill overview and recipes](skills/empirical-econ-figures/README.md)

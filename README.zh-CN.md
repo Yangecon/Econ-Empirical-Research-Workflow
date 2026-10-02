@@ -173,7 +173,7 @@ skills/
 
 ## 实证经济学绘图
 
-新增 `empirical-econ-figures`，包含所提供的 2021–2026 年 Top 5 经济学论文、部分 NBER working papers 与方法文献中的 **50 个已验收条目 / 40 个归并目标**。A–E 按图中数字的来源分类。代码和输入规范保存在一份 skill 中，配套画廊存放 97 张英文示例 PNG。说明中英文分开，预览点击后打开；图内默认无总标题和底部 notes。
+新增 `empirical-econ-figures`，包含所提供的 2021–2026 年 Top 5 经济学论文、部分 NBER working papers 与方法文献中的 **50 个已验收条目 / 40 个归并目标**。A–E 按图中数字的来源分类。代码和输入规范保存在一份 skill 中，配套画廊存放 97 张英文示例 PNG 和 56 张原文/原始参考 PNG。说明中英文分开，预览点击后打开；图内默认无总标题和底部 notes。
 
 - [Workflow 接入与估计—绘图—draft 交接](docs/figure-integration.zh-CN.md)
 - [完整 skill 总览与使用说明](skills/empirical-econ-figures/README.zh-CN.md)

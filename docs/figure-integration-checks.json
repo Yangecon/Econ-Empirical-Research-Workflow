@@ -2,23 +2,12 @@
   "status": "PASS",
   "accepted_variants": 50,
   "drawing_targets": 40,
-  "gallery_pngs": 97,
-  "checked_local_links": 1342,
+  "gallery_pngs": 153,
+  "example_pngs": 97,
+  "source_reference_pngs": 56,
+  "checked_local_links": 1576,
   "manifest_records": 504,
   "tracked_bundle_checked": true,
-  "python_runs": [
-    {
-      "case": "actual_panel",
-      "exit_code": 0
-    },
-    {
-      "case": "shared_line",
-      "exit_code": 0
-    },
-    {
-      "case": "saved_stata_estimates",
-      "exit_code": 0
-    }
-  ],
+  "python_runs": [],
   "fresh_stata_run": false
 }

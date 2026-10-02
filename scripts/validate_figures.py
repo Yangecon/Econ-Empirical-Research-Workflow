@@ -40,10 +40,21 @@ def main():
     assert {'A01','A02','A03'}.issubset({r['display_id'] for r in event_rows})
     assert select(catalog,category='summary',code_language='python')
     assert not list(SKILL.rglob('*.png')) and not list(GALLERY.rglob('*.pdf'))
-    pngs=list(GALLERY.rglob('*.png'));assert len(pngs)==97
+    pngs=list(GALLERY.rglob('*.png'))
+    references=[p for p in pngs if '__source_reference' in p.name]
+    examples=[p for p in pngs if '__source_reference' not in p.name]
+    assert len(examples)==97 and len(references)==56 and len(pngs)==153
+    source_manifest=json.loads((GALLERY/'source_previews.json').read_text(encoding='utf-8'))
+    assert source_manifest['count']==56 and len(source_manifest['images'])==56
+    assert {r['file'] for r in source_manifest['images']}=={p.relative_to(GALLERY).as_posix() for p in references}
+    assert {r['display_id'] for r in source_manifest['images']}==set(ids)
+    for row in source_manifest['images']:
+        p=(GALLERY/row['file']).resolve()
+        assert p.is_relative_to(GALLERY.resolve()) and hashlib.sha256(p.read_bytes()).hexdigest()==row['sha256'],row['file']
+        assert row['reference_role'] and (row['paper'] or row['reference_role']=='local_reference_unconfirmed')
     from PIL import Image
     for p in pngs:
-        assert '__source_reference' not in p.name and not any(x in p.stem.split('_') for x in ['cn','zh'])
+        if p in examples:assert not any(x in p.stem.split('_') for x in ['cn','zh'])
         with Image.open(p) as im:im.verify()
     pages=list(SKILL.rglob('*.md'))
     for p in pages:
@@ -60,16 +71,23 @@ def main():
             assert (p.parent/unquote(parsed.path)).resolve().is_file(),(p,target)
             links+=1
     for p in SKILL.rglob('*.py'):ast.parse(p.read_text(encoding='utf-8-sig'),filename=str(p))
-    for p in GALLERY.glob('*.md'):
+    for p in GALLERY.glob('README*.md'):
         body=p.read_text(encoding='utf-8')
         assert len(re.findall(r'^\| [A-E]\d{2} \|',body,re.M))==50
         assert not re.search(r'!\[[^\]]*\]\(',body)
+        for line in body.splitlines():
+            if re.match(r'^\| [A-E]\d{2} \|',line):
+                cells=[x.strip() for x in line.strip('|').split('|')]
+                assert len(cells)==9 and '__source_reference' in cells[6] and '__source_reference' not in cells[7]
+    for name in ['SOURCES.md','SOURCES.zh-CN.md']:
+        body=(GALLERY/name).read_text(encoding='utf-8')
+        assert len(re.findall(r'^\| [A-E]\d{2} \|',body,re.M))==56
     checked=0
     tracked=None
     if args.check_tracked:
         proc=subprocess.run(['git','ls-files','-z'],cwd=ROOT,capture_output=True,check=True)
         tracked=set(proc.stdout.decode('utf-8').split('\0'))
-        required=[SKILL/'SHA256SUMS.txt',*pngs,*GALLERY.glob('*.md')]
+        required=[SKILL/'SHA256SUMS.txt',GALLERY/'source_previews.json',*pngs,*GALLERY.glob('*.md')]
         for p in required:assert p.relative_to(ROOT).as_posix() in tracked,('untracked bundle file',str(p))
     for line in (SKILL/'SHA256SUMS.txt').read_text(encoding='utf-8').splitlines():
         digest,name=line.split('  ',1);p=SKILL/name
@@ -98,7 +116,7 @@ def main():
         run('shared_line',base/'plot.py',['--input',base/'custom_demo.csv','--config',base/'custom_config.json','--output',dest,'--lang','en'],[dest])
         base=folder('A03');dest=out/'staggered'
         run('saved_stata_estimates',base/'plot_python.py',['--input',base/'audited_estimates.csv','--output-stem',dest],[dest.with_suffix('.png')])
-    result={'status':'PASS','accepted_variants':50,'drawing_targets':40,'gallery_pngs':97,'checked_local_links':links,'manifest_records':checked,'tracked_bundle_checked':args.check_tracked,'python_runs':runs,'fresh_stata_run':False}
+    result={'status':'PASS','accepted_variants':50,'drawing_targets':40,'gallery_pngs':153,'example_pngs':97,'source_reference_pngs':56,'checked_local_links':links,'manifest_records':checked,'tracked_bundle_checked':args.check_tracked,'python_runs':runs,'fresh_stata_run':False}
     (out/'validation.json').write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(result))
 
