@@ -21,6 +21,9 @@ docs/repo-contents.md
 ## Skills
 
 ```text
+skills/codex-usage/SKILL.md
+skills/codex-usage/scripts/read_usage.py
+skills/codex-usage/agents/openai.yaml
 skills/econ-empirical-research-workflow/SKILL.md
 skills/econ-empirical-research-workflow/agents/openai.yaml
 skills/research-workflow/SKILL.md

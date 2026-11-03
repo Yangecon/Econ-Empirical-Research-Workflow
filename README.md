@@ -149,6 +149,7 @@ skills/
   output-draft-overleaf-sync/
   research-submission/
   reference-elicit-agent/
+  codex-usage/
 ```
 
 What each skill does:
@@ -163,6 +164,7 @@ What each skill does:
 - `research-writing`: drafts and revises empirical paper prose and manages draft-folder logic.
 - `output-draft-overleaf-sync`: refreshes downstream draft assets and checks Overleaf handoff readiness.
 - `research-submission`: prepares a submission-ready `paper/` folder and replication package.
+- `codex-usage`: checks Codex usage and reset times, distinguishing cached snapshots from live account information.
 - `reference-elicit-agent`: manages the persistent Elicit-centered literature workflow under `references/`.
 
 For a full empirical run, summary statistics and regression tables default to one `output/tables/results_tables.xlsx` workbook, with one complete table and its notes per sheet. CSV, Word, and TeX are exported when requested or needed for a downstream draft.

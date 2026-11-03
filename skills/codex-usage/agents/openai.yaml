@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex Usage"
+  short_description: "Check Codex usage and reset times"
+  default_prompt: "Use $codex-usage to check my Codex usage and reset times."

@@ -149,6 +149,7 @@ skills/
   output-draft-overleaf-sync/
   research-submission/
   reference-elicit-agent/
+  codex-usage/
 ```
 
 各个 skill 的作用：
@@ -163,6 +164,7 @@ skills/
 - `research-writing`：负责论文正文写作、改写与 draft folder 逻辑。
 - `output-draft-overleaf-sync`：刷新下游 draft assets，并检查 Overleaf handoff readiness。
 - `research-submission`：准备 submission-ready `paper/` folder 和 replication package。
+- `codex-usage`：查询 Codex 用量与重置时间，区分本地快照和实时账户信息。
 - `reference-elicit-agent`：管理 `references/` 下以 Elicit 为中心的持续文献工作流。
 
 完整实证运行默认将描述性统计与回归表汇总到一个 `output/tables/results_tables.xlsx` 工作簿，每个 sheet 放一张完整表和对应表注；CSV、Word 和 TeX 在提出要求或下游写作需要时再导出。
